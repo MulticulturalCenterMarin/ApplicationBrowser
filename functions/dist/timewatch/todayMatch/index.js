@@ -1,0 +1,2 @@
+'use strict';Object.defineProperty(exports,'__esModule',{value:!0});function todayMatch(a){var b=new Date().getDay();return['daySunday','dayMonday','dayTuesday','dayWednesday','dayThursday','dayFriday','daySaturday','daySunday'].filter(function(d,e){if(e===b&&!0===a[d])return!0})}exports.default=todayMatch,module.exports=exports['default'];
+//# sourceMappingURL=index.js.map

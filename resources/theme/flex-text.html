@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <title>Flex Text</title>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root">
+      <header>
+        <div class="header-inner"></div>
+      </header>
+      <aside>
+        <div class="aside-inner"></div>
+      </aside>
+      <main>
+        <div class="main-inner"></div>
+      </main>
+    </div>
+  </body>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    #root {
+      bottom: 0; left: 0; top: 0; right: 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
+    header {
+      background-color: coral;
+      flex: 1 1 auto;
+    }
+      .header-inner {
+        height: 50px;
+        width: 2200px;
+      }
+
+    aside {
+      background-color: blue;
+      flex: 1 1 auto;
+    }
+      .aside-inner {
+        height: 70vh;
+        width: 30%;
+      }
+    main {
+      background-color:green;
+      flex: 1 1 auto;
+    }
+      .main-inner {
+        width: 70%;
+      }
+
+  </style>
+</html>

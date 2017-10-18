@@ -1,0 +1,2 @@
+'use strict';var _lodash=require('lodash'),_lodash2=_interopRequireDefault(_lodash);function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}var admin=require('firebase-admin'),firestoreAdd=function(a){var b=a.collection,c=a.data;admin.firestore.collection(b).add(c)},firestoreDocumentSet=function(a){var b=a.collection,c=a.document};
+//# sourceMappingURL=index.js.map

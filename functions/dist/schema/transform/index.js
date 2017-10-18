@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var transformUserOnCreate=exports.transformUserOnCreate=function(a){return{uid:a.uid,authentication:a,identity:{name:{nameDisplay:a.displayName},images:{imageProfile:a.photoURL}}}};
+//# sourceMappingURL=index.js.map
