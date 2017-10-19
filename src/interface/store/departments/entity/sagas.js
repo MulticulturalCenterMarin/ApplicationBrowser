@@ -1,4 +1,5 @@
 /* ------------------------- External Dependencies -------------------------- */
+import _ from 'lodash'
 import idx from 'idx'
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import reduxSagaFirebase from 'services/Firebase';
@@ -22,6 +23,14 @@ import {
   ENTITY_RESOURCE_EDIT_REQUEST,
   ENTITY_RESOURCE_DELETE_REQUEST,
   ENTITY_BANNER_ADD_REQUEST,
+  ENTITY_FILE_ADD_REQUEST,
+  ENTITY_FILE_EDIT_REQUEST,
+  ENTITY_FILE_DELETE_REQUEST,
+  ENTITY_FILES_ADD_REQUEST,
+  ENTITY_IMAGE_ADD_REQUEST,
+  ENTITY_IMAGE_EDIT_REQUEST,
+  ENTITY_IMAGE_DELETE_REQUEST,
+  ENTITY_IMAGES_ADD_REQUEST,
 } from './actions'
 import {
   entityPersonAddSuccess,
@@ -56,6 +65,22 @@ import {
   entityResourceDeleteFailure,
   entityBannerAddSuccess,
   entityBannerAddFailure,
+  entityFileAddSuccess,
+  entityFileAddFailure,
+  entityFileEditSuccess,
+  entityFileEditFailure,
+  entityFileDeleteSuccess,
+  entityFileDeleteFailure,
+  entityFilesAddSuccess,
+  entityFilesAddFailure,
+  entityImageAddSuccess,
+  entityImageAddFailure,
+  entityImageEditSuccess,
+  entityImageEditFailure,
+  entityImageDeleteSuccess,
+  entityImageDeleteFailure,
+  entityImagesAddSuccess,
+  entityImagesAddFailure,
 } from './actions'
 
 
@@ -75,6 +100,10 @@ import {
 
 import {
   notificationOpen
+} from 'store/departments/actions'
+
+import { 
+  storageUploadFileRequest
 } from 'store/departments/actions'
 
 import { mapboxGeocode } from 'store/async'
@@ -353,21 +382,133 @@ function* resourceDelete({payload, metadata}) {
 /*---*--- Banner Add ---*---*/
 function* bannerAdd({payload, metadata}) {
   try {
-    console.log(payload)
-    console.log(metadata)
     const file = payload[0],
     { location, fileMetadata } = metadata
     const fileID = yield call(reduxSagaFirebase.storage.uploadFile, `${location}/${file.name}`, file);
-    console.log(fileID)
     const images = {
-      imageBanner: fileID.downloadURL
+      "images.imageBanner": fileID.downloadURL
     }
-    yield put(firestoreDocumentUpdateRequest({payload: {images}, metadata }))
+    yield put(firestoreDocumentUpdateRequest({payload: images, metadata }))
     yield put(entityBannerAddSuccess({payload: {}, metadata}))
     yield put(notificationOpen({payload:{title: 'Banner Upload Success'}}))
   } catch(e) {
     yield put(entityBannerAddFailure({payload: e, metadata}))
     yield put(notificationOpen({payload:{title: 'Banner Upload Failure'}}))
+  }
+}
+
+/*---*--- File Add ---*---*/
+function* fileAdd({payload, metadata}) {
+  try {
+
+    yield put(entityFileAddSuccess({payload: {}, metadata}))
+  } catch(e) {
+    yield put(entityFileAddFailure({payload: e, metadata}))
+  }
+}
+
+
+/*---*--- File Edit ---*---*/
+function* fileEdit({payload, metadata}) {
+  try {
+
+    yield put(entityFileEditSuccess({payload: {}, metadata}))
+  } catch(e) {
+    yield put(entityFileEditFailure({payload: e, metadata}))
+  }
+}
+
+
+/*---*--- File Delete ---*---*/
+function* fileDelete({payload, metadata}) {
+  try {
+
+    yield put(entityFileDeleteSuccess({payload: {}, metadata}))
+  } catch(e) {
+    yield put(entityFileDeleteFailure({payload: e, metadata}))
+  }
+}
+
+
+/*---*--- Files Add ---*---*/
+function* filesAdd({payload, metadata}) {
+  try {
+
+    yield put(entityFilesAddSuccess({payload: {}, metadata}))
+  } catch(e) {
+    yield put(entityFilesAddFailure({payload: e, metadata}))
+  }
+}
+
+
+/*---*--- Image Add ---*---*/
+function* imageAdd({payload, metadata}) {
+  try {
+
+    yield put(entityImageAddSuccess({payload: {}, metadata}))
+  } catch(e) {
+    yield put(entityImageAddFailure({payload: e, metadata}))
+  }
+}
+
+
+/*---*--- Image Edit ---*---*/
+function* imageEdit({payload, metadata}) {
+  try {
+
+    yield put(entityImageEditSuccess({payload: {}, metadata}))
+  } catch(e) {
+    yield put(entityImageEditFailure({payload: e, metadata}))
+  }
+}
+
+
+/*---*--- Image Delete ---*---*/
+function* imageDelete({payload, metadata}) {
+  try {
+
+    yield put(entityImageDeleteSuccess({payload: {}, metadata}))
+  } catch(e) {
+    yield put(entityImageDeleteFailure({payload: e, metadata}))
+  }
+}
+
+
+/*---*--- Images Add ---*---*/
+function* imagesAdd({payload, metadata}) {
+  try {
+    const { location, fileMetadata } = metadata
+    const fileCollection = {}
+    const filesNew = {}
+    for (var index = 0; index < payload.length; index++) {
+      console.log(payload[index])
+      fileCollection[payload[index].name] = yield call(reduxSagaFirebase.storage.uploadFile, `${location}/${payload[index].name}`, payload[index]);
+    }
+    const save = _.forEach(fileCollection, (file, i)=> {
+      console.log(file)
+      const name = file.metadata.name.substring(0, file.metadata.name.lastIndexOf('.')).replace(".","_").replace(" ", "_");
+      console.log(name)
+      filesNew[`images.imageGallery.${name}`] = {
+        src:file.downloadURL,
+        md5Hash: file.metadata.md5Hash,
+        name: file.metadata.name,
+        fullPath: file.metadata.fullPath,
+    }})
+    console.log(save)
+    console.log(filesNew)
+    const payloadNew = {
+         ...filesNew
+    }
+    yield put(entityImagesAddSuccess({payload: {}, metadata}))
+    yield put(firestoreDocumentUpdateRequest({payload: payloadNew, metadata: {
+      ...metadata,
+      delta: `${metadata.delta}|GalleryUpload`,
+    }}))
+    yield put(notificationOpen({payload:{title: 'Gallery Upload Success'}}))
+    yield put(firestoreDocumentGetRequest({payload:{}, metadata}))
+  } catch(e) {
+    yield put(entityImagesAddFailure({payload: e, metadata}))
+    yield put(notificationOpen({payload:{title: 'Gallery Upload Failure'}}))
   }
 }
 
@@ -389,5 +530,13 @@ export default function* rxdbRootSaga() {
    takeEvery(ENTITY_RESOURCE_EDIT_REQUEST, resourceEdit),
    takeEvery(ENTITY_RESOURCE_DELETE_REQUEST, resourceDelete),
    takeEvery(ENTITY_BANNER_ADD_REQUEST, bannerAdd),
+   takeEvery(ENTITY_FILE_ADD_REQUEST, fileAdd),
+   takeEvery(ENTITY_FILE_EDIT_REQUEST, fileEdit),
+   takeEvery(ENTITY_FILE_DELETE_REQUEST, fileDelete),
+   takeEvery(ENTITY_FILES_ADD_REQUEST, filesAdd),
+   takeEvery(ENTITY_IMAGE_ADD_REQUEST, imageAdd),
+   takeEvery(ENTITY_IMAGE_EDIT_REQUEST, imageEdit),
+   takeEvery(ENTITY_IMAGE_DELETE_REQUEST, imageDelete),
+   takeEvery(ENTITY_IMAGES_ADD_REQUEST, imagesAdd),
   ];
 }

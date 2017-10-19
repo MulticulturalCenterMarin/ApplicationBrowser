@@ -6,7 +6,7 @@ const library = createLibrary(components)
 
 const { length } = Object.keys(library)
 
-const Rebass = Object.assign({}, library, { Provider, Flex, Box })
+const Rebass = Object.assign({}, library)
 
 export { default as Provider } from './Provider'
 export { default as hoc } from './hoc'

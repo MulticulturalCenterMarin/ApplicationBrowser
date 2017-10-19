@@ -164,10 +164,10 @@ function* databaseWrite({payload, metadata}) {
 
 
     yield put({type: DATABASE_WRITE_SUCCESS, message: request, writeType  })
-    yield put(notificationOpen({payload:{title: 'Database Write Success', message:request}}))
+    yield put(notificationOpen({payload:{title: 'Database Write Success'}}))
   } catch(e) {
     yield put({type: DATABASE_WRITE_FAILURE, message: e.message })
-    yield put(notificationOpen({payload:{title: 'Database Write Failure', message:request}}))
+    yield put(notificationOpen({payload:{title: 'Database Write Failure'}}))
   }
 }
 

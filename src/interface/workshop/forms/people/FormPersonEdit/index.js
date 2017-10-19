@@ -75,7 +75,6 @@ const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
 const mapStateToProps = (state, props) => {
   const delta = props.match.params.id
   const data = fromFirestore.getQueryData(state, delta)
-  console.log(data)
   let initialValues = {};
   Object.keys(data).map(key=> ({...data[key]})).forEach(i=> initialValues = {...initialValues, ...i})
   if(data) return {delta, initialValues:{...initialValues}}

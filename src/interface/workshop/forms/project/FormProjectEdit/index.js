@@ -62,6 +62,7 @@ const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
   const address = _.pickBy(data, (value, key)=> key.startsWith("address"));
   const biography = _.pickBy(data, (value, key)=> key.startsWith("biography"));
   const contact =  _.pickBy(data, (value, key)=> key.startsWith("contact"));
+  const meta = _.pickBy(data, (value, key)=> key.startsWith("meta"));
   const name = _.pickBy(data, (value, key)=> key.startsWith("name"));
   const settings = _.pickBy(data, (value, key)=> key.startsWith("settings"));
 
@@ -70,6 +71,7 @@ const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
     address,
     biography,
     contact,
+    meta,
     name,
     settings,
   }

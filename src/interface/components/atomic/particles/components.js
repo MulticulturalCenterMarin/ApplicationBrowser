@@ -38,9 +38,8 @@ const components = [
   {
     name: 'Block',
     type: 'div',
-    is: 'div',
     props: {
-
+      is: 'div',
     },
     style: props => ({
      
@@ -62,9 +61,8 @@ const components = [
   {
     name: 'Box',
     type: 'div',
-    is: 'div',
     props: {
-
+      is: 'div',
     },
     style: props => ({
       boxSizing: 'border-box',

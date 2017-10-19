@@ -26,7 +26,6 @@ export default props => (
   <Shape top left right h={[ '70px', '90px', "125px"]} svg={assets.svg.waves} w={[1]} transform={['rotate(180deg)']} z={0} />
   <FrontProjectsActive/>
   <FrontIntroduction/>
-  <FrontProjectsSubmit/>
   <FrontJourney/>
   </div>
 )

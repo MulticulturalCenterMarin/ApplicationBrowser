@@ -31,7 +31,6 @@ const onSubmit = (data, dispatch) => new Promise((resolve, reject) => {
 })
 
 const mapStateToProps = (state, props) => {
-  console.log(props)
   return {initialValues: {
     eid: props.match.params.id,
   }

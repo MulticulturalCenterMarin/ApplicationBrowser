@@ -27,6 +27,7 @@ import {
   FieldsProjectSettings,
   FieldCollectionProjectBiography,
 } from 'containers'
+
 /* --------------------------- Styled Components ---------------------------- */
 const fieldStyle = {
   w: 1,

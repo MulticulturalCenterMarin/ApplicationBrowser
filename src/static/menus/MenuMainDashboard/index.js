@@ -58,50 +58,6 @@ const drawerMenuItems = [
     to: '/dashboard/organizations',
     svg: assets.svg.castle,
     gradient: 'purple',
-    childrenItems: [
-      {
-        title: 'Community',
-        to: '/dashboard/organizations/map?type=community',
-        svg: assets.svg.cultureEagle,
-        gradient: 'purple4',
-        titleWrap: {
-          bg:'white',
-          px: [10,15],
-        },
-        wrapper: {
-          display: 'flex',
-          align: 'center',
-        },
-      },
-      {
-        title: 'Business',
-        to: '/dashboard/organizations/map?type=business',
-        svg: assets.svg.familyTree,
-        gradient: 'purple3',
-        titleWrap: {
-          bg:'white',
-          px: [10,15],
-        },
-        wrapper: {
-          display: 'flex',
-          align: 'center',
-        },
-      },
-      {
-        title: 'Government',
-        to: '/dashboard/organizations/map?type=government',
-        svg: assets.svg.government,
-        gradient: 'purple2',
-        titleWrap: {
-          bg:'white',
-          px: [10,15],
-        },
-        wrapper: {
-          display: 'flex',
-          align: 'center',
-        },
-      },
-    ]   
   },
   {
     title: 'Projects',

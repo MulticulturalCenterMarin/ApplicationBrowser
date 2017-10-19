@@ -21,7 +21,6 @@ const mainLayout = {
 }
 
 export default (props) => {
-  console.log(props)
   /*--- Extraction ---*/
   const{ id, data } = props
   /*--- Extraction ---*/
@@ -30,8 +29,9 @@ export default (props) => {
   const phone = idx(props.data, _ => _.contact.contactPhone)
   const email = idx(props.data, _ => _.contact.contactEmail)
   const url = idx(props.data, _ => _.contact.contactURL)
-  
   const imageBanner = idx(props.data, _ => _.images.imageBanner)
+
+  if (!data) return null
   /*--- Component ---*/
   return <Flex direction={['row']} align='stretch' justify='center' p={[10]} {...props} key={id} >
       <Box {...mainLayout}>

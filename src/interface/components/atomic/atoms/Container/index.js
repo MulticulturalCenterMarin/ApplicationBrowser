@@ -11,10 +11,10 @@ const Container = styled(Block)`
 `
 
 Container.propTypes = {
-
 }
 
 Container.defaultProps = {
+  is: 'div',
   px: [20, 10, 0],
   w: [1, 1, 1120]
 }

@@ -1,8 +1,3 @@
-export const ENTITY_IMAGE_BANNER_ADD_REQUEST = 'ENTITY_IMAGE_BANNER_ADD_REQUEST'
-export const ENTITY_IMAGE_BANNER_ADD_SUCCESS = 'ENTITY_IMAGE_BANNER_ADD_SUCCESS'
-export const ENTITY_IMAGE_BANNER_ADD_FAILURE = 'ENTITY_IMAGE_BANNER_ADD_FAILURE'
-
-
 export const ENTITY_PERSON_ADD_REQUEST = 'ENTITY_PERSON_ADD_REQUEST'
 export const ENTITY_PERSON_ADD_SUCCESS = 'ENTITY_PERSON_ADD_SUCCESS'
 export const ENTITY_PERSON_ADD_FAILURE = 'ENTITY_PERSON_ADD_FAILURE'
@@ -67,6 +62,37 @@ export const ENTITY_BANNER_ADD_REQUEST = 'ENTITY_BANNER_ADD_REQUEST'
 export const ENTITY_BANNER_ADD_SUCCESS = 'ENTITY_BANNER_ADD_SUCCESS'
 export const ENTITY_BANNER_ADD_FAILURE = 'ENTITY_BANNER_ADD_FAILURE'
 
+export const ENTITY_FILE_ADD_REQUEST = 'ENTITY_FILE_ADD_REQUEST'
+export const ENTITY_FILE_ADD_SUCCESS = 'ENTITY_FILE_ADD_SUCCESS'
+export const ENTITY_FILE_ADD_FAILURE = 'ENTITY_FILE_ADD_FAILURE'
+
+export const ENTITY_FILE_EDIT_REQUEST = 'ENTITY_FILE_EDIT_REQUEST'
+export const ENTITY_FILE_EDIT_SUCCESS = 'ENTITY_FILE_EDIT_SUCCESS'
+export const ENTITY_FILE_EDIT_FAILURE = 'ENTITY_FILE_EDIT_FAILURE'
+
+export const ENTITY_FILE_DELETE_REQUEST = 'ENTITY_FILE_DELETE_REQUEST'
+export const ENTITY_FILE_DELETE_SUCCESS = 'ENTITY_FILE_DELETE_SUCCESS'
+export const ENTITY_FILE_DELETE_FAILURE = 'ENTITY_FILE_DELETE_FAILURE'
+
+export const ENTITY_FILES_ADD_REQUEST = 'ENTITY_FILES_ADD_REQUEST'
+export const ENTITY_FILES_ADD_SUCCESS = 'ENTITY_FILES_ADD_SUCCESS'
+export const ENTITY_FILES_ADD_FAILURE = 'ENTITY_FILES_ADD_FAILURE'
+
+export const ENTITY_IMAGE_ADD_REQUEST = 'ENTITY_IMAGE_ADD_REQUEST'
+export const ENTITY_IMAGE_ADD_SUCCESS = 'ENTITY_IMAGE_ADD_SUCCESS'
+export const ENTITY_IMAGE_ADD_FAILURE = 'ENTITY_IMAGE_ADD_FAILURE'
+
+export const ENTITY_IMAGE_EDIT_REQUEST = 'ENTITY_IMAGE_EDIT_REQUEST'
+export const ENTITY_IMAGE_EDIT_SUCCESS = 'ENTITY_IMAGE_EDIT_SUCCESS'
+export const ENTITY_IMAGE_EDIT_FAILURE = 'ENTITY_IMAGE_EDIT_FAILURE'
+
+export const ENTITY_IMAGE_DELETE_REQUEST = 'ENTITY_IMAGE_DELETE_REQUEST'
+export const ENTITY_IMAGE_DELETE_SUCCESS = 'ENTITY_IMAGE_DELETE_SUCCESS'
+export const ENTITY_IMAGE_DELETE_FAILURE = 'ENTITY_IMAGE_DELETE_FAILURE'
+
+export const ENTITY_IMAGES_ADD_REQUEST = 'ENTITY_IMAGES_ADD_REQUEST'
+export const ENTITY_IMAGES_ADD_SUCCESS = 'ENTITY_IMAGES_ADD_SUCCESS'
+export const ENTITY_IMAGES_ADD_FAILURE = 'ENTITY_IMAGES_ADD_FAILURE'
 // entity :: PersonAdd |  ENTITY_PERSON_ADD
 export const entityPersonAddRequest = ({payload, metadata}) => ({
   type: ENTITY_PERSON_ADD_REQUEST,
@@ -351,8 +377,7 @@ export const entityResourceDeleteFailure = ({payload, metadata}) => ({
   payload,
   metadata
 })
-
-
+  
 // entity :: BannerAdd |  ENTITY_BANNER_ADD
 export const entityBannerAddRequest = ({payload, metadata}) => ({
   type: ENTITY_BANNER_ADD_REQUEST,
@@ -372,3 +397,154 @@ export const entityBannerAddFailure = ({payload, metadata}) => ({
   metadata
 })
   
+// entity :: FileAdd |  ENTITY_FILE_ADD
+export const entityFileAddRequest = ({payload, metadata}) => ({
+  type: ENTITY_FILE_ADD_REQUEST,
+  payload,
+  metadata
+})
+
+export const entityFileAddSuccess = ({payload, metadata}) => ({
+  type: ENTITY_FILE_ADD_SUCCESS,
+  payload,
+  metadata
+})
+
+export const entityFileAddFailure = ({payload, metadata}) => ({
+  type: ENTITY_FILE_ADD_FAILURE,
+  payload,
+  metadata
+})
+  
+// entity :: FileEdit |  ENTITY_FILE_EDIT
+export const entityFileEditRequest = ({payload, metadata}) => ({
+  type: ENTITY_FILE_EDIT_REQUEST,
+  payload,
+  metadata
+})
+
+export const entityFileEditSuccess = ({payload, metadata}) => ({
+  type: ENTITY_FILE_EDIT_SUCCESS,
+  payload,
+  metadata
+})
+
+export const entityFileEditFailure = ({payload, metadata}) => ({
+  type: ENTITY_FILE_EDIT_FAILURE,
+  payload,
+  metadata
+})
+  
+// entity :: FileDelete |  ENTITY_FILE_DELETE
+export const entityFileDeleteRequest = ({payload, metadata}) => ({
+  type: ENTITY_FILE_DELETE_REQUEST,
+  payload,
+  metadata
+})
+
+export const entityFileDeleteSuccess = ({payload, metadata}) => ({
+  type: ENTITY_FILE_DELETE_SUCCESS,
+  payload,
+  metadata
+})
+
+export const entityFileDeleteFailure = ({payload, metadata}) => ({
+  type: ENTITY_FILE_DELETE_FAILURE,
+  payload,
+  metadata
+})
+  
+// entity :: FilesAdd |  ENTITY_FILES_ADD
+export const entityFilesAddRequest = ({payload, metadata}) => ({
+  type: ENTITY_FILES_ADD_REQUEST,
+  payload,
+  metadata
+})
+
+export const entityFilesAddSuccess = ({payload, metadata}) => ({
+  type: ENTITY_FILES_ADD_SUCCESS,
+  payload,
+  metadata
+})
+
+export const entityFilesAddFailure = ({payload, metadata}) => ({
+  type: ENTITY_FILES_ADD_FAILURE,
+  payload,
+  metadata
+})
+  
+// entity :: ImageAdd |  ENTITY_IMAGE_ADD
+export const entityImageAddRequest = ({payload, metadata}) => ({
+  type: ENTITY_IMAGE_ADD_REQUEST,
+  payload,
+  metadata
+})
+
+export const entityImageAddSuccess = ({payload, metadata}) => ({
+  type: ENTITY_IMAGE_ADD_SUCCESS,
+  payload,
+  metadata
+})
+
+export const entityImageAddFailure = ({payload, metadata}) => ({
+  type: ENTITY_IMAGE_ADD_FAILURE,
+  payload,
+  metadata
+})
+  
+// entity :: ImageEdit |  ENTITY_IMAGE_EDIT
+export const entityImageEditRequest = ({payload, metadata}) => ({
+  type: ENTITY_IMAGE_EDIT_REQUEST,
+  payload,
+  metadata
+})
+
+export const entityImageEditSuccess = ({payload, metadata}) => ({
+  type: ENTITY_IMAGE_EDIT_SUCCESS,
+  payload,
+  metadata
+})
+
+export const entityImageEditFailure = ({payload, metadata}) => ({
+  type: ENTITY_IMAGE_EDIT_FAILURE,
+  payload,
+  metadata
+})
+  
+// entity :: ImageDelete |  ENTITY_IMAGE_DELETE
+export const entityImageDeleteRequest = ({payload, metadata}) => ({
+  type: ENTITY_IMAGE_DELETE_REQUEST,
+  payload,
+  metadata
+})
+
+export const entityImageDeleteSuccess = ({payload, metadata}) => ({
+  type: ENTITY_IMAGE_DELETE_SUCCESS,
+  payload,
+  metadata
+})
+
+export const entityImageDeleteFailure = ({payload, metadata}) => ({
+  type: ENTITY_IMAGE_DELETE_FAILURE,
+  payload,
+  metadata
+})
+  
+// entity :: ImagesAdd |  ENTITY_IMAGES_ADD
+export const entityImagesAddRequest = ({payload, metadata}) => ({
+  type: ENTITY_IMAGES_ADD_REQUEST,
+  payload,
+  metadata
+})
+
+export const entityImagesAddSuccess = ({payload, metadata}) => ({
+  type: ENTITY_IMAGES_ADD_SUCCESS,
+  payload,
+  metadata
+})
+
+export const entityImagesAddFailure = ({payload, metadata}) => ({
+  type: ENTITY_IMAGES_ADD_FAILURE,
+  payload,
+  metadata
+})

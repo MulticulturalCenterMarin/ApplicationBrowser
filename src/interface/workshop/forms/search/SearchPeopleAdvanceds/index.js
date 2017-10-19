@@ -32,7 +32,7 @@ const onSubmit = (data, dispatch) => new Promise((resolve, reject) =>
     delta: 'PeopleSearch',
     collection: 'people',
   }
-  dispatch(firestoreDocumentFilterGetRequest({payload, metadata }))
+  dispatch(firestoreDocumentFilterGetRequest({payload, metadata}))
 })
 
 const validate = createValidator({

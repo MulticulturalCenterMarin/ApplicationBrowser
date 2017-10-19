@@ -25,10 +25,9 @@ import {
 /*---*--- Upload File ---*---*/
 function* uploadFile({payload, metadata}) {
   try {
-    const file = payload[0],
+    const file = payload,
     { location, fileMetadata } = metadata
     const fileID = yield call(reduxSagaFirebase.storage.uploadFile, `${location}/${file.name}`, file);
-    console.log (fileID)
     yield put(storageUploadFileSuccess({payload: {fileID} , metadata}))
     yield put(notificationOpen({payload:{title: 'Storage Upload Success'}}))
   } catch(e) {

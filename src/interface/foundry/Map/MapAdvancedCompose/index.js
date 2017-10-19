@@ -88,7 +88,6 @@ const queryLifecycle = lifecycle(
 const mapStateToProps = (state, props) => {
     const delta = props.delta
     const queryData = fromFirestore.getQueryData(state, delta)
-    console.log(queryData)
     return {
       queryData: queryData
     }

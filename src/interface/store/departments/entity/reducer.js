@@ -47,6 +47,30 @@ ENTITY_RESOURCE_DELETE_FAILURE,
 ENTITY_BANNER_ADD_REQUEST,
 ENTITY_BANNER_ADD_SUCCESS,
 ENTITY_BANNER_ADD_FAILURE,
+ENTITY_FILE_ADD_REQUEST,
+ENTITY_FILE_ADD_SUCCESS,
+ENTITY_FILE_ADD_FAILURE,
+ENTITY_FILE_EDIT_REQUEST,
+ENTITY_FILE_EDIT_SUCCESS,
+ENTITY_FILE_EDIT_FAILURE,
+ENTITY_FILE_DELETE_REQUEST,
+ENTITY_FILE_DELETE_SUCCESS,
+ENTITY_FILE_DELETE_FAILURE,
+ENTITY_FILES_ADD_REQUEST,
+ENTITY_FILES_ADD_SUCCESS,
+ENTITY_FILES_ADD_FAILURE,
+ENTITY_IMAGE_ADD_REQUEST,
+ENTITY_IMAGE_ADD_SUCCESS,
+ENTITY_IMAGE_ADD_FAILURE,
+ENTITY_IMAGE_EDIT_REQUEST,
+ENTITY_IMAGE_EDIT_SUCCESS,
+ENTITY_IMAGE_EDIT_FAILURE,
+ENTITY_IMAGE_DELETE_REQUEST,
+ENTITY_IMAGE_DELETE_SUCCESS,
+ENTITY_IMAGE_DELETE_FAILURE,
+ENTITY_IMAGES_ADD_REQUEST,
+ENTITY_IMAGES_ADD_SUCCESS,
+ENTITY_IMAGES_ADD_FAILURE,
 } from './actions'
 
 import { initialState } from './selectors'
@@ -474,6 +498,7 @@ export default (state = initialState, {type, payload, metadata}) => {
           }
         }
 
+
       case ENTITY_BANNER_ADD_REQUEST:
         return {
           ...state,
@@ -500,6 +525,231 @@ export default (state = initialState, {type, payload, metadata}) => {
             error: payload
           }
         }
+
+
+      case ENTITY_FILE_ADD_REQUEST:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'REQUESTED'
+          }
+        }
+      case ENTITY_FILE_ADD_SUCCESS:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'SUCCESS',
+            data: payload
+          }
+        }
+      case ENTITY_FILE_ADD_FAILURE:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'FAILURE',
+            error: payload
+          }
+        }
+
+
+      case ENTITY_FILE_EDIT_REQUEST:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'REQUESTED'
+          }
+        }
+      case ENTITY_FILE_EDIT_SUCCESS:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'SUCCESS',
+            data: payload
+          }
+        }
+      case ENTITY_FILE_EDIT_FAILURE:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'FAILURE',
+            error: payload
+          }
+        }
+
+
+      case ENTITY_FILE_DELETE_REQUEST:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'REQUESTED'
+          }
+        }
+      case ENTITY_FILE_DELETE_SUCCESS:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'SUCCESS',
+            data: payload
+          }
+        }
+      case ENTITY_FILE_DELETE_FAILURE:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'FAILURE',
+            error: payload
+          }
+        }
+
+
+      case ENTITY_FILES_ADD_REQUEST:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'REQUESTED'
+          }
+        }
+      case ENTITY_FILES_ADD_SUCCESS:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'SUCCESS',
+            data: payload
+          }
+        }
+      case ENTITY_FILES_ADD_FAILURE:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'FAILURE',
+            error: payload
+          }
+        }
+
+
+      case ENTITY_IMAGE_ADD_REQUEST:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'REQUESTED'
+          }
+        }
+      case ENTITY_IMAGE_ADD_SUCCESS:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'SUCCESS',
+            data: payload
+          }
+        }
+      case ENTITY_IMAGE_ADD_FAILURE:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'FAILURE',
+            error: payload
+          }
+        }
+
+
+      case ENTITY_IMAGE_EDIT_REQUEST:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'REQUESTED'
+          }
+        }
+      case ENTITY_IMAGE_EDIT_SUCCESS:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'SUCCESS',
+            data: payload
+          }
+        }
+      case ENTITY_IMAGE_EDIT_FAILURE:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'FAILURE',
+            error: payload
+          }
+        }
+
+
+      case ENTITY_IMAGE_DELETE_REQUEST:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'REQUESTED'
+          }
+        }
+      case ENTITY_IMAGE_DELETE_SUCCESS:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'SUCCESS',
+            data: payload
+          }
+        }
+      case ENTITY_IMAGE_DELETE_FAILURE:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'FAILURE',
+            error: payload
+          }
+        }
+
+
+      case ENTITY_IMAGES_ADD_REQUEST:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'REQUESTED'
+          }
+        }
+      case ENTITY_IMAGES_ADD_SUCCESS:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'SUCCESS',
+            data: payload
+          }
+        }
+      case ENTITY_IMAGES_ADD_FAILURE:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'FAILURE',
+            error: payload
+          }
+        }
+
 
     default:
       return state

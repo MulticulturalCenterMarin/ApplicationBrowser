@@ -40,6 +40,9 @@ import {
   firestoreQuerySuccess,
   firestoreQueryFailure,
 } from './actions'
+import {
+  firestoreDocumentGetRequest,
+} from './actions'
 /*---*--- Document Add ---*---*/
 function* documentAdd({payload, metadata}) {
   try {
@@ -79,8 +82,8 @@ function* documentUpdate({payload, metadata}) {
     const { collection, document, merge } = metadata
     const documentID = yield call(reduxSagaFirebase.firestore.documentUpdate, collection, document, payload);
     yield put(firestoreDocumentUpdateSuccess({payload: {}, metadata}))
+    yield put(firestoreDocumentGetRequest({payload:{}, metadata}))
   } catch(e) {
-    console.log(e)
     yield put(firestoreDocumentUpdateFailure({payload: e, metadata}))
   }
 }

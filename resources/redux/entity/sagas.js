@@ -23,6 +23,14 @@ const reduxOperators = [
   'RESOURCE_EDIT',
   'RESOURCE_DELETE',
   'BANNER_ADD',
+  'FILE_ADD',
+  'FILE_EDIT',
+  'FILE_DELETE',
+  'FILES_ADD',
+  'IMAGE_ADD',
+  'IMAGE_EDIT',
+  'IMAGE_DELETE',
+  'IMAGES_ADD',
 ]
 console.log(`import {`)
 

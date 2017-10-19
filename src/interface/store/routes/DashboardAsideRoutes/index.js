@@ -2,9 +2,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
 /* ------------------------- External Dependencies -------------------------- */
-import { fromAside } from 'workshop/zones'
+import { Aside } from 'workshop/zones'
 
 export default () => (
   <div>
-    <Route path="/dashboard" component={fromAside.All} />
+    <Route path="/dashboard" component={Aside} />
   </div>);

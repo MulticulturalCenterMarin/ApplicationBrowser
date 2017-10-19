@@ -30,19 +30,19 @@ FormWrapper.defaultProps = {
 }
 
 /* ---------------------------- Form Component ------------------------------ */
-const FormElements = ({ handleSubmit, isSubmitting, layout } ) => {
+const FormElements = (props,{ handleSubmit, isSubmitting, layout } ) => {
   if(isSubmitting) return <div>Search</div>
   return (
     <FormWrapper  {...layout}>
       <Box className='formProps' >
-        <Field name="hidden"component={ReduxField} type="hidden" />
+        <Field name="eid" component={ReduxField} type="hidden" />
       </Box>
       
       <Box className='form' >
         <Box>
           <Heading level={[3]} f={[2]} mt={[15]}>Name</Heading>
           <Field name="searchProjectName" placeholder="ProjectName" component={ReduxField} type="text" />
-          <Field name="searchProjectNameLegal" placeholder="Alias(Codename)" component={ReduxField} type="text" mt={[10]} />
+          <Field name="searchProjectAlias" placeholder="Alias(Codename)" component={ReduxField} type="text" mt={[10]} />
         </Box>
         <Box mt={10} >
           <Button type="submit" onClick={handleSubmit} gradient='cherry'w={1} >Submit</Button>

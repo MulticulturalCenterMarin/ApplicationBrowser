@@ -28,14 +28,26 @@ import { fromApollo, getAccessToken } from 'store/departments/selectors'
 /* ---------------------------- Module Package ------------------------------ */
 /*-- Event Handlers ---*/
 const onSubmit = (data, dispatch) => new Promise((resolve, reject) => {
+  console.log('------------------------------------');
+  console.log(data);
+  console.log('------------------------------------');
+
+  const where = []
+  if(data.searchProjectName) where.push(['name.nameProject', '==', data.searchProjectName ])
+  if(data.searchProjectAlias) where.push(['name.nameProjectAlias', '==', data.searchProjectAlias ])
 
   /*--- Metadata/Configuration ---*/
-  const payload={}
   const metadata = {
     delta: 'ProjectSearch',
     collection: 'projects',
+    filters: {
+      where: where
+    }
   }
-  dispatch(firestoreDocumentFilterGetRequest({payload, metadata }))
+  dispatch(firestoreDocumentFilterGetRequest({
+    payload: {},
+    metadata 
+  }))
 
 })
 
@@ -56,7 +68,6 @@ const defaultProps = withProps({
 const queryLifecycle = lifecycle({
   /*--- Component Mount ---*/
   componentDidMount() {
-    console.log(this.props)
       const payload={}
       const metadata = {
         delta: 'ProjectSearch',
