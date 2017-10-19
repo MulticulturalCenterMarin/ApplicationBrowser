@@ -76,10 +76,12 @@ const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
     settings,
   }
   const metadata = {
-    collection: 'projects',
+    branch: [
+      'projects',
+      props.delta,
+    ],
     delta: `${props.delta}|Update`,
     trigger: `${props.delta}`,
-    document: props.delta,
   }
 
   /*--- Send | Dispatch ---*/

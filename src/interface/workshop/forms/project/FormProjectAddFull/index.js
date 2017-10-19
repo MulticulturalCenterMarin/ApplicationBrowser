@@ -37,9 +37,11 @@ const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
 
   /*--- Metadata/Configuration ---*/
   const metadata = {
+    branch: [
+      'projects'
+    ],
     delta: 'projectAdd',
-    collection: 'projects',
-    trigger: 'projectFilter',
+    trigger: 'ProjectSearch',
   }
   
   dispatch(entityProjectAddRequest({payload, metadata }))

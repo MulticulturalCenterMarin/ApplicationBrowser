@@ -7541,7 +7541,7 @@ redux-logger@^3.0.6:
 
 "redux-saga-firebase@git+https://github.com/KamesCG/redux-saga-firebase":
   version "0.5.0"
-  resolved "git+https://github.com/KamesCG/redux-saga-firebase#7c1c4c791fe82f8c68a12fc5c155cec3b78e90ef"
+  resolved "git+https://github.com/KamesCG/redux-saga-firebase#a3947278338c9c0f1706fbe389c1c46d02591ec0"
   dependencies:
     redux-saga "^0.15.4"
 

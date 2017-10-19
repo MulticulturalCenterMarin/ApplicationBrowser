@@ -27,6 +27,7 @@ import {
   FormProjectBanner,
   FormProjectBannerAdd,
   FormProjectGalleryAdd,
+  FormProjectUpdate,
 } from 'workshop/forms'
 import {
   MenuProjectProfile
@@ -65,6 +66,7 @@ return <div>
       <Box p={[20,35]}>
         {!props.data ? null : <Route path="/dashboard/:entity/:id/edit" component={FormProjectEdit}/> }
         {!props.data ? null : <Route path="/dashboard/:entity/:id/edit" component={FormProjectBannerAdd}/> }
+        {!props.data ? null : <Route path="/dashboard/:entity/:id" component={FormProjectUpdate}/> }
         {!props.data ? null : <Route exact path="/dashboard/:entity/:id" component={()=><ProjectProfileInterfaceBiography {...props} w={1} />} />}
       </Box>
     </PerfectScrollbar>

@@ -23,8 +23,10 @@ const queryLifecycle = lifecycle({
     this.props.firestoreDocumentFilterGetRequest({
       payload: {},
       metadata:{
+        branch: [
+          'people'
+        ],
         delta: 'PeopleSearch',
-        collection: 'people',
       }
     })
   },
@@ -53,8 +55,10 @@ const onSubmit = (data, dispatch) => new Promise((resolve, reject) => {
       payload: {},
       metadata:
       {
+        branch: [
+          'people'
+        ],
         delta: 'PeopleSearch',
-        collection: 'people',
         filters:
         {
           where

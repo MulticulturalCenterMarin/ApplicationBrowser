@@ -22,10 +22,12 @@ const validate = createValidator({
 /*-- Event Handlers ---*/
 const onSubmit = (data, dispatch) => new Promise((resolve, reject) => {
   const metadata = {
+    branch: [
+      'projects',
+      data.eid,
+    ],
     location: 'projects',
-    collection: 'projects',
     delta: `${data.eid}|Update`,
-    document: data.eid,
   }
   dispatch(entityBannerAddRequest({payload: data.storageUpload, metadata}))
 })

@@ -64,10 +64,12 @@ const mapDispatchToProps = (dispatch, props) => ({
 /*--- Event Handlers ---*/
 const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
   const metadata = {
+    branch: [
+      'projects',
+      props.match.params.id,
+    ],
     location: 'projects',
-    collection: 'projects',
     delta: `${props.match.params.id}|BannerUpdate`,
-    document: props.match.params.id,
   }
   dispatch(entityBannerAddRequest({payload: data.storageUpload, metadata}))
 })

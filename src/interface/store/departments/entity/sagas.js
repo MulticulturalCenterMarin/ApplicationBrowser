@@ -238,6 +238,7 @@ function* projectAdd({payload, metadata}) {
       yield put(firestoreDocumentFilterGetRequest({payload:{}, metadata:trigger}))
     }
   } catch(e) {
+    console.log(e)
     yield put(notificationOpen({payload:{title: 'Project Add Failure'}}))
     yield put(entityProjectAddFailure({payload: e, metadata}))
   }
@@ -485,11 +486,11 @@ function* imagesAdd({payload, metadata}) {
       fileCollection[payload[index].name] = yield call(reduxSagaFirebase.storage.uploadFile, `${location}/${payload[index].name}`, payload[index]);
     }
     const save = _.forEach(fileCollection, (file, i)=> {
-      const name = file.metadata.name
+      
+      const name = file.metadata.name /* TODO: We need WAY better REGEX handling and resource tracking system. @kamescg built a wack one. */
       .substring(0, file.metadata.name.lastIndexOf('.'))
       .replace(/\s+/g, '')
-     .replace(/\./g,''); // TODO: We need WAY better REGEX handling and resource tracking system. @kamescg built a wack one.
-      console.log(name)
+      .replace(/\./g,'');
       filesNew[`images.imageGallery.${name}`] = {
         src:file.downloadURL,
         md5Hash: file.metadata.md5Hash,
@@ -503,6 +504,7 @@ function* imagesAdd({payload, metadata}) {
     yield put(firestoreDocumentUpdateRequest({payload: payloadNew, metadata: {
       ...metadata,
       delta: `${metadata.delta}|GalleryUpload`,
+      merge: true
     }}))
     yield put(firestoreDocumentGetRequest({payload:{}, metadata}))
     yield put(notificationOpen({payload:{title: 'Gallery Upload Success'}}))

@@ -22,8 +22,9 @@ const mainLayout = {
 
 export default (props) => {
   /*--- Extraction ---*/
-  const{ id, data } = props
+  const{ data } = props
   /*--- Extraction ---*/
+  const id = idx(props, _ => _.id)
   const name = idx(props.data, _ => _.name.nameProject)
   const nameAlias = idx(props.data, _ => _.name.nameProjectAlias)
   const phone = idx(props.data, _ => _.contact.contactPhone)
@@ -36,12 +37,12 @@ export default (props) => {
   return <Flex direction={['row']} align='stretch' justify='center' p={[10]} {...props} key={id} >
       <Box {...mainLayout}>
         {!imageBanner ? null : 
-        <Box h={100,160}>
+         <Link to={`/dashboard/project/${id}`} color='blue' ><Box h={100,160}>
           <BackgroundImage src={imageBanner}/>
-        </Box>
+        </Box></Link>
         }
         <Box p={[10]} >
-          <Link to={`/dashboard/project/${id || null }`} color='blue' >
+          <Link to={`/dashboard/project/${id}`} color='blue' >
             <Heading f={[4,4,5]} level={3} color='blue' display='inline-block' children={name|| null} />
             <Heading f={[2]} level={3} color='charcoal' ml={[5]} display='inline-block'>Alias: {nameAlias}</Heading>
           </Link>

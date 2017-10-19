@@ -23,6 +23,7 @@ import {
 
 import {
   FormPersonAdd,
+  FormProjectUpdate,
 } from 'workshop/forms'
 
 /* ------------------------------- Component -------------------------------- */

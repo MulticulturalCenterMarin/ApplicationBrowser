@@ -1,4 +1,5 @@
 /* ------------------------- External Dependencies -------------------------- */
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import { 
   compose,
@@ -14,10 +15,13 @@ import {
 
 /* ------------------------- Internal Dependencies -------------------------- */
 import Render from './render';
-import { createValidator, required } from 'logic/forms/validation'
 /* ------------------------ Initialize Dependencies ------------------------- */
-import { entityBannerAddRequest,
-entityImagesAddRequest } from 'store/departments/actions'
+import { createValidator, required } from 'logic/forms/validation'
+/*--- Redux Store ---*/
+import { 
+  entityProjectAddRequest,
+ } from 'store/departments/actions'
+ 
 
 /* ---------------------------- Module Package ------------------------------ */
 /*---*--- Recompose ---*---*/
@@ -45,29 +49,32 @@ const queryLifecycle = lifecycle({
 
 
 /*---*--- Redux ---*---*/
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = (state, props) => {
    
-})
-
-const mapDispatchToProps = (dispatch, props) => {
-  return {
-    onFilesDrop: (files)=> { dispatch(entityImagesAddRequest({
-      payload:files,
-      metadata: {
-        branch: [
-          'projects',
-          props.match.params.id,
-        ],
-        delta: props.match.params.id,
-        location: 'test'
-      }
-    }
-    ))}
-  }
 }
+
+const mapDispatchToProps = (dispatch, props) => ({
+
+})
 /* -------------------------- Form Configuration ---------------------------- */
 /*--- Event Handlers ---*/
-const onSubmit = (data, dispatch) => new Promise((resolve, reject) => {
+const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
+
+  const submission = {}
+  submission.update = _.pickBy(data, (value, key)=> key.startsWith("update"));
+
+  const metadata = {
+    branch: [
+      'projects',
+      props.match.params.id,
+      'updates',
+    ],
+    delta: `${props.match.params.id}|UpdateChild`,
+    trigger: `${props.match.params.id}`,
+  }
+
+  /*--- Send | Dispatch ---*/
+  dispatch(entityProjectAddRequest({payload:submission, metadata }))
 
 })
 

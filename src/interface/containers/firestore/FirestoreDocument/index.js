@@ -36,9 +36,13 @@ const queryLifecycle = lifecycle(
     const
     payload={},
     metadata = {
+      branch: [
+        this.props.collection,
+        id,
+      ],
       collection: this.props.collection,
-      delta: id,
       document: id,
+      delta: id,
     }
     this.props.firestoreDocumentGetRequest({payload, metadata })
 
