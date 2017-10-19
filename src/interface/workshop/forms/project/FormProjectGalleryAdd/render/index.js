@@ -27,29 +27,28 @@ const FormElements = (props) => {
   return (
     <Box  {...layout} {...props}>
       <Drop onDrop={onFilesDrop} style={{width:'100%'}} >
-        <div>
-          Add Images to Gallery ::  Drag and drop files or click to select images.
-        </div>
-        
+        <div><Heading f={2} ta='center' >
+          Add Images to Gallery<br/>Drag/Drop or Click  
+        </Heading></div>
       </Drop>
       {
-          uploadedFiles &&
-            <div>
-              <h3>
-                Uploaded file(s):
-              </h3>
-              {
-                _.map(uploadedFiles, (file, key) => (
-                  <div key={file.name + key}>
-                    <span>{file.name}</span>
-                    <button onClick={() => this.onFileDelete(file, key)}>
-                      Delete File
-                    </button>
-                  </div>
-                ))
-              }
-            </div>
-          }
+        uploadedFiles &&
+          <div>
+            <h3>
+              Uploaded file(s):
+            </h3>
+            {
+              _.map(uploadedFiles, (file, key) => (
+                <div key={file.name + key}>
+                  <span>{file.name}</span>
+                  <button onClick={() => this.onFileDelete(file, key)}>
+                    Delete File
+                  </button>
+                </div>
+              ))
+            }
+          </div>
+        }
     </Box>
   )
 }

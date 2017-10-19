@@ -23,8 +23,8 @@ const queryLifecycle = lifecycle({
     this.props.firestoreDocumentFilterGetRequest({
       payload: {},
       metadata:{
-        delta: 'ResourceSearch',
-        collection: 'resources',
+        delta: 'PeopleSearch',
+        collection: 'people',
       }
     })
   },
@@ -45,15 +45,16 @@ const mapDispatchToProps = (dispatch, props) => ({
 /*-- Event Handlers ---*/
 const onSubmit = (data, dispatch) => new Promise((resolve, reject) => {
   const where = []
-  if(data.searchResourceName) where.push(['name.nameResource', '==', data.searchResourceName ])
-  if(data.searchResourceAlias) where.push(['name.nameResourceAlias', '==', data.searchResourceAlias ])
+  if(data.searchPersonNameFirst) where.push(['name.nameFirst', '==', data.searchPersonNameFirst ])
+  if(data.searchPersonNameLast) where.push(['name.nameLast', '==', data.searchPersonNameLast ])
+  if(data.searchContactEmail) where.push(['contact.contactEmail', '==', data.searchContactEmail ])
   dispatch(
     firestoreDocumentFilterGetRequest({
       payload: {},
       metadata:
       {
-        delta: 'ResourceSearch',
-        collection: 'resources',
+        delta: 'PeopleSearch',
+        collection: 'people',
         filters:
         {
           where
@@ -64,10 +65,10 @@ const onSubmit = (data, dispatch) => new Promise((resolve, reject) => {
 })
 
 const config = {
-  form: 'SearchResourceAdvanced',
+  form: 'SearchPeopleAdvanced',
   fields: [
-    'searchResourceName',
-    'searchResourceAlias',
+    'searchProjectName',
+    'searchProjectAlias',
   ],
   destroyOnUnmount: true,
   onSubmit,

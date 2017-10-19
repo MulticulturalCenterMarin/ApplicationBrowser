@@ -1,93 +1,82 @@
 /* ------------------------- External Dependencies -------------------------- */
 import { connect } from 'react-redux'
+import { compose, lifecycle, withProps, withState, renderComponent } from 'recompose'
 import { reduxForm, reset } from 'redux-form'
-import {
-  compose,
-  lifecycle,
-  withProps,
-  withState,
-  renderComponent
-} from 'recompose'
 /* ------------------------- Internal Dependencies -------------------------- */
-import Render from './render';
-
 /*--- Form Validation ---*/
-import {
-  createValidator,
-  required
-} from 'logic/forms/validation'
+import { createValidator, required } from 'logic/forms/validation'
 
+import Render from './render';
 /* ------------------------ Initialize Dependencies ------------------------- */
-import {
-  firestoreDocumentFilterGetRequest,
-} from 'store/departments/actions'
+import { firestoreDocumentFilterGetRequest } from 'store/departments/actions'
 
 /* ---------------------------- Module Package ------------------------------ */
-/*-- Event Handlers ---*/
-const onSubmit = (data, dispatch) => new Promise((resolve, reject) =>
-{
-  /*--- Metadata/Configuration ---*/
-  const payload={}
-  const metadata = {
-    delta: 'organizationFilter',
-    collection: 'organizations',
-  }
-  dispatch(firestoreDocumentFilterGetRequest({payload, metadata }))
-})
-
-const validate = createValidator({
-
-})
-
 /*---*--- Recompose ---*---*/
-const defaultState = withState({
-
-})
 const defaultProps = withProps({
   onSubmit,
 })
 
 /*---*--- Lifecylce Methods ---*---*/
-const queryLifecycle = lifecycle(
-{
+const queryLifecycle = lifecycle({
   /*--- Component Mount ---*/
-  componentDidMount()
-  {
+  componentDidMount() {
+    this.props.firestoreDocumentFilterGetRequest({
+      payload: {},
+      metadata:{
+        delta: 'OrganizationSearch',
+        collection: 'organizations',
+      }
+    })
   },
 
   /*--- Component Update ---*/
-  componentDidUpdate(prevProps)
-  {
+  componentDidUpdate(prevProps) {
     if(this.props.submitting === true) {
       this.props.reset()
     }
   }
 })
 
-/*---*--- Redux ---*---*/
-const mapStateToProps = (state, props)=> {
-  return {
-
-  };
-}
-
 const mapDispatchToProps = (dispatch, props) => ({
+  firestoreDocumentFilterGetRequest: (settings)=>dispatch(firestoreDocumentFilterGetRequest(settings)),
 })
 
 /* -------------------------- Form Configuration ---------------------------- */
+/*-- Event Handlers ---*/
+const onSubmit = (data, dispatch) => new Promise((resolve, reject) => {
+  const where = []
+  if(data.searchOrganizationName) where.push(['name.nameOrganization', '==', data.searchOrganizationName ])
+  if(data.searchOrganizationNameLegal) where.push(['name.nameOrganizationLegal', '==', data.searchOrganizationNameLegal ])
+  dispatch(
+    firestoreDocumentFilterGetRequest({
+      payload: {},
+      metadata:
+      {
+        delta: 'OrganizationSearch',
+        collection: 'organizations',
+        filters:
+        {
+          where
+        }
+      }
+    })
+  )
+})
 
 const config = {
-  form: 'OrganizationSearchAdvanced',
-  fields: [],
+  form: 'SearchOrganizationAdvanced',
+  fields: [
+    'searchOrganizationName',
+    'searchOrganizationAlias',
+  ],
   destroyOnUnmount: true,
   onSubmit,
-  validate
 }
 
+/* --------------------------- Export Default ------------------------------- */
 export default compose(
   reduxForm(config),
-  connect(mapStateToProps, mapDispatchToProps),
-  defaultState,
+  connect(null, mapDispatchToProps),
   defaultProps,
   queryLifecycle,
 )(Render);

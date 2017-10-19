@@ -477,16 +477,18 @@ function* imageDelete({payload, metadata}) {
 /*---*--- Images Add ---*---*/
 function* imagesAdd({payload, metadata}) {
   try {
+    yield put(notificationOpen({payload:{title: 'Gallery Upload Starting'}}))
     const { location, fileMetadata } = metadata
     const fileCollection = {}
     const filesNew = {}
     for (var index = 0; index < payload.length; index++) {
-      console.log(payload[index])
       fileCollection[payload[index].name] = yield call(reduxSagaFirebase.storage.uploadFile, `${location}/${payload[index].name}`, payload[index]);
     }
     const save = _.forEach(fileCollection, (file, i)=> {
-      console.log(file)
-      const name = file.metadata.name.substring(0, file.metadata.name.lastIndexOf('.')).replace(".","_").replace(" ", "_");
+      const name = file.metadata.name
+      .substring(0, file.metadata.name.lastIndexOf('.'))
+      .replace(/\s+/g, '')
+     .replace(/\./g,''); // TODO: We need WAY better REGEX handling and resource tracking system. @kamescg built a wack one.
       console.log(name)
       filesNew[`images.imageGallery.${name}`] = {
         src:file.downloadURL,
@@ -494,8 +496,6 @@ function* imagesAdd({payload, metadata}) {
         name: file.metadata.name,
         fullPath: file.metadata.fullPath,
     }})
-    console.log(save)
-    console.log(filesNew)
     const payloadNew = {
          ...filesNew
     }
@@ -504,8 +504,8 @@ function* imagesAdd({payload, metadata}) {
       ...metadata,
       delta: `${metadata.delta}|GalleryUpload`,
     }}))
-    yield put(notificationOpen({payload:{title: 'Gallery Upload Success'}}))
     yield put(firestoreDocumentGetRequest({payload:{}, metadata}))
+    yield put(notificationOpen({payload:{title: 'Gallery Upload Success'}}))
   } catch(e) {
     yield put(entityImagesAddFailure({payload: e, metadata}))
     yield put(notificationOpen({payload:{title: 'Gallery Upload Failure'}}))
