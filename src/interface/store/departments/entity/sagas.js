@@ -7,6 +7,9 @@ import geo from 'mapbox-geocoding'
 /* ------------------------- Internal Dependencies -------------------------- */
 /*--- Entity Actions ---*/
 import {
+  ENTITY_ADD_REQUEST,
+  ENTITY_EDIT_REQUEST,
+  ENTITY_DELETE_REQUEST,
   ENTITY_PERSON_ADD_REQUEST,
   ENTITY_PERSON_EDIT_REQUEST,
   ENTITY_PERSON_DELETE_REQUEST,
@@ -33,6 +36,12 @@ import {
   ENTITY_IMAGES_ADD_REQUEST,
 } from './actions'
 import {
+  entityAddSuccess,
+  entityAddFailure,
+  entityEditSuccess,
+  entityEditFailure,
+  entityDeleteSuccess,
+  entityDeleteFailure,
   entityPersonAddSuccess,
   entityPersonAddFailure,
   entityPersonEditSuccess,
@@ -84,7 +93,6 @@ import {
 } from './actions'
 
 
-
 /*--- Department Actions ---*/
 import {
   firestormEntityCreateRequest,
@@ -111,6 +119,80 @@ import { mapboxGeocode } from 'store/async'
 /*--- Firebase | Require Last ---*/
 import firebase from 'firebase';
 require("firebase/firestore");
+
+
+
+
+/*---*--- Add ---*---*/
+function* entityAdd({payload, metadata}) {
+  try {
+    if(payload.address) {
+      const {addressStreet, addressCity, addressState} = payload.address
+      const address = `${addressStreet} ${addressCity}, ${addressState}`
+      const geocode = yield call(mapboxGeocode, address);
+      const geopoint = idx(geocode, _=>_.features[0].center)
+      payload.address.geopoint = new firebase.firestore.GeoPoint(geopoint[1], geopoint[0])
+    }
+    yield put(firestoreDocumentAddRequest({payload, metadata}))
+    yield put(notificationOpen({payload:{title: 'Entity Add Success'}}))
+    yield put(entityAddSuccess({payload: {}, metadata}))
+    if(metadata.trigger) {
+      const trigger = {
+        ...metadata,
+        delta: metadata.trigger
+      }
+      yield put(firestoreDocumentFilterGetRequest({payload:{}, metadata:trigger}))
+    }
+  } catch(e) {
+    console.log(e)
+    yield put(notificationOpen({payload:{title: 'Entity Add Failure'}}))
+    yield put(entityAddFailure({payload: e, metadata}))
+  }
+}
+
+
+/*---*--- Edit ---*---*/
+function* entityEdit({payload, metadata}) {
+  try {
+    if(payload.address) {
+      const {addressStreet, addressCity, addressState} = payload.address
+      const address = `${addressStreet} ${addressCity}, ${addressState}`
+      const geocode = yield call(mapboxGeocode, address);
+      const geopoint = idx(geocode, _=>_.features[0].center)
+      payload.address.geopoint = new firebase.firestore.GeoPoint(geopoint[1], geopoint[0])
+    }
+    yield put(firestoreDocumentUpdateRequest({payload, metadata }))
+    yield put(entityEditSuccess({payload: {}, metadata}))
+    yield put(notificationOpen({payload:{title: 'Entity Edit Success'}}))
+    if(metadata.trigger) {
+      const trigger = {
+        ...metadata,
+        delta: metadata.trigger
+      }
+      yield put(firestoreDocumentGetRequest({payload:{}, metadata:trigger}))
+    }
+  } catch(e) {
+    yield put(notificationOpen({payload:{title: 'Entity Edit Failure'}}))
+    yield put(entityEditFailure({payload: e, metadata}))
+  }
+}
+
+
+/*---*--- Delete ---*---*/
+function* entityDelete({payload, metadata}) {
+  try {
+
+    yield put(entityDeleteSuccess({payload: {}, metadata}))
+  } catch(e) {
+    yield put(entityDeleteFailure({payload: e, metadata}))
+  }
+}
+
+
+
+
+
+
 
 /*---*--- Person Add ---*---*/
 function* personAdd({payload, metadata}) {
@@ -392,7 +474,15 @@ function* bannerAdd({payload, metadata}) {
     yield put(firestoreDocumentUpdateRequest({payload: images, metadata }))
     yield put(entityBannerAddSuccess({payload: {}, metadata}))
     yield put(notificationOpen({payload:{title: 'Banner Upload Success'}}))
+    if(metadata.trigger) {
+      const trigger = {
+        ...metadata,
+        delta: metadata.trigger
+      }
+      yield put(firestoreDocumentGetRequest({payload:{}, metadata:trigger}))
+    }
   } catch(e) {
+    console.log(e)
     yield put(entityBannerAddFailure({payload: e, metadata}))
     yield put(notificationOpen({payload:{title: 'Banner Upload Failure'}}))
   }
@@ -509,6 +599,7 @@ function* imagesAdd({payload, metadata}) {
     yield put(firestoreDocumentGetRequest({payload:{}, metadata}))
     yield put(notificationOpen({payload:{title: 'Gallery Upload Success'}}))
   } catch(e) {
+    console.log(e)
     yield put(entityImagesAddFailure({payload: e, metadata}))
     yield put(notificationOpen({payload:{title: 'Gallery Upload Failure'}}))
   }
@@ -516,6 +607,9 @@ function* imagesAdd({payload, metadata}) {
 
 export default function* rxdbRootSaga() {
   yield [
+   takeEvery(ENTITY_ADD_REQUEST, entityAdd),
+   takeEvery(ENTITY_EDIT_REQUEST, entityEdit),
+   takeEvery(ENTITY_DELETE_REQUEST, entityDelete),
    takeEvery(ENTITY_PERSON_ADD_REQUEST, personAdd),
    takeEvery(ENTITY_PERSON_EDIT_REQUEST, personEdit),
    takeEvery(ENTITY_PERSON_DELETE_REQUEST, personDelete),
@@ -542,3 +636,4 @@ export default function* rxdbRootSaga() {
    takeEvery(ENTITY_IMAGES_ADD_REQUEST, imagesAdd),
   ];
 }
+

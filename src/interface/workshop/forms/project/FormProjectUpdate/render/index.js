@@ -12,9 +12,8 @@ Block.defaultProps = {is: 'form'}
 export default ({ handleSubmit, isSubmitting, styled}) => (
 <Block {...styled}>
   <Box>
-      <Heading level={[3]} f={[3]} mt={[15]}>Name</Heading>
-      <Field name="updateBody" placeholder="Update" component={ReduxField} type="textarea" />
-      <Button type="submit" onClick={handleSubmit} gradient='cherry'w={1} >Submit</Button>
-    </Box>
+    <Field name="updateBody" placeholder="Write about recent project updates and accomplishments." component={ReduxField} type="textarea" />
+    <Button type="submit" onClick={handleSubmit} gradient='cherry' w={1}>Add Project Update</Button>
+  </Box>
 </Block>
 )

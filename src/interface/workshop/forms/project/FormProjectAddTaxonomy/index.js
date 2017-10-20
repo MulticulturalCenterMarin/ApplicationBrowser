@@ -1,5 +1,4 @@
 /* ------------------------- External Dependencies -------------------------- */
-import _ from 'lodash'
 import { connect } from 'react-redux'
 import { 
   compose,
@@ -15,13 +14,13 @@ import {
 
 /* ------------------------- Internal Dependencies -------------------------- */
 import Render from './render';
-/* ------------------------ Initialize Dependencies ------------------------- */
 import { createValidator, required } from 'logic/forms/validation'
-/*--- Redux Store ---*/
+/* ------------------------ Initialize Dependencies ------------------------- */
+import { fromFirestore } from 'store/departments/selectors'
 import { 
-  entityAddRequest,
+  entityProjectEditRequest,
+  firestoreDocumentFilterGetRequest
  } from 'store/departments/actions'
- 
 
 /* ---------------------------- Module Package ------------------------------ */
 /*---*--- Recompose ---*---*/
@@ -36,7 +35,15 @@ const defaultProps = withProps({
 const queryLifecycle = lifecycle({
   /*--- Component Mount ---*/
   componentDidMount() {
-
+    this.props.firestoreDocumentFilterGetRequest({
+      payload: {},
+      metadata:{
+        branch: [
+          'people'
+        ],
+        delta: 'ProjectTaxonomySearch',
+      }
+    })
   },
 
   /*--- Component Update ---*/
@@ -50,32 +57,32 @@ const queryLifecycle = lifecycle({
 
 /*---*--- Redux ---*---*/
 const mapStateToProps = (state, props) => {
-   
+  const { delta } = props
+  const data = fromFirestore.getQueryData(state, "ProjectPeopleSearch")
+  return {
+    data
+  }
 }
 
 const mapDispatchToProps = (dispatch, props) => ({
-
+  firestoreDocumentFilterGetRequest: (settings)=>dispatch(firestoreDocumentFilterGetRequest(settings)),
 })
 /* -------------------------- Form Configuration ---------------------------- */
 /*--- Event Handlers ---*/
 const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
-
-  const submission = {}
-  submission.update = _.pickBy(data, (value, key)=> key.startsWith("update"));
-
-  const metadata = {
+  const submission = {contributors:data}
+  /*--- Metadata/Configuration ---*/
+  dispatch(entityProjectEditRequest({
+    payload: submission, 
+    metadata: {
     branch: [
       'projects',
       props.match.params.id,
-      'updates',
     ],
-    delta: `${props.match.params.id}|StatusUpdateAdd`,
-    trigger: `${props.match.params.id}|StatusUpdates`,
-  }
-
-  /*--- Send | Dispatch ---*/
-  dispatch(entityAddRequest({payload:submission, metadata }))
-
+    delta: `${props.match.params.id}|UpdateContributors`,
+    trigger: `${props.match.params.id}`,
+    }
+  }))
 })
 
 /*--- Validation ---*/

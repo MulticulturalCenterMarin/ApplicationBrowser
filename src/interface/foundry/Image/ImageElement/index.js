@@ -8,4 +8,4 @@ import {
 } from 'atomic'
 
 /* ------------------------------- Component -------------------------------- */
-export default props => { console.log(props); return <Box {...props.container} ><BackgroundImage {...props}/></Box>}
+export default props => <Box {...props.container} ><BackgroundImage {...props}/></Box>

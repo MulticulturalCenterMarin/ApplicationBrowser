@@ -50,8 +50,6 @@ const queryLifecycle = lifecycle({
 
 /*---*--- Redux ---*---*/
 const mapStateToProps = (state, props) => {
-  console.log(state)
-  console.log(props)
    return {initialValues: {
     eid: props.match.params.id,
   }
@@ -69,6 +67,7 @@ const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
       props.match.params.id,
     ],
     location: 'projects',
+    trigger: props.match.params.id,
     delta: `${props.match.params.id}|BannerUpdate`,
   }
   dispatch(entityBannerAddRequest({payload: data.storageUpload, metadata}))

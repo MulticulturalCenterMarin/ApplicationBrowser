@@ -28,7 +28,6 @@ import {
 
 /* ------------------------------- Component -------------------------------- */
 const UsersSync = () => <FirestormEntitySync entity="users" p={[10]}/>
-
 export default () => 
 <div>
   {/* People | Multiple */}

@@ -5,6 +5,7 @@ import { Field } from 'redux-form'
 import styled from 'styled-components'
 
 /* ------------------------- Internal Dependencies -------------------------- */
+import { Block } from 'particles'
 import { 
   Flex, Box, 
   BackgroundImage, BackgroundGradient,
@@ -21,38 +22,34 @@ import TimeRangeFieldCollection from 'containers/fields/TimeRangeFieldCollection
 import DateRangeFieldCollection from 'containers/fields/DateRangeFieldCollection'
 
 /* --------------------------- Styled Components ---------------------------- */
-const FormWrapper = styled.form`
-  background: #FFF;
-  display: block;
-  padding: 20px;
-`
+Block.defaultProps = {is: 'form'}
 /** 
  * File input workarround:
  * More info: http://redux-form.com/5.2.5/#/examples/file?_k=57hmlw
  */
-const customFileInput = (field) => {
-  delete field.input.value; // <-- just delete the value property
+const CustomFileInput = (field) => {
+  delete field.input.value;
   return <input type="file" id="file" {...field.input} />;
 };
 
 
 /* ---------------------------- Form Component ------------------------------ */
 const FormElements = (props, fields) => {
-  console.log(props)
   const { handleSubmit, isSubmitting } = props
   return (
-    <FormWrapper method="POST" onSubmit={handleSubmit}>
-      <Box w={[1]} mt={[15,25]} bs={[0]} p={[10,15,25]}>
-        <Flex>
-          <Box w={[1,1,0.8]}>
-            <Field name="storageUpload" component={customFileInput} type="file" />
-          </Box>
-          <Box w={[1,1,0.2]} >
-            <Button type="submit" gradient='cherry' w={1} >Submit</Button>
-          </Box>
-        </Flex>
-      </Box>
-    </FormWrapper>
+    <Block>
+      <Flex align="center" justify="space-evenly" direction={['row']}>
+        <Box>
+          <Heading level={[3]} f={[1]}>Banner Upload</Heading>
+        </Box>
+        <Box ta={['right']} >
+          <Field name="storageUpload" component={CustomFileInput} type="file" />
+        </Box>
+        <Box>
+          <Button type="submit" onClick={handleSubmit} gradient='blue'w={1} >Submit</Button>
+        </Box>
+      </Flex>
+    </Block>
   )
 }
 

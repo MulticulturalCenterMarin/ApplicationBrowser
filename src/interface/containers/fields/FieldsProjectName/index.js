@@ -13,10 +13,29 @@ import FieldCollectionWrapper from 'containers/fields/FieldCollectionWrapper'
 const FieldCollectionComponent = props => (
   <FieldCollectionWrapper direction={['column', 'row']} justify="space-evenly" {...props} >
     <Box flex='2 1 auto' {...props.fieldStyle}>
-      <Field name="nameProject" placeholder="Project Name" component={ReduxField} type="text" height={55} f={[3]} color='blue' {...props.fields} />
+      <Field 
+        name="nameProject"
+        placeholder="Project Name"
+        component={ReduxField}
+        type="text"
+        color='blue'
+        mh={50}
+        f={[4]}
+        fw='700'
+        {...props.fields} 
+      />
     </Box>
     <Box flex='3 1 auto' {...props.fieldStyle}>
-      <Field name="nameProjectAlias" placeholder="Alias(Codename)" component={ReduxField} type="text" height={35} {...props.fields} />
+      <Field
+        name="nameProjectAlias"
+        placeholder="Alias(Codename)"
+        component={ReduxField}
+        type="text"
+        color='gray'
+        mh={30}
+        f={[1]}
+        {...props.fields} 
+      />
     </Box>
   </FieldCollectionWrapper>
 )

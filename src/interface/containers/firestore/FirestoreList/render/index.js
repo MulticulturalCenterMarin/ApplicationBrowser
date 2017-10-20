@@ -1,30 +1,19 @@
 /* ------------------------- External Dependencies -------------------------- */
 import _ from 'lodash'
 import React from 'react'
-import styled from 'styled-components'
 
 /* ------------------------- Internal Dependencies -------------------------- */
 import { Flex } from 'particles'
 import Foundry from 'foundry'
-
-/* --------------------------- Styled Components ---------------------------- */
-const Wrapper = styled.div``
-
-/* ------------------------- Component Properties --------------------------- */
+import StyleCompose from 'logic/interface/StyleCompose'
 
 /* ------------------------------- Component -------------------------------- */
-
-let itemApplyStyle = _.curry((layout,user)=> ({...user,...layout}))
-/* ---------------------------- Module Package ------------------------------ */
-const FirestoreList = ({data, foundry, itemStyled}) => {
-  const ListStyled = data ? _.map(data, _.curry(itemApplyStyle)(itemStyled)) : null;
-  const ListFoundry = data && ListStyled ? _.map(ListStyled, Foundry[foundry]) : null
+export default ({data, foundry, styled}) => {
+  const Item = data ? _.map(data, StyleCompose(styled)) : null;
+  const List = Item ? _.map(Item, Foundry[foundry]) : null
   return (
-    <Flex direction={['row']} wrap='wrap'>
-      {ListFoundry}
+    <Flex direction={['row']} wrap='wrap' > 
+      {List}
     </Flex>
   )
-}
-
-/* ---------------------------- Export Package ------------------------------ */
-export default FirestoreList
+} 

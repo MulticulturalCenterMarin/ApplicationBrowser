@@ -59,33 +59,25 @@ const validate = createValidator({
 /*-- Event Handlers ---*/
 const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
   /*--- Extraction ---*/
-  const address = _.pickBy(data, (value, key)=> key.startsWith("address"));
-  const biography = _.pickBy(data, (value, key)=> key.startsWith("biography"));
-  const contact =  _.pickBy(data, (value, key)=> key.startsWith("contact"));
-  const meta = _.pickBy(data, (value, key)=> key.startsWith("meta"));
-  const name = _.pickBy(data, (value, key)=> key.startsWith("name"));
-  const settings = _.pickBy(data, (value, key)=> key.startsWith("settings"));
-
-  /*--- Setup | Dispatch ---*/
-  const payload = {
-    address,
-    biography,
-    contact,
-    meta,
-    name,
-    settings,
-  }
-  const metadata = {
+  const submission = {}
+  submission.address = _.pickBy(data, (value, key)=> key.startsWith("address"));
+  submission.biography = _.pickBy(data, (value, key)=> key.startsWith("biography"));
+  submission.contact =  _.pickBy(data, (value, key)=> key.startsWith("contact"));
+  submission.metadata = _.pickBy(data, (value, key)=> key.startsWith("meta"));
+  submission.name = _.pickBy(data, (value, key)=> key.startsWith("name"));
+  submission.settings = _.pickBy(data, (value, key)=> key.startsWith("settings"));
+  /*--- Metadata/Configuration ---*/
+  dispatch(entityProjectEditRequest({
+    payload: submission, 
+    metadata: {
     branch: [
       'projects',
       props.delta,
     ],
     delta: `${props.delta}|Update`,
     trigger: `${props.delta}`,
-  }
-
-  /*--- Send | Dispatch ---*/
-  dispatch(entityProjectEditRequest({payload, metadata }))
+    }
+  }))
 })
 
 const mapStateToProps = (state, props) => {

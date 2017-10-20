@@ -12,10 +12,10 @@ import normalizePhone from 'logic/forms/normalize/phone'
 export default props => (
   <Flex direction={['column', 'row']} {...props} >
     <Box flex='1 1 auto' {...props.fieldStyle} >
-      <Field name="contactEmail" placeholder="Email: address@location.com" component={ReduxField} type="email" height={35} />
+      <Field name="contactEmail" placeholder="Email: you@site.com" component={ReduxField} type="email" height={35} />
     </Box>
     <Box flex='1 1 auto' {...props.fieldStyle}>
-      <Field name="contactPhone" placeholder="Phone: (555) 420-1070" component={ReduxField} type="tel" height={35} normalize={normalizePhone} />
+      <Field name="contactPhone" placeholder="Phone: (555) 420-1228" component={ReduxField} type="tel" height={35} normalize={normalizePhone} />
     </Box>
   </Flex>
 )

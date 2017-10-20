@@ -17,6 +17,7 @@
     "mapbox-geocoding": "^0.1.4",
     "mapbox-gl": "^0.39.1",
     "material-ui": "^0.18.6",
+    "material-ui-chip-input": "^0.18.1",
     "payment": "^2.3.0",
     "pouchdb-adapter-idb": "^6.3.4",
     "pouchdb-adapter-leveldb": "^6.3.4",

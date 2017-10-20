@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch, props) => ({
 })
 /* -------------------------- Form Configuration ---------------------------- */
 /*--- Event Handlers ---*/
-const onSubmit = (data, dispatch) => new Promise((resolve, reject) => ({
+const onSubmit = (data, dispatch) => new Promise((resolve, reject) => {
 
 })
 

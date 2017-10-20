@@ -1,3 +1,15 @@
+export const ENTITY_ADD_REQUEST = 'ENTITY_ADD_REQUEST'
+export const ENTITY_ADD_SUCCESS = 'ENTITY_ADD_SUCCESS'
+export const ENTITY_ADD_FAILURE = 'ENTITY_ADD_FAILURE'
+
+export const ENTITY_EDIT_REQUEST = 'ENTITY_EDIT_REQUEST'
+export const ENTITY_EDIT_SUCCESS = 'ENTITY_EDIT_SUCCESS'
+export const ENTITY_EDIT_FAILURE = 'ENTITY_EDIT_FAILURE'
+
+export const ENTITY_DELETE_REQUEST = 'ENTITY_DELETE_REQUEST'
+export const ENTITY_DELETE_SUCCESS = 'ENTITY_DELETE_SUCCESS'
+export const ENTITY_DELETE_FAILURE = 'ENTITY_DELETE_FAILURE'
+
 export const ENTITY_PERSON_ADD_REQUEST = 'ENTITY_PERSON_ADD_REQUEST'
 export const ENTITY_PERSON_ADD_SUCCESS = 'ENTITY_PERSON_ADD_SUCCESS'
 export const ENTITY_PERSON_ADD_FAILURE = 'ENTITY_PERSON_ADD_FAILURE'
@@ -93,6 +105,63 @@ export const ENTITY_IMAGE_DELETE_FAILURE = 'ENTITY_IMAGE_DELETE_FAILURE'
 export const ENTITY_IMAGES_ADD_REQUEST = 'ENTITY_IMAGES_ADD_REQUEST'
 export const ENTITY_IMAGES_ADD_SUCCESS = 'ENTITY_IMAGES_ADD_SUCCESS'
 export const ENTITY_IMAGES_ADD_FAILURE = 'ENTITY_IMAGES_ADD_FAILURE'
+// entity :: Add |  ENTITY_ADD
+export const entityAddRequest = ({payload, metadata}) => ({
+  type: ENTITY_ADD_REQUEST,
+  payload,
+  metadata
+})
+
+export const entityAddSuccess = ({payload, metadata}) => ({
+  type: ENTITY_ADD_SUCCESS,
+  payload,
+  metadata
+})
+
+export const entityAddFailure = ({payload, metadata}) => ({
+  type: ENTITY_ADD_FAILURE,
+  payload,
+  metadata
+})
+  
+// entity :: Edit |  ENTITY_EDIT
+export const entityEditRequest = ({payload, metadata}) => ({
+  type: ENTITY_EDIT_REQUEST,
+  payload,
+  metadata
+})
+
+export const entityEditSuccess = ({payload, metadata}) => ({
+  type: ENTITY_EDIT_SUCCESS,
+  payload,
+  metadata
+})
+
+export const entityEditFailure = ({payload, metadata}) => ({
+  type: ENTITY_EDIT_FAILURE,
+  payload,
+  metadata
+})
+  
+// entity :: Delete |  ENTITY_DELETE
+export const entityDeleteRequest = ({payload, metadata}) => ({
+  type: ENTITY_DELETE_REQUEST,
+  payload,
+  metadata
+})
+
+export const entityDeleteSuccess = ({payload, metadata}) => ({
+  type: ENTITY_DELETE_SUCCESS,
+  payload,
+  metadata
+})
+
+export const entityDeleteFailure = ({payload, metadata}) => ({
+  type: ENTITY_DELETE_FAILURE,
+  payload,
+  metadata
+})
+  
 // entity :: PersonAdd |  ENTITY_PERSON_ADD
 export const entityPersonAddRequest = ({payload, metadata}) => ({
   type: ENTITY_PERSON_ADD_REQUEST,

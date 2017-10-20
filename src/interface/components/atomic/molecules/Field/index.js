@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Absolute, Flex, Box } from 'particles'
+import {Heading, Image, Paragraph, Container, Section} from 'atomic'
 import { color, fontSize, space, width } from 'quarks'
 
 import { Label, Input } from 'atomic'
@@ -23,7 +24,7 @@ const Wrapper = styled(Box)`
   
 
   textarea {
-    height: 100px;
+    height: 150px;
   }
 
   input[type="checkbox"],
@@ -39,13 +40,13 @@ const Field = ({ error, name, invalid, label, value, type, ...props }) => {
   const inputProps = { id: name, name, type, value, invalid, 'aria-describedby': `${name}Error`, ...props }
   const renderInputFirst = type === 'checkbox' || type === 'radio'
   return (
-    <Wrapper {...{...props, ...props.stripe} }>
+    <Wrapper {...{...props} }>
       {renderInputFirst && <Input {...inputProps} />}
       {label && <Label htmlFor={inputProps.id}>{label}</Label>}
       {renderInputFirst || <Input {...inputProps} />}
       {invalid && error &&
         <Error id={`${name}Error`} role="alert" palette="danger">
-          {error}
+          <Heading level={[5]} f={[1]} color={'gray'} >{error}</Heading>
         </Error>
       }
     </Wrapper>

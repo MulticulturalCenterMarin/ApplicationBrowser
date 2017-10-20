@@ -27,13 +27,13 @@ const SelectDropdown = styled(Field)`
 const FieldCollectionComponent = props => (
   <Flex direction={['column']} justify="space-evenly" {...props} >
     <Box flex='2 1 auto' {...props.fieldStyle}>
-      <Field name="metaRepoURL" placeholder="Repository URL" component={ReduxField} type="text" color='blue' {...props.fields} />
+      <Field name="metaRepoURL" placeholder="Repository URL" component={ReduxField} type="text" {...props.fields} />
     </Box>
     <Box flex='3 1 auto' {...props.fieldStyle}>
-      <Field name="metaProjectURL" placeholder="Project URL" component={ReduxField} type="text" height={35} {...props.fields} />
+      <Field name="metaProjectURL" placeholder="Project URL" component={ReduxField} type="text" {...props.fields} />
     </Box>
     <Box flex='3 1 auto' {...props.fieldStyle}>
-      <Field name="metaVideoURL" placeholder="Video URL (Youtube)" component={ReduxField} type="text" height={35} {...props.fields} />
+      <Field name="metaVideoURL" placeholder="Video URL (Youtube)" component={ReduxField} type="text" {...props.fields} />
     </Box>
   </Flex>
 )

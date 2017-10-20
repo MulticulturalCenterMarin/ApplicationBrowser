@@ -37,7 +37,7 @@ export default (props) => {
   return <Flex direction={['row']} align='stretch' justify='center' p={[10]} {...props} key={id} >
       <Box {...mainLayout}>
         {!imageBanner ? null : 
-         <Link to={`/dashboard/project/${id}`} color='blue' ><Box h={100,160}>
+         <Link to={`/dashboard/project/${id}`} color='blue' ><Box h={[100,160]}>
           <BackgroundImage src={imageBanner}/>
         </Box></Link>
         }

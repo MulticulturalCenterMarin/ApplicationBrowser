@@ -4,6 +4,9 @@ const entity = 'entity'
 const entityUppercase = 'ENTITY'
 
 const reduxOperators = [
+  'ADD',
+  'EDIT',
+  'DELETE',
   'PERSON_ADD',
   'PERSON_EDIT',
   'PERSON_DELETE',

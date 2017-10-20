@@ -1,2 +1,0 @@
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var schemaUser={authentication:{},identity:{address:{},name:{nameFirst:"",nameLast:"",nameDisplay:""},contact:{contactEmail:"",contactPhone:"",contactURL:""},images:{imageBackground:"",imageProfile:""}},projects:!1,payments:!1,orders:!1,status:{active:!1,commerce:{customer:!1,subscription:!1}}};exports.default=schemaUser,module.exports=exports["default"];
-//# sourceMappingURL=index.js.map

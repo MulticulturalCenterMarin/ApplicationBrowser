@@ -1,4 +1,13 @@
 import {
+ENTITY_ADD_REQUEST,
+ENTITY_ADD_SUCCESS,
+ENTITY_ADD_FAILURE,
+ENTITY_EDIT_REQUEST,
+ENTITY_EDIT_SUCCESS,
+ENTITY_EDIT_FAILURE,
+ENTITY_DELETE_REQUEST,
+ENTITY_DELETE_SUCCESS,
+ENTITY_DELETE_FAILURE,
 ENTITY_PERSON_ADD_REQUEST,
 ENTITY_PERSON_ADD_SUCCESS,
 ENTITY_PERSON_ADD_FAILURE,
@@ -77,6 +86,90 @@ import { initialState } from './selectors'
 
 export default (state = initialState, {type, payload, metadata}) => {
   switch (type) {
+
+
+      case ENTITY_ADD_REQUEST:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'REQUESTED'
+          }
+        }
+      case ENTITY_ADD_SUCCESS:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'SUCCESS',
+            data: payload
+          }
+        }
+      case ENTITY_ADD_FAILURE:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'FAILURE',
+            error: payload
+          }
+        }
+
+
+      case ENTITY_EDIT_REQUEST:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'REQUESTED'
+          }
+        }
+      case ENTITY_EDIT_SUCCESS:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'SUCCESS',
+            data: payload
+          }
+        }
+      case ENTITY_EDIT_FAILURE:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'FAILURE',
+            error: payload
+          }
+        }
+
+
+      case ENTITY_DELETE_REQUEST:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'REQUESTED'
+          }
+        }
+      case ENTITY_DELETE_SUCCESS:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'SUCCESS',
+            data: payload
+          }
+        }
+      case ENTITY_DELETE_FAILURE:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'FAILURE',
+            error: payload
+          }
+        }
 
 
       case ENTITY_PERSON_ADD_REQUEST:
@@ -755,3 +848,4 @@ export default (state = initialState, {type, payload, metadata}) => {
       return state
   }
 }
+  

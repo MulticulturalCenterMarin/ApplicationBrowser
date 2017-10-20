@@ -9,9 +9,7 @@ import filterKeys from 'filter-keys'
 import { createValidator, required } from 'logic/forms/validation'
 
 /*--- Redux Store ---*/
-import {
-  entityProjectAddRequest
-} from 'store/departments/actions'
+import {entityAddRequest} from 'store/departments/actions'
 
 /* ------------------------ Initialize Dependencies ------------------------- */
 import FormRender from './render'
@@ -21,48 +19,38 @@ const FormRedux = props => <FormRender { ...props} />
 
 /*-- Event Handlers ---*/
 const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
-
-  /*--- Setup ---*/
-  const submission = {}
-
   /*--- Extraction ---*/
+  const submission = {}
   submission.name = _.pickBy(data, (value, key)=> key.startsWith("name"));
   submission.contact =  _.pickBy(data, (value, key)=> key.startsWith("contact"));
-  submission.address = _.pickBy(data, (value, key)=> key.startsWith("address"));
-
-  /*--- Payload ---*/
-  const payload = submission
-
+  submission.metadata =  _.pickBy(data, (value, key)=> key.startsWith("meta"));
   /*--- Metadata/Configuration ---*/
-  const metadata = {
+  dispatch(entityAddRequest({
+    payload: submission, 
+    metadata: {
     branch: [
       'projects'
     ],
-    delta: 'ProjectAdd',
-    trigger: 'ProjectSearch',
-  }
-  
-  dispatch(entityProjectAddRequest({payload, metadata }))
+      delta: 'ProjectAdd',
+      trigger: 'ProjectSearch',
+    }
+  }))
 })
 
 /* ----------------------------- Form Validation -------------------------------- */
 const validate = createValidator({
+  nameProject: required,
+  nameProjectAlias: required,
 })
-
-/* ----------------------------- React Redux -------------------------------- */
-const mapStateToProps = (state, props) =>(
-{
-  initialValues: {}
-})
-
-const mapDispatchToProps = dispatch => ({})
-
 const config = {
   form: 'FormProjectAdd',
-  fields: [],
+  fields: [
+    'nameProject',
+    'nameProjectAlias',
+  ],
   destroyOnUnmount: true,
   onSubmit,
   validate
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm(config)(FormRedux))
+export default connect()(reduxForm(config)(FormRedux))

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { ifProp } from 'styled-tools'
 import { font, palette } from 'styled-theme'
-import { color, fontSize, space, width, height, borderRadius } from 'quarks'
+import { color, fontSize, space, width, height, minHeight, borderRadius } from 'quarks'
 
 
 const styles = css`
@@ -16,6 +16,7 @@ const styles = css`
   display: block;
   ${fontSize}
   ${height}
+  ${minHeight}
   margin: 0;
   outline:  none;
   padding: ${ifProp({ type: 'textarea' }, '0.4444444444em', '0 0.4444444444em')};
@@ -67,7 +68,7 @@ Input.defaultProps = {
   color: 'charcoal',
   f: [2,3],
   type: 'text',
-  height: 40,
+  mh: 35,
   value: '',
   w: 1
 }

@@ -5460,6 +5460,12 @@ matchmediaquery@^0.2.1:
   dependencies:
     css-mediaquery "^0.1.2"
 
+material-ui-chip-input@^0.18.1:
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/material-ui-chip-input/-/material-ui-chip-input-0.18.1.tgz#4b5d1b08ac4ab4baca99ffc8b771309c4b4175bd"
+  dependencies:
+    prop-types "^15.5.7"
+
 material-ui@^0.18.6:
   version "0.18.7"
   resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-0.18.7.tgz#b87af16357e6966b36c23d489eb2ed70746d25f8"
@@ -7541,7 +7547,7 @@ redux-logger@^3.0.6:
 
 "redux-saga-firebase@git+https://github.com/KamesCG/redux-saga-firebase":
   version "0.5.0"
-  resolved "git+https://github.com/KamesCG/redux-saga-firebase#a3947278338c9c0f1706fbe389c1c46d02591ec0"
+  resolved "git+https://github.com/KamesCG/redux-saga-firebase#62dbfcec2dff1cae3b27d58d1fde7e9c1b88276b"
   dependencies:
     redux-saga "^0.15.4"
 

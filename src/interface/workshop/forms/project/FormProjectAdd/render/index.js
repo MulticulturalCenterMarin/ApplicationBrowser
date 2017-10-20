@@ -2,44 +2,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
-import styled from 'styled-components'
-import { AutoComplete as MUIAutoComplete } from 'material-ui'
-import {
-  AutoComplete
-} from 'redux-form-material-ui'
-
 /* ------------------------- Internal Dependencies -------------------------- */
 import { 
-  Flex, Box, 
-  BackgroundImage, BackgroundGradient,
-  Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
-  Blockquote, HorizontalRule, Shape, Responsive 
-}from 'atomic'
+  Flex, Box, Button
+} from 'atomic'
 
 import ReduxField from 'organisms/ReduxField'
 
 import {
-  NameFieldCollection,
+  FieldsContact,
   FieldsProjectName,
-  ContactFieldCollection,
-  AddressFieldCollection,
-  FieldsOrganizationMetadata,
+  FieldsProjectMetadata,
 } from 'containers'
 /* --------------------------- Styled Components ---------------------------- */
-const fieldStyle = {
-  w: 1,
-  mb: [10]
-}
-const wrapperStyle = {
-  mb: [10]
-}
 const FormElements = (props) => {
+  console.log(props)
   const { handleSubmit, isSubmitting, match } = props
   return (
     <Box {...props}>
-      <FieldsProjectName wrap='wrap' {...wrapperStyle} fieldStyle={fieldStyle} />
-      <ContactFieldCollection wrap='wrap' mt={[10,15]} {...wrapperStyle} fieldStyle={fieldStyle} />
-      <AddressFieldCollection mt={[10,15]} {...wrapperStyle} fieldStyle={fieldStyle} />
+      <FieldsProjectName wrap='wrap' {...props.styleWrapper} fieldStyle={props.styleFields} />
+      <FieldsContact wrap='wrap' mt={[10,15]} {...props.styleWrapper} fieldStyle={props.styleFields} />
+      <FieldsProjectMetadata wrap='wrap' {...props.styleWrapper} fieldStyle={props.styleFields} />
       <Button type="submit" onClick={handleSubmit} gradient='cherry' mt={[10,15]} w={1} >Submit</Button>
     </Box>
   )
@@ -47,6 +30,14 @@ const FormElements = (props) => {
 
 FormElements.defaultProps = {
   is: "form",
+  styleFields: {
+    w: 1,
+    my: [5]
+  },
+  styleWrapper: {
+    p: 10,
+    my:[10]
+  }
 }
 FormElements.propTypes = {
   handleSubmit: PropTypes.func,

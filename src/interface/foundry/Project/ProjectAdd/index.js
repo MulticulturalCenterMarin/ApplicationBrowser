@@ -14,5 +14,12 @@ import {
 export default props => 
 <Box p={[10]} w={[1,1, 350]}>
   <Heading level={[3]} f={[3]}>Add Project</Heading>
-  <FormProjectAdd bg='white' p={[10]} />
+  <FormProjectAdd 
+    bg='white'
+    p={[10]}
+    styleWrapper={{
+      bs:0,
+      p:10
+      }} 
+    />
 </Box>
