@@ -20,6 +20,9 @@ FIRESTORE_DOCUMENT_ALL_GET_FAILURE,
 FIRESTORE_DOCUMENT_FILTER_GET_REQUEST,
 FIRESTORE_DOCUMENT_FILTER_GET_SUCCESS,
 FIRESTORE_DOCUMENT_FILTER_GET_FAILURE,
+FIRESTORE_DOCUMENT_COMPOSE_GET_REQUEST,
+FIRESTORE_DOCUMENT_COMPOSE_GET_SUCCESS,
+FIRESTORE_DOCUMENT_COMPOSE_GET_FAILURE,
 FIRESTORE_DOCUMENT_DELETE_REQUEST,
 FIRESTORE_DOCUMENT_DELETE_SUCCESS,
 FIRESTORE_DOCUMENT_DELETE_FAILURE,
@@ -231,6 +234,36 @@ export default (state = initialState, {type, payload, metadata}) => {
             error: payload
           }
         }
+
+
+
+        case FIRESTORE_DOCUMENT_COMPOSE_GET_REQUEST:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: 'REQUESTED'
+          }
+        }
+      case FIRESTORE_DOCUMENT_COMPOSE_GET_SUCCESS:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: true,
+            data: payload
+          }
+        }
+      case FIRESTORE_DOCUMENT_COMPOSE_GET_FAILURE:
+        return {
+          ...state,
+          [metadata.delta]: {
+            ...state[metadata.delta],
+            status: false,
+            error: payload
+          }
+        }
+
 
 
       case FIRESTORE_DOCUMENT_DELETE_REQUEST:

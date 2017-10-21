@@ -35,9 +35,12 @@ const queryLifecycle = lifecycle(
 
 
 /*---*--- Redux ---*---*/
-const mapStateToProps = (state, props) ({
+const mapStateToProps = (state, props) => {
 
-})
+  return {
+    
+  }
+}
 const mapDispatchToProps = (dispatch, props) => ({
 
 })

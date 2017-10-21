@@ -37,6 +37,9 @@ import {
 import {
   MenuProjectProfile
 } from 'content/menus'
+import {
+  FirestoreListCompose
+} from 'containers'
 
 /* ------------------------------- Component -------------------------------- */
 const ProfileMenuMap = props => <Box bg='white' bs={[1]} p={[10]} >{MenuProjectProfile.map(item=> <LinkIconContext {...item} {...props} /> )}</Box>
@@ -45,6 +48,11 @@ export default props => {
   const nameAlias = idx(props.data, _ => _.name.nameProjectAlias)
   const biography = idx(props.data, _ => _.biography)
   const imageBanner = idx(props.data, _ => _.images.imageBanner)
+  let contributors = idx(props.data, _ => _.contributors.contributorPeople)
+  if(contributors) contributors = contributors.map(c=> c.id)
+  console.log(contributors)
+
+
 
   /*--- Components ---*/
 
@@ -77,6 +85,12 @@ export default props => {
         <PerfectScrollbar>
           <Route exact path="/dashboard/:entity/:id" component={Banner}/>
         <Box p={[20,35]}>
+          <FirestoreListCompose
+            collection={'people'}
+            delta='ComposeTests'
+            foundry='PersonCard'
+            references={contributors}
+          />
           {!ImageGallery ? null : <Flex>
             <Box w={[1,1,0.75]}>
               <Route exact path="/dashboard/:entity/:id" component={ImageGallery}/> 

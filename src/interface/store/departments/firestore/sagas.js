@@ -14,6 +14,7 @@ import {
   FIRESTORE_DOCUMENT_GET_REQUEST,
   FIRESTORE_DOCUMENT_ALL_GET_REQUEST,
   FIRESTORE_DOCUMENT_FILTER_GET_REQUEST,
+  FIRESTORE_DOCUMENT_COMPOSE_GET_REQUEST,
   FIRESTORE_DOCUMENT_DELETE_REQUEST,
   FIRESTORE_DOCUMENT_FIELDS_DELETE_REQUEST,
   FIRESTORE_QUERY_REQUEST,
@@ -33,6 +34,8 @@ import {
   firestoreDocumentAllGetFailure,
   firestoreDocumentFilterGetSuccess,
   firestoreDocumentFilterGetFailure,
+  firestoreDocumentComposeGetSuccess,
+  firestoreDocumentComposeGetFailure,
   firestoreDocumentDeleteSuccess,
   firestoreDocumentDeleteFailure,
   firestoreDocumentFieldsDeleteSuccess,
@@ -40,6 +43,7 @@ import {
   firestoreQuerySuccess,
   firestoreQueryFailure,
 } from './actions'
+
 import {
   firestoreDocumentGetRequest,
 } from './actions'
@@ -129,6 +133,36 @@ function* documentFilterGet({payload, metadata}) {
   }
 }
 
+/*---*--- Document Compose Get ---*---*/
+function* documentComposeGet({payload, metadata}) {
+  try {
+    const { branch, references } = metadata
+
+    const t = yield call(documentComposeGetAsync, metadata)
+    console.log(t)
+
+    yield put(firestoreDocumentComposeGetSuccess({metadata}))
+  } catch(e) {
+    console.log(e)
+    yield put(firestoreDocumentComposeGetFailure({payload: e, metadata}))
+  }
+}
+
+function* documentComposeGetAsync(metadata) {
+  const { branch, references } = metadata
+  for (var index = 0; index < references.length; index++) {
+    let filters = {
+      where: [
+        ['eid', '==', references[index]]
+      ]
+    }
+    const data = yield call(reduxSagaFirebase.firestore.documentFilterGet, branch, filters);
+    yield put(firestoreDocumentGetSuccess({payload: data[0], metadata: {
+      ...metadata,
+      delta: data[0].id
+    }}))
+  }
+}
 
 /*---*--- Document Delete ---*---*/
 function* documentDelete({payload, metadata}) {
@@ -164,7 +198,7 @@ function* query({payload, metadata}) {
 }
 
 
-export default function* rxdbRootSaga() {
+export default function* firestoreRootSaga() {
   yield [
    takeEvery(FIRESTORE_DOCUMENT_ADD_REQUEST, documentAdd),
    takeEvery(FIRESTORE_DOCUMENT_EMPTY_ADD_REQUEST, documentEmptyAdd),
@@ -173,6 +207,7 @@ export default function* rxdbRootSaga() {
    takeEvery(FIRESTORE_DOCUMENT_GET_REQUEST, documentGet),
    takeEvery(FIRESTORE_DOCUMENT_ALL_GET_REQUEST, documentAllGet),
    takeEvery(FIRESTORE_DOCUMENT_FILTER_GET_REQUEST, documentFilterGet),
+   takeEvery(FIRESTORE_DOCUMENT_COMPOSE_GET_REQUEST, documentComposeGet),
    takeEvery(FIRESTORE_DOCUMENT_DELETE_REQUEST, documentDelete),
    takeEvery(FIRESTORE_DOCUMENT_FIELDS_DELETE_REQUEST, documentFieldsDelete),
    takeEvery(FIRESTORE_QUERY_REQUEST, query),

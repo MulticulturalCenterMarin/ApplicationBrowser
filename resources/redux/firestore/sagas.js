@@ -14,6 +14,7 @@ const reduxOperators = [
   'DOCUMENT_GET',
   'DOCUMENT_ALL_GET',
   'DOCUMENT_FILTER_GET',
+  'DOCUMENT_COMPOSE_GET',
   'DOCUMENT_DELETE',
   'DOCUMENT_FIELDS_DELETE',
   'QUERY',
@@ -50,7 +51,7 @@ reduxOperators.map(i=> {
 function* ${nameFunction}({payload, metadata}) {
   try {
 
-    yield put(${entity}${name}Success({payload: {}, metadata))
+    yield put(${entity}${name}Success({payload: {}, metadata}))
   } catch(e) {
     yield put(${entity}${name}Failure({payload: e, metadata}))
   }

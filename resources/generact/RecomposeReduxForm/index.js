@@ -14,18 +14,17 @@ import {
 
 /* ------------------------- Internal Dependencies -------------------------- */
 import Render from './render';
-import { createValidator, required } from 'logic/forms/validation'
+import { 
+  createValidator,
+  required 
+} from 'logic/forms/validation'
 /* ------------------------ Initialize Dependencies ------------------------- */
 import { } from 'store/departments/actions'
 
 /* ---------------------------- Module Package ------------------------------ */
 /*---*--- Recompose ---*---*/
-const defaultState = withState({
-  list: null
-})
-const defaultProps = withProps({
-
-})
+const defaultState = withState({})
+const defaultProps = withProps({})
 
 /*---*--- Lifecylce Methods ---*---*/
 const queryLifecycle = lifecycle({
@@ -46,6 +45,9 @@ const queryLifecycle = lifecycle({
 /*---*--- Redux ---*---*/
 const mapStateToProps = (state, props) => {
    
+   return ({
+
+   })
 }
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -53,7 +55,7 @@ const mapDispatchToProps = (dispatch, props) => ({
 })
 /* -------------------------- Form Configuration ---------------------------- */
 /*--- Event Handlers ---*/
-const onSubmit = (data, dispatch) => new Promise((resolve, reject) => {
+const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
 
 })
 

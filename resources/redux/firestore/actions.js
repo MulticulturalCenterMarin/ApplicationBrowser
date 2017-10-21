@@ -11,6 +11,7 @@ const reduxOperators = [
   'DOCUMENT_GET',
   'DOCUMENT_ALL_GET',
   'DOCUMENT_FILTER_GET',
+  'DOCUMENT_COMPOSE_GET',
   'DOCUMENT_DELETE',
   'DOCUMENT_FIELDS_DELETE',
   'QUERY',
@@ -25,19 +26,19 @@ reduxOperators.map(i=> {
 reduxOperators.map(i=> {
   let name = i.split("_").map(t=>t.toLowerCase().charAt(0).toUpperCase() + t.toLowerCase().slice(1)).join("")
   let t = `// ${entity} :: ${name} |  ${entityUppercase}_${i}
-export const ${entity}${name}Request = ({payload, metadata}) => ({
+export const ${entity}${name}Request = ({payload = {}, metadata = {}}) => ({
   type: ${entityUppercase}_${i}_REQUEST,
   payload,
   metadata
 })
 
-export const ${entity}${name}Success = ({payload, metadata}) => ({
+export const ${entity}${name}Success = ({payload = {}, metadata = {}}) => ({
   type: ${entityUppercase}_${i}_SUCCESS,
   payload,
   metadata
 })
 
-export const ${entity}${name}Failure = ({payload, metadata}) => ({
+export const ${entity}${name}Failure = ({payload = {}, metadata = {}}) => ({
   type: ${entityUppercase}_${i}_FAILURE,
   payload,
   metadata

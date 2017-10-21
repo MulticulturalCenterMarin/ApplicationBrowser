@@ -11,7 +11,6 @@ import {
   Blockquote, HorizontalRule, Shape, Responsive 
 }from 'atomic'
 import { 
-
   FrontIntroduction,
   FrontJourney,
   FrontPrograms,
@@ -19,13 +18,24 @@ import {
   FrontProjectsSubmit,
 } from 'workshop/sections'
 
+import {
+  FirestoreListCompose
+} from 'containers'
+
 /* ------------------------------- Component -------------------------------- */
 export default props => (
-  <div>
+<div>
   <Shape top left right h={[ '70px', '90px', "125px"]} mt={[-70, -90, -125]} svg={assets.svg.waves} />
   <Shape top left right h={[ '70px', '90px', "125px"]} svg={assets.svg.waves} w={[1]} transform={['rotate(180deg)']} z={0} />
   <FrontProjectsActive/>
   <FrontIntroduction/>
   <FrontJourney/>
-  </div>
+
+  <FirestoreListCompose
+    collection={'people'}
+    delta='ComposeTests'
+    foundry='PersonCard'
+    references={['aaX41iYj00M5UfaUXOLFCbAepdF2', 'testing']}
+  />
+</div>
 )
