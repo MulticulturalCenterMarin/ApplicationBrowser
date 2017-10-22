@@ -5,8 +5,8 @@ import {
   Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
 } from 'atomic'
 import {
-  FormProjectAddFull,
-} from 'workshop/forms'
+  FormProjectAddFull
+} from 'foundry'
 
 /* ------------------------------- Component -------------------------------- */
 export default props => 

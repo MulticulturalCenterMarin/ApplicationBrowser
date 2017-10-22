@@ -9,7 +9,7 @@ const drawerMenuItems = [
       {
         title: 'Activity',
         to: '/dashboard/people/map',
-        svg: assets.svg.mobileCity,
+        svg: assets.svg.brain,
         gradient: 'crimson',
         gradientDir: '90deg',
         titleWrap: {
@@ -36,12 +36,35 @@ const drawerMenuItems = [
           align: 'center',
         },
       },
+    ]
+  },
+  {
+    title: 'Organizations',
+    to: '/dashboard/organizations',
+    svg: assets.svg.castle,
+    gradient: 'purple',
+     childrenItems: [
       {
-        title: 'Manage',
-        to: '/dashboard/people/manage',
-        svg: assets.svg.personGraph,
-        gradient: 'crimson',
-        gradientDir: '130deg',
+        title: 'Activity',
+        to: '/dashboard/organizations/map',
+        svg: assets.svg.laptop,
+        gradient: 'purple',
+        gradientDir: '90deg',
+        titleWrap: {
+          bg:'white',
+          px: [10,15],
+        },
+         wrapper: {
+          display: 'flex',
+          align: 'center',
+        },
+      },
+      {
+        title: 'Add',
+        to: '/dashboard/organizations/add',
+        svg: assets.svg.networkCentral,
+        gradient: 'purple',
+        gradientDir: '150deg',
         titleWrap: {
           bg:'white',
           px: [10,15],
@@ -54,12 +77,6 @@ const drawerMenuItems = [
     ]
   },
   {
-    title: 'Organizations',
-    to: '/dashboard/organizations',
-    svg: assets.svg.castle,
-    gradient: 'purple',
-  },
-  {
     title: 'Projects',
     to: '/dashboard/projects',
     svg: assets.svg.networkCentral,
@@ -68,7 +85,7 @@ const drawerMenuItems = [
       {
         title: 'Activity',
         to: '/dashboard/projects/map',
-        svg: assets.svg.mobileCity,
+        svg: assets.svg.dataAnalytics,
         gradient: 'purpleTurqoise',
         gradientDir: '90deg',
         titleWrap: {
@@ -83,24 +100,9 @@ const drawerMenuItems = [
       {
         title: 'Add',
         to: '/dashboard/project/add',
-        svg: assets.svg.holePuzzle,
+        svg: assets.svg.financialFolder,
         gradient: 'purpleTurqoise',
         gradientDir: '150deg',
-        titleWrap: {
-          bg:'white',
-          px: [10,15],
-        },
-         wrapper: {
-          display: 'flex',
-          align: 'center',
-        },
-      },
-      {
-        title: 'Manage',
-        to: '/dashboard/projects/manage',
-        svg: assets.svg.personGraph,
-        gradient: 'purpleTurqoise',
-        gradientDir: '130deg',
         titleWrap: {
           bg:'white',
           px: [10,15],
@@ -121,7 +123,7 @@ const drawerMenuItems = [
       {
         title: 'Activity',
         to: '/dashboard/resources/map',
-        svg: assets.svg.mobileCity,
+        svg: assets.svg.idea,
         gradient: 'purpleTurqoise',
         gradientDir: '90deg',
         titleWrap: {
@@ -136,24 +138,9 @@ const drawerMenuItems = [
       {
         title: 'Add',
         to: '/dashboard/resources/add',
-        svg: assets.svg.holePuzzle,
+        svg: assets.svg.ideaShip,
         gradient: 'purpleTurqoise',
         gradientDir: '150deg',
-        titleWrap: {
-          bg:'white',
-          px: [10,15],
-        },
-         wrapper: {
-          display: 'flex',
-          align: 'center',
-        },
-      },
-      {
-        title: 'Manage',
-        to: '/dashboard/resources/manage',
-        svg: assets.svg.personGraph,
-        gradient: 'purpleTurqoise',
-        gradientDir: '130deg',
         titleWrap: {
           bg:'white',
           px: [10,15],

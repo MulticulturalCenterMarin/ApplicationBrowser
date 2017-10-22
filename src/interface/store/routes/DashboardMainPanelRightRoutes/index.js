@@ -16,15 +16,13 @@ import {
   ProjectAdd,
   ProjectSearchAdvanced,
   ProjectAddFullDescription,
+  FormPersonAdd,
+  FormProjectUpdate,
   ResourceAdd,
   ResourceSearchAdvanced,
   ResourceAddFullDescription,
  } from 'foundry'
 
-import {
-  FormPersonAdd,
-  FormProjectUpdate,
-} from 'workshop/forms'
 
 /* ------------------------------- Component -------------------------------- */
 const UsersSync = () => <FirestormEntitySync entity="users" p={[10]}/>

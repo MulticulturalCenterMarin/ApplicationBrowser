@@ -74,10 +74,10 @@ export default props => {
         <ProjectProfileInterfaceIdentity {...props} w={1} />
         <ProjectProfileMenu {...props} />
         {/*--- Project ---*/}
-        {!props.data ? null : <Route path="/dashboard/:entity/:eid" component={FormProjectUpdate}/> }
-        {!props.data ? null : <Route path="/dashboard/:entity/:eid" valueDefault={contributors} component={FormProjectAddContributorPerson}/> }
-        {!props.data ? null : <Route path="/dashboard/:entity/:eid" component={FormProjectAddContributorOrganization}/> }
-        {!props.data ? null : <Route path="/dashboard/:entity/:eid" component={FormProjectAddTaxonomy}/> }
+        <Box p={[10]} >
+          {!props.data ? null : <Route path="/dashboard/:entity/:eid" component={FormProjectUpdate}/> }
+          {!props.data ? null : <Route path="/dashboard/:entity/:eid" valueDefault={contributors} component={FormProjectAddContributorPerson}/> }
+        </Box>
       </PerfectScrollbar>
     </Absolute>
   </div>

@@ -16,7 +16,7 @@ const Front = ({ ...props }) => {
     <div>
       <Flex direction='column' w={[1]} >
         <TemplateNotifications/>
-        <AsideDrawerMenu/>
+        <AsideDrawerMenu owner="aside" />
       </Flex>
     </div>
   )

@@ -14,7 +14,6 @@ const MenuAsideItem = props =>
 {
 let SubMenuItems= undefined
 if (props.childrenItems) SubMenuItems = <Box bg='white' >{_.map(props.childrenItems, MenuAsideItemRecurse)}</Box>
-
 return <Flex {...props} key={props.to} {...props.wrapper} >
   <Box flex={['1 1 0']} px={[10]} textAlign="center" {...props.iconWrap} >
     <DrawerLink to={props.to}>
@@ -28,7 +27,7 @@ return <Flex {...props} key={props.to} {...props.wrapper} >
   </Box>
   {!SubMenuItems? null
   : <Box p={[5]} >
-    <PopoverPure body={SubMenuItems} place="right" preferPlace="right" >
+    <PopoverPure delta={`${props.title}${props.owner}SubMenu`} body={SubMenuItems} place="right" preferPlace="right"> 
       <Box mx={[5,10]}><Heading level={[3]} f={[4]}>+</Heading></Box>
     </PopoverPure>
     </Box>

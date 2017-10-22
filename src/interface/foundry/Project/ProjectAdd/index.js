@@ -8,7 +8,7 @@ import {
 } from 'atomic'
 import {
   FormProjectAdd,
-} from 'workshop/forms'
+} from 'foundry'
 
 /* ------------------------------- Component -------------------------------- */
 export default props => 

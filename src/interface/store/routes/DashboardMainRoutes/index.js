@@ -1,6 +1,6 @@
 /* ------------------------- External Dependencies -------------------------- */
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 /* ------------------------- External Dependencies -------------------------- */
 import { Absolute } from 'particles'
 import { 
@@ -15,13 +15,6 @@ import {
   fromMain
 } from 'workshop/zones'
 
-import {
-  FormProjectAddFull,
-  FormProjectEdit,
-  FormStorageUpload,
-  ProfilePersonIdentityEdit,
-  TwilioTextSend,
-} from 'workshop/forms'
 import {
   EntityProfileMap,
   HotlineActivity,
@@ -39,12 +32,15 @@ import {
   OrganizationProfileGraphRequest,
   OrganizationsMapMarkers,
 
+  ProjectAddFull,
   ProjectFirestoreDocument,
   ProjectsFirestoreList,
-  ProjectAddFull,
   ProjectsMap,
   ProjectsMapSlim,
   ProjectMarkerPopover,
+  FormProjectAddFull,
+  FormProjectEdit,
+  FormStorageUpload,
 
   ResourceFirestoreDocument,
   ResourcesFirestoreList,
@@ -89,18 +85,19 @@ export default () => (
   <Route exact path="/dashboard/projects/map" component={ProjectsMap} />
   <Route exact path="/dashboard/projects" component={ProjectsMapSlim} />
   <Route exact path="/dashboard/projects" component={ProjectsFirestoreList} />
-  <Route exact path="/dashboard/project/add" component={ProjectAddFull} />
-  
-  <Route path="/dashboard/project/:eid" component={ProjectFirestoreDocument} />
+  <Switch>
+    <Route exact path="/dashboard/project/add" component={ProjectAddFull} />
+    <Route path="/dashboard/project/:eid" component={ProjectFirestoreDocument} />
+  </Switch>
  
   {/*--- Resource ---*/}
   <Route exact path="/dashboard/resources/map" component={ResourcesMap} />
   <Route exact path="/dashboard/resources" component={ResourcesMapSlim} />
   <Route exact path="/dashboard/resources" component={ResourcesFirestoreList} />
-  <Route exact path="/dashboard/resource/add" component={ResourceAddFull} />
-  
-  <Route path="/dashboard/resource/e:id" component={ResourceFirestoreDocument} />
-
+  <Switch>
+    <Route exact path="/dashboard/resource/add" component={ResourceAddFull} />
+    <Route path="/dashboard/resource/:eid" component={ResourceFirestoreDocument} />
+  </Switch>
 
   <Route path="/dashboard/upload" component={FormStorageUpload} />
 

@@ -21,7 +21,7 @@ const UserProfile = (props) => {
         <Text>{displayName}</Text>
       </Box>
       <Box flex={['1 1 0', '1 1 auto']}  >
-        <PopoverPure body={ProfileMenuMap} >
+        <PopoverPure delta="PersonMenu" foundry={'ProjectProfileMenu'} >
           <Image src={photoURL} h={[37.5]} w={[37.5]} br={0.5} bs={[2]} b={['2px solid transparent']} bc={['white']} />
         </PopoverPure>
       </Box>

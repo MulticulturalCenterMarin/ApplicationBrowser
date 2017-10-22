@@ -7,5 +7,5 @@ import { FirestoreDocument } from 'containers'
 /* ------------------------------- Component -------------------------------- */
 export default props => <FirestoreDocument {...props}
 collection="projects"
-foundry={'ProjectProfileInterface'}
+foundry={'ProjectProfileEntry'}
 />
