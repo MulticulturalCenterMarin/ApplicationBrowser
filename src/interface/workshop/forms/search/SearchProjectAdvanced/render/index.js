@@ -12,8 +12,7 @@ Block.defaultProps = {is: 'form'}
 export default ({ handleSubmit, isSubmitting, styled}) => (
 <Block {...styled}>
   <Box>
-    <Heading level={[3]} f={[2]} mt={[15]}>Name</Heading>
-    <Field name="searchProjectName" placeholder="ProjectName" component={ReduxField} type="text" />
+    <Field name="searchProjectName" placeholder="Project Name" component={ReduxField} type="text" />
     <Field name="searchProjectAlias" placeholder="Alias(Codename)" component={ReduxField} type="text" mt={[10]} />
   </Box>
   <Box mt={10} >

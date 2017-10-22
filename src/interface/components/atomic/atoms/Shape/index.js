@@ -3,7 +3,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { fill, boxShadow, gradient, height, space, width } from 'quarks'
 import { Absolute } from 'particles'
-import SVGInline from "fusion/ReactSVGInline"
+import { SVG } from "atomic"
 /* ------------------------- Internal Dependencies -------------------------- */
 const svg = props => `${props.image}`
 
@@ -40,7 +40,7 @@ Wrapper.defaultProps = {
 /* ------------------------------- Component -------------------------------- */
 const BackgroundImageWrapper = props => (
     <Wrapper {...props} p={[0]} >
-      <SVGInline svg={props.svg} />
+      <SVG svg={props.svg} />
     </Wrapper>
   )
 

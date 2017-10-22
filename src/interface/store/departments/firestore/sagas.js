@@ -139,8 +139,6 @@ function* documentComposeGet({payload, metadata}) {
     const { branch, references } = metadata
 
     const t = yield call(documentComposeGetAsync, metadata)
-    console.log(t)
-
     yield put(firestoreDocumentComposeGetSuccess({metadata}))
   } catch(e) {
     console.log(e)
@@ -150,6 +148,7 @@ function* documentComposeGet({payload, metadata}) {
 
 function* documentComposeGetAsync(metadata) {
   const { branch, references } = metadata
+  console.log(references)
   for (var index = 0; index < references.length; index++) {
     let filters = {
       where: [
@@ -157,10 +156,13 @@ function* documentComposeGetAsync(metadata) {
       ]
     }
     const data = yield call(reduxSagaFirebase.firestore.documentFilterGet, branch, filters);
-    yield put(firestoreDocumentGetSuccess({payload: data[0], metadata: {
-      ...metadata,
-      delta: data[0].id
-    }}))
+    console.log(data)
+    if(data[0]) {
+      yield put(firestoreDocumentGetSuccess({payload: data[0], metadata: {
+        ...metadata,
+        delta: data[0].id
+      }}))
+    }
   }
 }
 

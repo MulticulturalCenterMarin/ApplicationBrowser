@@ -16,17 +16,12 @@ export default props => (
 <ListStyled
   foundry={'ImageElement'}
   styled={{
-    item: {
       m: 10,
       container: {
         p: 10,
         h: 120,
         w: 0.2,
       }
-    },
-    wrapper: {
-
-    }
   }}
   data={props.data}
 />)

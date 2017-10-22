@@ -2,22 +2,13 @@
 import { connect } from 'react-redux'
 import { compose, lifecycle, withProps, withState, renderComponent } from 'recompose'
 import gql from 'graphql-tag';
-
 import { graphql } from 'react-apollo';
 /* ------------------------- Internal Dependencies -------------------------- */
-import Render from './render';
+import { Item } from 'foundry'
 /* ------------------------ Initialize Dependencies ------------------------- */
 import { apolloQueryRequest } from 'store/departments/actions'
 import { fromApollo, getAccessToken } from 'store/departments/selectors'
 /* ---------------------------- Module Package ------------------------------ */
-/*---*--- Recompose ---*---*/
-const defaultState = withState({
-
-})
-const defaultProps = withProps({
-
-})
-
 /*---*--- Lifecylce Methods ---*---*/
 const queryLifecycle = lifecycle({
   /*--- Component Mount ---*/
@@ -65,7 +56,7 @@ const queryLifecycle = lifecycle({
 
 /*---*--- Redux ---*---*/
 const mapStateToProps = (state, props)=> {
-  const userId = props.match && props.match.params.id || null
+  const userId = props.match && props.match.params.eid || null
   const { query }  = props
   const queryData = fromApollo.getQueryData(state, props.query)
   return {
@@ -87,6 +78,4 @@ const mapDispatchToProps = (dispatch, props) => ({
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   queryLifecycle,
-  defaultState,
-  defaultProps,
-)(Render);
+)(Item);

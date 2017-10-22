@@ -1,40 +1,28 @@
 /**
  * @func FireStoreListCompose
- * @desc The FireStoreListCompose Container composes a list of Document searches into a single sharable state filter.
+ * @desc The FireStoreListCompose Container composes a list of Document searches 
+ * into a single sharable state filter.
  * 
  * @func mapStateToProps()
- * @var {String} props.delta - Unique Redux Store Identifier
- * @var {Array} props.references - Reference the "References" Documentation.
+ * @var {String} props.collection - Firestore "collection" Reference
+ * @var {String} props.delta - Redux Store Identifier
+ * @var {Array} props.references - Entity ID List
+ * @var {String} props.foundry - Render Component
  */
-
 /* ------------------------- External Dependencies -------------------------- */
 import { connect } from 'react-redux'
-import { compose, lifecycle, withProps, withState, renderComponent } from 'recompose'
+import { compose, lifecycle } from 'recompose'
 /* ------------------------- Internal Dependencies -------------------------- */
-import Render from './render';
-/* ------------------------ Initialize Dependencies ------------------------- */
-import { 
-  firestoreDocumentComposeGetRequest
-} from 'store/departments/actions'
-import { 
-  fromFirestore
- } from 'store/departments/selectors'
+import {List} from 'foundry'
+import {fromFirestore} from 'store/departments/selectors'
+import {firestoreDocumentComposeGetRequest} from 'store/departments/actions'
 /* ---------------------------- Module Package ------------------------------ */
-/*---*--- Recompose ---*---*/
-const defaultState = withState({
-
-})
-const defaultProps = withProps({
-
-})
-
 /*---*--- Lifecylce Methods ---*---*/
 const queryLifecycle = lifecycle(
 {
   /*--- Did Mount | BEGIN ---*/
   componentDidMount()
   {
-    console.log(this.props)
     switch(this.props.status) {
       case(null):
         this.props.firestoreDocumentComposeGetRequest({
@@ -67,8 +55,7 @@ const queryLifecycle = lifecycle(
   /*--- Did Update | BEGIN ---*/
   componentDidUpdate(prevProps)
   {
-    if(prevProps.queryStatus !== this.props.queryStatus ) {
-    console.log(this.props)
+    if(prevProps.status !== this.props.status ) {
     switch(this.props.status) {
       case(null):
         this.props.firestoreDocumentComposeGetRequest({
@@ -104,18 +91,13 @@ const queryLifecycle = lifecycle(
 
 /*---*--- Redux ---*---*/
 const mapStateToProps = (state, props) => {
-  const {
-    delta,
-    references
-  } = props
-
+  const { delta, references } = props
   const status = fromFirestore.getQueryComposeStatus(state, delta)
   const data = !status ? null : fromFirestore.getQueryComposeData(state, references)
-  console.log(data)
   return (
     {
-    status,
-    data
+      status,
+      data
     }
   )
 }
@@ -127,6 +109,4 @@ const mapDispatchToProps = (dispatch, props) => ({
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   queryLifecycle,
-  defaultState,
-  defaultProps,
-)(Render);
+)(List);

@@ -6,24 +6,21 @@ import Popover from 'react-popover'
 import { Absolute, Flex, Box } from 'particles'
 import {Heading, Image, Paragraph, Container, Section} from 'atomic'
 /* --------------------------- Styled Components ---------------------------- */
-const Wrapper = styled.div``
-
-/* ------------------------- Component Properties --------------------------- */
-
+import {
+  Item 
+} from 'foundry'
 /* ------------------------------- Component -------------------------------- */
 export default (props) =>(
-<Wrapper>
     <Popover
-    isOpen={props.openNow}
+    isOpen={props.isOpen}
     place={props.place || 'below'}
     preferPlace={props.preferPlace || 'below'}
-    body={props.body}
+    body={<Item foundry={props.foundry} />}
     tipSize={0.1}
-    onOuterAction={() => props.togglePopover(n => n = n ? false : true)}
+    onOuterAction={() =>{props.togglePopover(n => n = n ? false : true); props.popoverClose()}  }
   >
-    <div onClick={() => props.togglePopover(n => n = n ? false : true)}>
+    <div onClick={() => {props.togglePopover(n => n = n ? false : true); props.popoverOpen()}}>
     {props.children}
     </div>
   </Popover>
-</Wrapper>
 )

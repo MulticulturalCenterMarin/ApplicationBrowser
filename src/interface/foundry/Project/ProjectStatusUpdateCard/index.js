@@ -21,7 +21,6 @@ const mainLayout = {
 }
 
 export default (props) => {
-  console.log(props)
   /*--- Extraction ---*/
   const{ data, styled } = props
   /*--- Extraction ---*/

@@ -8,7 +8,8 @@ import { FirestoreList } from 'containers'
 export default props => <FirestoreList
   delta='ProjectSearch'
   foundry='ProjectCard'
-  itemStyled={{
+  styled={{
     w: [1, 1, 0.3],
   }}
+  {...props}
 />

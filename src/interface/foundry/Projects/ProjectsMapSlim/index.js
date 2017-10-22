@@ -7,6 +7,6 @@ import {
 /* ------------------------------- Component -------------------------------- */
 export default props =>{
 return <Box h={[160,200, 230, 300, 350]}>
-  <MapAdvancedCompose delta='projectFilter' collection='projects' foundry='ProjectMarkerPopover' />
+  <MapAdvancedCompose delta='ProjectSearch' collection='projects' foundry='ProjectMarkerPopover' />
 </Box>
 }

@@ -1,48 +1,30 @@
 /* ------------------------- External Dependencies -------------------------- */
-import React, { Component } from 'react';
-import styled from 'styled-components'
+import React from 'react';
 import PerfectScrollbar from 'react-perfect-scrollbar'
-import { Absolute, Box, Flex, Drawer } from 'particles'
-import { Heading, Image, Paragraph, Link, Container, Section, SVG} from 'atomic'
-import { DrawerClose } from 'containers'
-import { DrawerLink } from 'fusion'
+import { Absolute, Drawer, Fixed } from 'particles'
 /* ------------------------- Internal Dependencies -------------------------- */
-import assets from 'assets'
-
-/* --------------------------- Styled Components ---------------------------- */
-import { LinkIcon, AsideDrawerMenu, AsideMenuMain, TemplateNotifications } from 'foundry'
-
-/* ------------------------ Initialize Dependencies ------------------------- */
-const FlexMove = styled(Flex)`
-  transition: all 0.275s ease;
-  position: relative;
-  &:hover {
-    transform: translate(10px, 0)
-  }
-`
-const CT = styled(Absolute)`
-  overflow:hidden;
-`
-
+import { Heading} from 'atomic'
+import { DrawerClose, DrawerLink } from 'containers'
 /* ------------------------------- Component -------------------------------- */
 const DrawerFactory = (props) => (
 <Absolute top={props.drawer} bottom={props.drawer} left={props.drawer} right={props.drawer} z={1000} >
   <Drawer
       bs={[2]}
+      br={'0 25px 25px 0'}
       open={props.drawer}
       position='left'
       p={3}
       color='white'
       gradient='blue'
       overflow='hidden'
-      z={1000}
+      z={2000}
     >
-    <Absolute top right mt={[10]} mr={[10]} gradient='cherry' p={[5]}  ><DrawerClose><Heading f={[2]} level={[6]}><a>X</a></Heading></DrawerClose></Absolute>
-      <PerfectScrollbar >
-        <AsideDrawerMenu/>
-      </PerfectScrollbar >
+    <Absolute top right br={9999} mt={[5]} mr={[5]} gradient='cherry' p={[5]}  ><DrawerClose><Heading f={[2]} level={[6]}><a>x</a></Heading></DrawerClose></Absolute>
+    <PerfectScrollbar>
+      {props.children}
+    </PerfectScrollbar>
 	</Drawer>
-  {!props.drawer ? null : <Absolute top bottom left right onClick={props.drawerClose} z={50} /> }
+  {!props.drawer ? null : <Fixed top bottom left right onClick={props.drawerClose} w={1} h={1} z={500} /> }
   </Absolute>
 )
 

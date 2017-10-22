@@ -29,6 +29,7 @@ export default (props) => {
   const phone = idx(props.data, _ => _.contact.contactPhone)
   const email = idx(props.data, _ => _.contact.contactEmail)
   const url = idx(props.data, _ => _.contact.contactURL)
+  const imageProfile = idx(props.data, _ => _.images.imageProfile)
   
   const street = idx(props.data, _ => _.address.addressStreet)
   const city = idx(props.data, _ => _.address.addressCity)
@@ -37,6 +38,7 @@ export default (props) => {
   return <Flex direction={['row']} align='stretch' justify='center' p={[10]} {...props} key={id} >
       <Box {...mainLayout}>
         <Link to={`/dashboard/person/${id || null }`} color='blue' >
+          {!imageProfile ? null : <Image src={imageProfile} b={'2px solid #FFF'} br={99999} w={40} /> }
           <Heading f={[4,4,5]} level={3} display='inline-block' children={nameFirst|| null} />
           <Heading f={[2,3]} level={3} color='blue' ml={[5]} display='inline-block' children={nameLast} />
         </Link>

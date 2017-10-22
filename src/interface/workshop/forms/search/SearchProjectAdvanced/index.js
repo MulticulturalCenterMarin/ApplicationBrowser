@@ -8,7 +8,7 @@ import { createValidator, required } from 'logic/forms/validation'
 
 import Render from './render';
 /* ------------------------ Initialize Dependencies ------------------------- */
-import { firestoreDocumentFilterGetRequest } from 'store/departments/actions'
+import { firestoreDocumentFilterGetRequest, dialogOpen } from 'store/departments/actions'
 
 /* ---------------------------- Module Package ------------------------------ */
 /*---*--- Recompose ---*---*/

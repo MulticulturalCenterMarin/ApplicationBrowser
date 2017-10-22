@@ -1,24 +1,17 @@
 /* ------------------------- External Dependencies -------------------------- */
 import React from 'react'
-import styled from 'styled-components'
-import { Flex, Box, Grid, Text, Lead} from 'particles'
+import MediaQuery from 'react-responsive'
 /* ------------------------- Internal Dependencies -------------------------- */
 import assets from 'assets'
 import { 
+ Flex, Box,
  BackgroundImage, BackgroundGradient,
  Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
  Blockquote, HorizontalRule, Shape, Responsive 
  } from 'atomic'
-import { ButtonLink } from 'fusion'
-
-
+import {DialogOpen} from 'containers'
 import Login from 'workshop/forms/authentication/AuthorizationLogin'
-import LinkButtonOutline from 'molecules/LinkButtonOutline'
 
-const MediaQuery = require('react-responsive');
-
-/* --------------------------- Styled Components ---------------------------- */
-/* ------------------------- Component Properties --------------------------- */
 /* ------------------------------- Component -------------------------------- */
 const Front = ({ ...props }) => {
   return (
@@ -26,9 +19,9 @@ const Front = ({ ...props }) => {
       <BackgroundImage image={assets.images.earth} z={0} o={[0.5]} />
       <Flex direction={['column']}  mh={['50vh', '70vh']}justify={['center']} >
         <Box w={1} color="white" >
-          <Heading fontSize={[5,6,7]} level={3} fontWeight={[300]} mb={10} ts={['darkPurple']}>
+          <DialogOpen foundry='ProjectAdd'><Heading fontSize={[5,6,7]} level={3} fontWeight={[300]} mb={10} ts={['darkPurple']}>
             Ethereum <Span fw={[700]} >Projects &amp; Ideas</Span>
-          </Heading>
+          </Heading></DialogOpen>
           <HorizontalRule bi='colorBase' bs={5} gradient='lime' w={[0.33333]} />
           <br/>
           <Paragraph fontSize={[2]} fontWeight={[100]} mb={[10]} ts={['darkPurple']}>

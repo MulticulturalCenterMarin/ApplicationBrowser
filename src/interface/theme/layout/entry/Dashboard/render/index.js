@@ -1,7 +1,6 @@
 // @flow
 /* ------------------------- External Dependencies -------------------------- */
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 /* ------------------------- Internal Dependencies -------------------------- */
 import { Absolute, Flex, Box } from 'particles'
@@ -18,14 +17,6 @@ import {
   DashboardMainPanelLeftRoutes,
   DashboardMainPanelRightRoutes,
 } from 'store/routes'
-/* --------------------------- Styled Components ---------------------------- */
-const DashboardWrapper = styled.div`
-  bottom: 0 ; left: 0; top: 0; bottom: 0;
-  height: 100%;
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-`
 
 /* ---------------------------- Module Package ------------------------------ */
 const LayoutDashboard = props => {

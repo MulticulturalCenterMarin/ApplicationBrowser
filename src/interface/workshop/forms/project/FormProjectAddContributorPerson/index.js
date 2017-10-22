@@ -57,6 +57,7 @@ const queryLifecycle = lifecycle({
 
 /*---*--- Redux ---*---*/
 const mapStateToProps = (state, props) => {
+  console.log(props)
   const { delta } = props
   const data = fromFirestore.getQueryData(state, "ProjectPeopleSearch")
   return {
@@ -77,10 +78,10 @@ const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
     metadata: {
     branch: [
       'projects',
-      props.match.params.id,
+      props.match.params.eid,
     ],
-    delta: `${props.match.params.id}|UpdateContributors`,
-    trigger: `${props.match.params.id}`,
+    delta: `${props.match.params.eid}|UpdateContributors`,
+    trigger: `${props.match.params.eid}`,
     }
   }))
 })

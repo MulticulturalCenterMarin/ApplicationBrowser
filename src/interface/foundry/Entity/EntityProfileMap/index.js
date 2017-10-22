@@ -10,4 +10,4 @@ import {
 /* ------------------------------- Component -------------------------------- */
 export default props => {
 
-return <Box h={[160,200]} > <MapAdvancedCompose delta={props.match.params.id} entity={props.match.params.entity} /></Box>}
+return <Box h={[160,200]} > <MapAdvancedCompose delta={props.match.params.eid} entity={props.match.params.entity} /></Box>}

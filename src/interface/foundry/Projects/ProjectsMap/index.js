@@ -8,5 +8,5 @@ import {
 /* ------------------------------- Component -------------------------------- */
 export default props =>
 <Absolute top bottom left right>
-  <MapAdvancedCompose delta='projectFilter' collection='projects' foundry='ProjectMarkerPopover' />
+  <MapAdvancedCompose delta='ProjectSearch' collection='projects' foundry='ProjectMarkerPopover' />
 </Absolute>

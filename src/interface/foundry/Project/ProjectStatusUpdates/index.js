@@ -7,30 +7,23 @@ import Render from './render';
 import { firestoreDocumentFilterGetRequest } from 'store/departments/actions'
 
 /* ---------------------------- Module Package ------------------------------ */
-/*---*--- Recompose ---*---*/
-const defaultState = withState({
-
-})
-const defaultProps = withProps({
-
-})
-
 /*---*--- Lifecylce Methods ---*---*/
 const queryLifecycle = lifecycle(
 {
   /*--- Did Mount | BEGIN ---*/
   componentDidMount()
   {
+    console.log(this.props)
     this.props.firestoreDocumentFilterGetRequest({
       payload: {},
       metadata:
       {
         branch: [
           'projects',
-          this.props.id,
+          this.props.match.params.eid,
           'updates'
         ],
-        delta: `${this.props.id}|StatusUpdates`,
+        delta: `${this.props.match.params.eid}|StatusUpdates`,
       }
     })
   },
@@ -39,7 +32,9 @@ const queryLifecycle = lifecycle(
   /*--- Did Update | BEGIN ---*/
   componentDidUpdate(prevProps)
   {
-
+    if(this.props.submitting === true) {
+      this.props.reset()
+    }
   }
   /*--- Did Update | End ---*/
 
@@ -57,6 +52,4 @@ const mapDispatchToProps = (dispatch, props) => ({
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   queryLifecycle,
-  defaultState,
-  defaultProps,
 )(Render);

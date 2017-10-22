@@ -1,31 +1,17 @@
 /* ------------------------- External Dependencies -------------------------- */
 import idx from './idx'
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Field } from 'redux-form'
-import MenuItem from 'material-ui/MenuItem'
 import { AutoComplete as MUIAutoComplete } from 'material-ui'
-import {
-  AutoComplete,
-  Checkbox,
-  DatePicker,
-  TimePicker,
-  RadioButtonGroup,
-  SelectField,
-  Slider,
-  TextField,
-  Toggle
-} from 'redux-form-material-ui'
-
 import ChipInput from 'material-ui-chip-input'
 
 /* ------------------------- Internal Dependencies -------------------------- */
 import { Block } from 'particles'
 import { Flex, Box, Button, Heading, ReduxField } from 'atomic'
-const RenderChip = ({input, hintText, floatingLabelText, dataSource, dataSourceConfig}) => (
-  <ChipInput
+const RenderChip = ({input, hintText, floatingLabelText, dataSource, dataSourceConfig, valueDefault}) => {
+  return <ChipInput
     {...input}
-    value = { input.value || []}
+    value = { input.value || valueDefault}
     onRequestAdd={(addedChip) => {
       let values = input.value || [];
       values = values.slice();
@@ -33,9 +19,8 @@ const RenderChip = ({input, hintText, floatingLabelText, dataSource, dataSourceC
       input.onChange(values);
     }}
     onRequestDelete={(deletedChip) => {
-      console.log(deletedChip)
       let values = input.value || [];
-      console.log(values)
+      if(!values) return 
       values = values.filter(v => v.id !== deletedChip);
       input.onChange(values);
     }}
@@ -45,16 +30,17 @@ const RenderChip = ({input, hintText, floatingLabelText, dataSource, dataSourceC
     dataSource={dataSource}
     dataSourceConfig={dataSourceConfig}
     />
-)
+}
 /* ---------------------------- Form Component ------------------------------ */
 Block.defaultProps = {is: 'form'}
-export default ({ data, handleSubmit, isSubmitting, styled}) => {
+export default ({ data, handleSubmit, isSubmitting, styled, valueDefault}, props) => {
   if(!data) return null
   const AutoCompleteList = data.map(v=>({id:idx(v.data, _=> _.uid), nameDisplay: idx(v.data, _=> _.name.nameDisplay)} ))
   return(<Block {...styled}>
     <Box>
       <Field
         name="contributorPeople"
+        valueDefault={valueDefault}
         floatingLabelText="Add People Contributors"
         dataSource={AutoCompleteList}
         component={RenderChip}

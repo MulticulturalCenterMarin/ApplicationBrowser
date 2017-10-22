@@ -11,6 +11,5 @@ import {
 /* ------------------------------- Component -------------------------------- */
 export default props => 
 <Box p={[20,40]}>
-  <Heading level={[3]} f={[3]}>Add Full Project</Heading>
   <FormProjectAddFull bg='white' p={[10]} />
 </Box>

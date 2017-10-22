@@ -1,11 +1,4 @@
 /* ------------------------- External Dependencies -------------------------- */
 import React from 'react';
-import { Box } from 'rebass'
-/* ------------------------- Internal Dependencies -------------------------- */
-
-/* --------------------------- Styled Components ---------------------------- */
-
-/* ------------------------ Initialize Dependencies ------------------------- */
-
-/* ---------------------------- Module Package ------------------------------ */
+import { Box } from 'atomic'
 export default props => <Box {...props} onClick={props.drawerClose} />

@@ -73,7 +73,7 @@ export default () => (
   <Route exact path="/dashboard/organizations/map" component={OrganizationMap} />
   <Route exact path="/dashboard/organizations" component={OrganizationMapSlim} />
   <Route exact path="/dashboard/organizations" component={OrganizationFirestoreList} />
-  <Route path="/dashboard/organization/:id" component={OrganizationFirestoreDocument} />
+  <Route path="/dashboard/organization/:eid" component={OrganizationFirestoreDocument} />
 
   {/*--- People ---*/}
 
@@ -82,7 +82,7 @@ export default () => (
   <Route exact path="/dashboard/people" component={PeopleFirestoreList} />
   <Route exact path="/dashboard/person/add" component={PersonAddFull} />
   
-  <Route path="/dashboard/person/:id" component={PersonFirestoreDocument} />
+  <Route path="/dashboard/person/:eid" component={PersonFirestoreDocument} />
 
   {/*--- Project ---*/}
 
@@ -91,7 +91,7 @@ export default () => (
   <Route exact path="/dashboard/projects" component={ProjectsFirestoreList} />
   <Route exact path="/dashboard/project/add" component={ProjectAddFull} />
   
-  <Route path="/dashboard/project/:id" component={ProjectFirestoreDocument} />
+  <Route path="/dashboard/project/:eid" component={ProjectFirestoreDocument} />
  
   {/*--- Resource ---*/}
   <Route exact path="/dashboard/resources/map" component={ResourcesMap} />
@@ -99,7 +99,7 @@ export default () => (
   <Route exact path="/dashboard/resources" component={ResourcesFirestoreList} />
   <Route exact path="/dashboard/resource/add" component={ResourceAddFull} />
   
-  <Route path="/dashboard/resource/:id" component={ResourceFirestoreDocument} />
+  <Route path="/dashboard/resource/e:id" component={ResourceFirestoreDocument} />
 
 
   <Route path="/dashboard/upload" component={FormStorageUpload} />

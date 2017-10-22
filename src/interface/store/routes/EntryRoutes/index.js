@@ -8,6 +8,7 @@ import SiteEntry from 'layout/entry/Site'
 import DashboardEntry from 'layout/entry/Dashboard'
 import { DialogFactory, DrawerFactory } from 'containers'
 import { ToastContainer, toast } from 'react-toastify';
+import { LinkIcon, AsideDrawerMenu, AsideMenuMain,} from 'foundry'
 
 const Magic = styled.div`
 opacity: 0.999999;
@@ -26,9 +27,11 @@ const ToastSetting = {
 
 export default () => (
 <div>
-  <Box z={[10000]} >
+  <Box z={[1000]} >
+    <DrawerFactory>
     <DialogFactory/>
-    <DrawerFactory/>
+      <AsideDrawerMenu/>
+    </DrawerFactory>>
     <ToastContainer {...ToastSetting}/>
   </Box>
   <Magic>

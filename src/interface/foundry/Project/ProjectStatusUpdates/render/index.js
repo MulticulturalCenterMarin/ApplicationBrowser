@@ -6,8 +6,9 @@ import { FirestoreList } from 'containers'
 
 /* ------------------------------- Component -------------------------------- */
 export default props => {
+  console.log(props)
 return <FirestoreList
-  delta={`${props.id}|StatusUpdates`}
+  delta={`${props.match.params.eid}|StatusUpdates`}
   foundry='ProjectStatusUpdateCard'
   styled={{
     bg: 'white',

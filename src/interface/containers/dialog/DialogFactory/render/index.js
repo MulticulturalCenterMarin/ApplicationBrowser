@@ -1,48 +1,38 @@
 /* ------------------------- External Dependencies -------------------------- */
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import { Flex, Box } from 'rebass'
 import Dialog from 'material-ui/Dialog';
 /* ------------------------- Internal Dependencies -------------------------- */
-import COMPONENT_CATALOG from 'library'
-
-/* --------------------------- Styled Components ---------------------------- */
-const ComponentWrapper = styled.div`
-  position: relative;
-  z-index: 999999;
-`
-/* ------------------------ Initialize Dependencies ------------------------- */
-
+import { 
+  Flex, Box, 
+  BackgroundImage, BackgroundGradient,
+  Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
+  Blockquote, HorizontalRule, Shape, Responsive 
+}from 'atomic'
+import {Item, ProjectAdd} from 'foundry'
 /* ------------------------------- Component -------------------------------- */
 const DialogFactory = (props) => {
   // Extract Properties | Destructure
-  const { dialog, dialogClose} = props
-  const { dialogType, dialogProps } = dialog
-
-  // IF a dialogType exists in the Redux Store Department dialog, SHOW the DialogPrimitive wrapper
-  let toggle = dialogType ? true : false
+  const { dialog, dialogClose, title} = props
+  const { open } = dialog
   
   // IF a dialogType exists in the Redux Store Department dialog, HIDE the DialogAssembled wrapper
-  if(!toggle) return null
-
-  // Generate DialogAssembled by matching Redux Store Depmartment dialog.dialogType with Dialog Catalog options.
-  const DialogAssembled = COMPONENT_CATALOG[dialogType]
-
+  if(!open) return null
   /*--- Settings Dialog ---*/
   const DialogSettings = {
-    title:dialogProps.title ? dialogProps.title : null ,
+    title:title ? title : null ,
     autoScrollBodyContent:true,
     modal:false,
-    open:toggle,
+    open:open,
     onRequestClose:props.dialogClose,
   }
 
   return (
-    <ComponentWrapper {...props}>
+    <Box {...props} z={1000}>
       <Dialog {...DialogSettings} >
-        <DialogAssembled/>
+        <Item foundry={open}/>
       </Dialog>
-    </ComponentWrapper>
+    </Box>
   )
 }
 

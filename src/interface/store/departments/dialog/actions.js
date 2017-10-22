@@ -5,10 +5,9 @@ export const DIALOG_CLOSE = 'DIALOG_CLOSE'
 /* ---------------------------- Define Actions ------------------------------ */
 
 /*--- Open Dialog ---*/
-export const dialogOpen = ({dialogType, dialogProps}) => ({
+export const dialogOpen = ({payload}) => ({
   type: DIALOG_OPEN,
-  dialogType,
-  dialogProps
+  payload,
 })
 
 /*--- Open Dialog ---*/

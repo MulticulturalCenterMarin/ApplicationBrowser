@@ -4,11 +4,8 @@ import { connect } from 'react-redux';
 import { compose, lifecycle, withProps, withState, renderComponent } from 'recompose'
 /* ------------------------- Internal Dependencies -------------------------- */
 import Render from './render';
-
-/* ------------------------ Initialize Dependencies ------------------------- */
-
 /* ---------------------------- Module Package ------------------------------ */
-import { dialogOpen, dialogClose, popoverOpen, popoverClose } from 'store/departments/actions'
+import { popoverOpen, popoverClose } from 'store/departments/actions'
 import { fromPopover } from 'store/departments/selectors'
 /* ---------------------------- Module Package ------------------------------ */
 
@@ -19,41 +16,38 @@ const stateToggle = withState(
   false
 )
 const defaultProps = withProps({
-  open: true
+
 })
 
 /*---*--- Lifecylce Methods ---*---*/
 const queryLifecycle = lifecycle({
-  /*--- Component Mount ---*/
-  componentDidMount() {
-    
-  },
-
   /*--- Component Update ---*/
-  componentDidUpdate(prevProps, nextProps) {
-
+  componentDidUpdate(prevProps) {
+    if(prevProps != this.props) {
+      this.setState({
+        openNow: false
+      })
+    }
   }
 })
 
 
 /*---*--- Redux ---*---*/
-function mapStateToProps(state) {
-  const isOpen = fromPopover.getPopoverStatus('profile')
+function mapStateToProps(state, props) {
+  const isOpen = fromPopover.getPopoverStatus(state, props.delta)
   return {
     isOpen
   };
 }
 
-const mapDispatchToProps = dispatch => ({
-  popoverOpen: (id) => dispatch(popoverOpen({payload:{id}})),
-  popoverClose: (id) => dispatch(popoverClose({id})),
-  dialogOpen: () => dispatch(dialogOpen()),
-  dialogClose: () => dispatch(dialogClose()),
+const mapDispatchToProps = (dispatch, props) => ({
+  popoverOpen: (id) => dispatch(popoverOpen({payload:{delta: props.delta }})),
+  popoverClose: (id) => dispatch(popoverClose({payload:{delta: props.delta }}))
 })
 
 export default compose(
-  stateToggle,
-  defaultProps,
   connect(mapStateToProps, mapDispatchToProps),
   queryLifecycle,
+  stateToggle,
+  defaultProps,
 )(Render);

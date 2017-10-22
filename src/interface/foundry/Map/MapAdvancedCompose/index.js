@@ -25,7 +25,7 @@ const viewportState = withState(
   'viewport', 'setViewport', {
     latitude: 37.95,
     longitude: -122.4376,
-    zoom: 9,
+    zoom: 2,
     bearing: 0,
     pitch: 0,
   }
@@ -33,11 +33,11 @@ const viewportState = withState(
 const defaultProps = withProps(props=>{
   const entity = props.entity ? props.entity.charAt(0).toUpperCase() + props.entity.slice(1) : ""
   return{
-  delta: props.delta,
-  collection: props.collection,
-  foundry:props.foundry || `${entity}MarkerPopover`,
-  mapStyle: defaultMapStyle,
-  hoveredFeature: null,
+    delta: props.delta,
+    collection: props.collection,
+    foundry:props.foundry || `${entity}MarkerPopover`,
+    mapStyle: defaultMapStyle,
+    hoveredFeature: null,
 }})
 
 const eventHandlers = withHandlers({
@@ -50,17 +50,16 @@ const queryLifecycle = lifecycle(
   /*--- Component Mount | BEGIN ---*/
   componentDidMount()
   {
-    if(this.props.queryData){
-      this.setState({
-        data: this.props.queryData
+   if(this.props.collection && this.props.delta)
+    {
+      this.props.firestoreDocumentFilterGetRequest({
+        metadata:{
+          branch: [this.props.collection],
+          delta: this.props.delta,
+          filter: this.props.filter
+        }
       })
     }
-    const payload = {}
-    const metadata = {
-      delta: this.props.delta,
-      collection: this.props.delta,
-    }
-    
   },
   /*--- Component Mount | END ---*/
 
@@ -85,13 +84,9 @@ const queryLifecycle = lifecycle(
 
 
 /*---*--- Redux ---*---*/
-const mapStateToProps = (state, props) => {
-    const delta = props.delta
-    const queryData = fromFirestore.getQueryData(state, delta)
-    return {
-      queryData: queryData
-    }
-}
+const mapStateToProps = (state, props) => ({
+  data: fromFirestore.getQueryData(state, props.delta)
+})
 const mapDispatchToProps = (dispatch, props) => ({
   firestoreDocumentFilterGetRequest: request=> dispatch(firestoreDocumentFilterGetRequest(request))
 })

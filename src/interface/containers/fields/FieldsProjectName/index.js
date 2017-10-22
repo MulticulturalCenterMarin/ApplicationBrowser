@@ -28,7 +28,7 @@ const FieldCollectionComponent = props => (
     <Box flex='3 1 auto' {...props.fieldStyle}>
       <Field
         name="nameProjectAlias"
-        placeholder="Alias(Codename)"
+        placeholder="Alias (Codename)"
         component={ReduxField}
         type="text"
         color='gray'

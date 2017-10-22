@@ -5,4 +5,4 @@ import {
   MapAdvancedCompose,
  } from 'foundry'
 /* ------------------------------- Component -------------------------------- */
-export default props => <Box h={[160,200, 230, 300, 350]}><MapAdvancedCompose delta='organizationFilter' collection='organizations'/></Box>
+export default props => <Box h={[160,200, 230, 300, 350]}><MapAdvancedCompose delta='OrganizationSearch' collection='organizations'/></Box>
