@@ -7,14 +7,6 @@ import MenuItem from 'material-ui/MenuItem'
 import { AutoComplete as MUIAutoComplete } from 'material-ui'
 import {
   AutoComplete,
-  Checkbox,
-  DatePicker,
-  TimePicker,
-  RadioButtonGroup,
-  SelectField,
-  Slider,
-  TextField,
-  Toggle
 } from 'redux-form-material-ui'
 
 import ChipInput from 'material-ui-chip-input'

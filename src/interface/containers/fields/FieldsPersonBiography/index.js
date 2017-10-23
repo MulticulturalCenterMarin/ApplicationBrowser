@@ -25,7 +25,7 @@ import {
 const FieldCollectionPersonBiography = props => (
   <FieldCollectionWrapper direction={['column']}  wrap='wrap' {...props} w={1} >
     <Box w={1} mt={[15]}>
-      <Field name="biographyOverview" placeholder="Biography" component={ReduxField} type="textarea" {...props.fields} />
+      <Field name="biographyOverview" placeholder="Biography" component={ReduxField} type="textarea" {...props.fields}{...props}/>
     </Box>
     <Field
       name="referral"
@@ -42,9 +42,9 @@ const FieldCollectionPersonBiography = props => (
         { id: 4, name: 'Other' }
       ]}
     />
-    <Field name="biographyMission" placeholder="Mission" component={ReduxField} type="textarea" mt={[10]}  {...props.fields} />
-    <Field name="biographySkills" placeholder="Skills" component={ReduxField} type="text" height={35} mt={[10]} {...props.fields} />
-    <Field name="biographyOccupation" placeholder="Occupation" component={ReduxField} type="text" height={35} {...props.fields} />
+    <Field name="biographyMission" placeholder="Mission" component={ReduxField} type="textarea" mt={[10]}  {...props.fields} {...props}/>
+    <Field name="biographySkills" placeholder="Skills" component={ReduxField} type="text" mt={[10]} {...props.fields} {...props}/>
+    <Field name="biographyOccupation" placeholder="Occupation" component={ReduxField} type="text" {...props.fields} {...props}/>
   </FieldCollectionWrapper>
 )
 

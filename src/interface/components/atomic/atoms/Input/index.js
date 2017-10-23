@@ -54,7 +54,7 @@ const Input = ({ ...props }) => {
   } else if (props.type === 'select') {
     return <StyledSelect {...props}/>
   }
-  return <StyledInput {...props}/>
+  return <StyledInput  {...props}/>
 }
 
 Input.propTypes = {
@@ -68,7 +68,7 @@ Input.defaultProps = {
   color: 'charcoal',
   f: [2,3],
   type: 'text',
-  mh: 35,
+  h: 35,
   value: '',
   w: 1
 }

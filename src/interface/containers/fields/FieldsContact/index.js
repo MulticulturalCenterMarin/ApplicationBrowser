@@ -10,12 +10,12 @@ import normalizePhone from 'logic/forms/normalize/phone'
 
 /* ---------------------------- Module Package ------------------------------ */
 export default props => (
-  <Flex direction={['column', 'row']} {...props} >
-    <Box flex='1 1 auto' {...props.fieldStyle} >
-      <Field name="contactEmail" placeholder="Email: you@site.com" component={ReduxField} type="email" height={35} />
+  <Flex direction={['column', 'row']} wrap='wrap' {...props.styledWrapper} >
+    <Box {...props.styledFieldOuter} >
+      <Field name="contactEmail" placeholder="Email" component={ReduxField} type="email" {...props} {...props.styledField}/>
     </Box>
-    <Box flex='1 1 auto' {...props.fieldStyle}>
-      <Field name="contactPhone" placeholder="Phone: (555) 420-1228" component={ReduxField} type="tel" height={35} normalize={normalizePhone} />
+    <Box {...props.styledFieldOuter}>
+      <Field name="contactPhone" placeholder="Phone" component={ReduxField} type="tel" normalize={normalizePhone} {...props} {...props.styledField}/>
     </Box>
   </Flex>
 )

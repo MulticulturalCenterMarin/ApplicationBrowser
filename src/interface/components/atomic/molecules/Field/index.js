@@ -36,11 +36,13 @@ const Wrapper = styled(Box)`
   }
 `
 
-const Field = ({ error, name, invalid, label, value, type, ...props }) => {
-  const inputProps = { id: name, name, type, value, invalid, 'aria-describedby': `${name}Error`, ...props }
+const Field = ({ error, name, invalid, label, value, type, styledInput, ...props }) => {
+  console.log(props)
+  const inputProps = { id: name, name, invalid, label, type, value, styledInput, 'aria-describedby': `${name}Error`, ...props}
+  console.log(inputProps)
   const renderInputFirst = type === 'checkbox' || type === 'radio'
   return (
-    <Wrapper {...{...props} }>
+    <Wrapper>
       {renderInputFirst && <Input {...inputProps} />}
       {label && <Label htmlFor={inputProps.id}>{label}</Label>}
       {renderInputFirst || <Input {...inputProps} />}

@@ -2,17 +2,14 @@
 import React from 'react'
 import { Field } from 'redux-form'
 import styled from 'styled-components'
-import { Box } from 'particles'
-
+import { Box, Flex } from 'particles'
 /* ------------------------- Internal Dependencies -------------------------- */
 import ReduxField from 'organisms/ReduxField'
-import FieldCollectionWrapper from 'containers/fields/FieldCollectionWrapper'
-
 
 /* ---------------------------- Module Package ------------------------------ */
-const FieldCollectionComponent = props => (
-  <FieldCollectionWrapper direction={['column', 'row']} justify="space-evenly" {...props} >
-    <Box flex='2 1 auto' {...props.fieldStyle}>
+export default props => (
+  <Flex {...props.styledWrapper} >
+    <Box {...props.styledFieldOuter} >
       <Field 
         name="nameProject"
         placeholder="Project Name"
@@ -22,26 +19,22 @@ const FieldCollectionComponent = props => (
         mh={50}
         f={[4]}
         fw='700'
-        {...props.fields} 
+        {...props.styledField}
+        {...props}
       />
     </Box>
-    <Box flex='3 1 auto' {...props.fieldStyle}>
+    <Box {...props.styledFieldOuter} >
       <Field
         name="nameProjectAlias"
         placeholder="Alias (Codename)"
         component={ReduxField}
         type="text"
-        color='gray'
+        color='gray' 
         mh={30}
         f={[1]}
-        {...props.fields} 
+        {...props.styledField}
+        {...props}
       />
     </Box>
-  </FieldCollectionWrapper>
+  </Flex>
 )
-
-FieldCollectionComponent.defaultProps = {
-  fields: {}
-}
-
-export default FieldCollectionComponent
