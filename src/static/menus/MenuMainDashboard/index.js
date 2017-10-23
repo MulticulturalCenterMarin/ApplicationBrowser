@@ -137,7 +137,7 @@ const drawerMenuItems = [
       },
       {
         title: 'Add',
-        to: '/dashboard/resources/add',
+        to: '/dashboard/resource/add',
         svg: assets.svg.ideaShip,
         gradient: 'purpleTurqoise',
         gradientDir: '150deg',

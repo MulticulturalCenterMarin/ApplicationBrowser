@@ -2,13 +2,10 @@
 import idx from './idx';
 import React from 'react'
 import {
- Flex, Box,
- BackgroundImage, BackgroundGradient,
- Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
- Blockquote, HorizontalRule, Shape, Responsive, Route
+ Flex, Box, Route
 } from 'atomic'
 import {
-  FormProjectGalleryAdd,
+  FormResourceGalleryAdd,
   ImageList,
 } from 'foundry'
 /* ------------------------------- Component -------------------------------- */
@@ -17,6 +14,6 @@ export default props => <Flex>
       <Route exact path="/dashboard/:entity/:eid" data={idx(props.data, _ => _.images.imageGallery)} component={ImageList}/> 
     </Box>
     <Box w={[1,1,0.25]}>
-      {!props.data ? null : <Route exact path="/dashboard/:entity/:eid" component={FormProjectGalleryAdd}/> }
+      {!props.data ? null : <Route exact path="/dashboard/:entity/:eid" component={FormResourceGalleryAdd}/> }
     </Box>
     </Flex>

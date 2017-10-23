@@ -35,8 +35,8 @@ export default props => (
     {!props.id ? null : <ProfileMenuMap {...props} />}
   </Absolute>
   <Absolute top right bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} p={[20,35]}  w={[1,1, 0.77]}>
-    {!props.name ? null : <Route exact path="/dashboard/organization/:id" component={EntityProfileMap}/> }
-    {!props.name ? null : <Route path="/dashboard/organization/:id/edit" component={FormOrganizationEdit}/> }
+    {!props.name ? null : <Route exact path="/dashboard/organization/:eid" component={EntityProfileMap}/> }
+    {!props.name ? null : <Route path="/dashboard/organization/:eid/edit" component={FormOrganizationEdit}/> }
     <OrganizationProfileInterfaceBiography {...props} w={1} />
   </Absolute>
 </div>

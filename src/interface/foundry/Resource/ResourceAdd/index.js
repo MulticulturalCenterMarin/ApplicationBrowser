@@ -1,12 +1,11 @@
 /* ------------------------- External Dependencies -------------------------- */
 import React from 'react'
 import {
-  Box, Flex,
-  Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
+  Box, Flex, Heading
 } from 'atomic'
 import {
   FormResourceAdd,
-} from 'workshop/forms'
+} from 'foundry'
 
 /* ------------------------------- Component -------------------------------- */
 export default props => 

@@ -9,7 +9,7 @@ import {
   PeopleSearchAdvanced,
   OrganizationSearchAdvanced,
   ProjectsSearchAdvanced,
-  ResourcesSearchAdvanced,
+  ResourceSearch,
  } from 'foundry'
 /* ------------------------------- Component -------------------------------- */
 export default () => 
@@ -17,6 +17,6 @@ export default () =>
   <Route exact path="/dashboard/people" component={PeopleSearchAdvanced} />
   <Route exact path="/dashboard/organizations" component={OrganizationSearchAdvanced} />
   <Route exact path="/dashboard/projects" component={ProjectsSearchAdvanced} />
-  <Route exact path="/dashboard/resources" component={ResourcesSearchAdvanced} />
   <Route exact path="/dashboard/tasks" component={PeopleSearchAdvanced} />
+  <Route exact path="/dashboard/resources" component={ResourceSearch} />
 </div>

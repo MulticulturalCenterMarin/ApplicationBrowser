@@ -35,10 +35,10 @@ export default props => <div>
   </Absolute>
   <Absolute top bottom right bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} of='hidden' w={[1,1, 0.77]}>
       <PerfectScrollbar>
-        {!props.data ? null : <Route exact path="/dashboard/:entity/:id" component={EntityProfileMap}/> }
+        {!props.data ? null : <Route exact path="/dashboard/:entity/:eid" component={EntityProfileMap}/> }
       <Box p={[20,35]}>
-        {!props.data ? null : <Route path="/dashboard/:entity/:id/edit" component={FormPersonEdit}/> }
-        {!props.data ? null : <Route exact path="/dashboard/:entity/:id" component={()=><PersonProfileInterfaceBiography {...props} w={1} />} />}
+        {!props.data ? null : <Route path="/dashboard/:entity/:eid/edit" component={FormPersonEdit}/> }
+        {!props.data ? null : <Route exact path="/dashboard/:entity/:eid" component={()=><PersonProfileInterfaceBiography {...props} w={1} />} />}
       </Box>
     </PerfectScrollbar>
   </Absolute>

@@ -10,7 +10,7 @@ import {
 } from 'atomic'
 import {
   ImageList,
-  FormProjectBannerAdd,
+  FormResourceBannerAdd,
   VideoEmbed,
 } from 'foundry'
 /* ------------------------------- Component -------------------------------- */
@@ -23,15 +23,15 @@ export default props => <Box
       <BackgroundImage src={idx(props.data, _ => _.images.imageBanner)} o={0.5}/>
       }
       <Flex align='center' direction={['column']} justify='center' color='white' w={1} ta='center' >
-        <Heading f={[6,7]} level={3} children={idx(props.data, _ => _.name.nameProject)}  ts={'darkPurple'} />
-        <Heading f={[3]} level={4} ml={[5]} fw='300' >Alias: {idx(props.data, _ => _.name.nameProjectAlias)}</Heading>
+        <Heading f={[6,7]} level={3} children={idx(props.data, _ => _.name.nameResource)}  ts={'darkPurple'} />
+        <Heading f={[3]} level={4} ml={[5]} fw='300' >Alias: {idx(props.data, _ => _.name.nameResourceAlias)}</Heading>
         <Box z={10}>
           {!idx(props.data, _ => _.metadata.metaVideoURL) ? null : <VideoEmbed url={idx(props.data, _ => _.metadata.metaVideoURL)}/>}
         </Box>
       </Flex>
       <Absolute bottom right>
         <Box p={20} w={[1,1, 510]} >
-          {!props.data ? null : <Route path="/dashboard/:entity/:eid" component={FormProjectBannerAdd}/> }
+          {!props.data ? null : <Route path="/dashboard/:entity/:eid" component={FormResourceBannerAdd}/> }
         </Box>
       </Absolute>
     </Box>

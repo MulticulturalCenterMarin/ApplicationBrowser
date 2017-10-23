@@ -2,26 +2,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 /* ------------------------- External Dependencies -------------------------- */
-import { Absolute } from 'particles'
-import { 
-  Flex, Box 
-} from 'atomic'
-
-import {
-  GraphRequest
-} from 'containers'
-
-import {
-  fromMain
-} from 'workshop/zones'
-
 import {
   EntityProfileMap,
-  HotlineActivity,
-  HotlineActivityQuery,
-  MapExample,
-  MapSimple,
-  MapAdvanced,
   MapAdvancedCompose,
   OrganizationFirestoreDocument,
   OrganizationFirestoreList,
@@ -43,10 +25,10 @@ import {
   FormStorageUpload,
 
   ResourceFirestoreDocument,
-  ResourcesFirestoreList,
-  ResourceAddFull,
-  ResourcesMap,
-  ResourcesMapSlim,
+  ResourceFirestoreList,
+  ResourceAdd,
+  ResourceMap,
+  ResourceMapSlim,
   ResourceMarkerPopover,
 
   PeopleFirestoreList,
@@ -91,16 +73,16 @@ export default () => (
   </Switch>
  
   {/*--- Resource ---*/}
-  <Route exact path="/dashboard/resources/map" component={ResourcesMap} />
-  <Route exact path="/dashboard/resources" component={ResourcesMapSlim} />
-  <Route exact path="/dashboard/resources" component={ResourcesFirestoreList} />
+  <Route exact path="/dashboard/resources/map" component={ResourceMap} />
+  <Route exact path="/dashboard/resources" component={ResourceMapSlim} />
+  <Route exact path="/dashboard/resources" component={ResourceFirestoreList} />
   <Switch>
-    <Route exact path="/dashboard/resource/add" component={ResourceAddFull} />
+    <Route exact path="/dashboard/resource/add" component={ResourceAdd} />
     <Route path="/dashboard/resource/:eid" component={ResourceFirestoreDocument} />
   </Switch>
 
   <Route path="/dashboard/upload" component={FormStorageUpload} />
 
+
   <Route path="/dashboard/profile" component={UserProfileDashboard} />
-  <Route path="/dashboard/volunteer/hotline/rapid-response" component={HotlineActivity} />
 </div>);

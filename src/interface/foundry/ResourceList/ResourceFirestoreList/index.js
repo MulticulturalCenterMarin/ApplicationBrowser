@@ -2,10 +2,14 @@
 import React from 'react'
 /* ------------------------- Internal Dependencies -------------------------- */
 import {BackgroundImage} from 'atomic'
-import { FirestoreDocument } from 'containers'
+import { FirestoreList } from 'containers'
 
 /* ------------------------------- Component -------------------------------- */
-export default props => <FirestoreDocument {...props}
-collection="resources"
-foundry={'ResourceProfileEntry'}
+export default props => <FirestoreList
+  delta='ResourceSearch'
+  foundry='ResourceCard'
+  styled={{
+    w: [1, 1, 0.3],
+  }}
+  {...props}
 />

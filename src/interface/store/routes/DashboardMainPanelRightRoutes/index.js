@@ -20,7 +20,7 @@ import {
   FormProjectUpdate,
   ResourceAdd,
   ResourceSearchAdvanced,
-  ResourceAddFullDescription,
+  ResourceAddDescription,
  } from 'foundry'
 
 
@@ -44,7 +44,7 @@ export default () =>
   <Route exact path="/dashboard/resources/manage" component={ResourceSearchAdvanced} />
   <Route exact path="/dashboard/resources" component={ResourceAdd} />
   {/*Project | Single*/}
-  <Route exact path="/dashboard/resource/add" component={ResourceAddFullDescription} />
+  <Route exact path="/dashboard/resource/add" component={ResourceAddDescription} />
 
   <Route path="/dashboard/profile" component={PeopleActivityLatest} />
   <Route path="/dashboard/volunteer/hotline/rapid-response" component={PeopleActivityLatest} />
