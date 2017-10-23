@@ -11,7 +11,7 @@ import {
   FieldsProjectName,
   FieldsProjectMetadata,
   FieldCollectionProjectBiography
-} from 'containers'
+} from 'foundry'
 /* --------------------------- Styled Components ---------------------------- */
 export default ({handleSubmit, isSubmitting, match, ...props}) => (
 <FormBase {...props}>

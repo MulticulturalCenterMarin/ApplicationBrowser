@@ -12,8 +12,11 @@ import FieldCollectionWrapper from 'containers/fields/FieldCollectionWrapper'
 /* ---------------------------- Module Package ------------------------------ */
 const FieldCollectionComponent = props => (
   <FieldCollectionWrapper direction={['column', 'row']} justify="space-evenly" {...props} >
-    <Box flex='1 1 auto'>
-      <Field name="identityNameFull" placeholder="Full Name" component={ReduxField} type="text" height={35} {...props.fields} />
+    <Box flex='2 1 auto' {...props.fieldStyle}>
+      <Field name="nameResource" placeholder="Resource Name" component={ReduxField} type="text" height={35} {...props.fields} />
+    </Box>
+    <Box flex='3 1 auto' {...props.fieldStyle}>
+      <Field name="nameResourceAlias" placeholder="Alias" component={ReduxField} type="text" height={35} {...props.fields} />
     </Box>
   </FieldCollectionWrapper>
 )

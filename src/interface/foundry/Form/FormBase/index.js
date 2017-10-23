@@ -49,7 +49,7 @@ const queryLifecycle = lifecycle(
 })
 
 export default compose(
-  queryLifecycle,
+
 )(Render);
 
 /**

@@ -6,20 +6,7 @@ import styled from 'styled-components'
 
 /* ------------------------- Internal Dependencies -------------------------- */
 import { Block } from 'particles'
-import { 
-  Flex, Box, 
-  BackgroundImage, BackgroundGradient,
-  Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
-  Blockquote, HorizontalRule, Shape, Responsive 
-} from 'atomic'
-import ReduxField from 'organisms/ReduxField'
-import NameFieldCollection from 'containers/fields/NameFieldCollection'
-import AddressFieldCollection from 'containers/fields/AddressFieldCollection'
-import ContactFieldCollection from 'containers/fields/ContactFieldCollection'
-import EntityFieldCollection from 'containers/fields/EntityFieldCollection'
-import ProjectFieldCollection from 'containers/fields/ProjectFieldCollection'
-import TimeRangeFieldCollection from 'containers/fields/TimeRangeFieldCollection'
-import DateRangeFieldCollection from 'containers/fields/DateRangeFieldCollection'
+import { Flex, Box, Button, Heading} from 'atomic'
 
 /* --------------------------- Styled Components ---------------------------- */
 Block.defaultProps = {is: 'form'}

@@ -7,72 +7,68 @@ import { Field } from 'redux-form'
 import { FormBase } from 'foundry'
 import { Flex, Box, Button, Container, Heading, HorizontalRule, ReduxField }from 'atomic'
 import {
-  NameFieldCollection,
+  FieldsAddress,
+  FieldsContact,
   FieldsProjectName,
-  ContactFieldCollection,
-  AddressFieldCollection,
   FieldsProjectMetadata,
   FieldsProjectSettings,
   FieldCollectionProjectBiography,
-} from 'containers'
+} from 'foundry'
+
+const defaultFormStyle = {
+    styledFieldOuter: {
+      align:'center',
+      p:10,
+    },
+    styledField:{
+      br: 5,
+    },
+    styledInput:{
+      bs: 1,
+      br: 5,
+    },
+    styledWrapper:{
+      w:1,
+    }
+}
+const addressFormStyle = {
+    styledInput:{
+      bs: 1,
+      br: 5,
+    },
+}
 
 /* --------------------------- Styled Components ---------------------------- */
 export default ({handleSubmit, isSubmitting, match, ...props}) => (
 <FormBase {...props}>
 
 
-  <FieldsProjectName foundry={'FormCard'} 
-  styledFieldOuter={{
-      w:0.5,
-      direction: ['column', 'column', 'row'],
-      p: 10,
-      wrap:'wrap',}}
-      styledField={{
-        w:1
-      }}
-    />
-
-  <FieldsProjectMetadata 
-    foundry={'FormCard'} 
-    styledFieldOuter={{
-        float: 'left',
-        direction: ['column', 'column', 'row'],
-        p: 10,
-        w:0.5,
-        wrap:'wrap',}}
-        styledField={{
-          w:1
-        }}
-  />
-  <FieldsProjectSettings 
-    foundry={'FormCard'} 
-    styledFieldOuter={{
-        float: 'left',
-        w:0.5,
-        direction: ['column', 'column', 'row'],
-        p: 10,
-        wrap:'wrap',}}
-        styledField={{
-          w:1
-        }}
-  />
+  <Box w={[1]} mr={[0,0, '5%']} bs={[0]} p={[10,15,35]}>
+    <FieldsProjectName {...defaultFormStyle}/>
+  </Box>
   
-  <Flex direction={['column', 'row']} >
-    <Box w={[1,1,0.475]} mr={[0,0, '5%']} bs={[0]} p={[10,15,25]}>
+  <Flex direction={['column', 'row']} mt={[10,20]} >
+    <Box w={[1,1,0.5]} mr={[0]} bs={[0]} p={[10,15,25]}>
       <Heading level={[3]} f={[3]}>Tagging + Metadata</Heading>
       <HorizontalRule bs={0} h={2} bi='blue' mx={0} w={[0.075]} />
-      <FieldsProjectMetadata {...props} />
+      <FieldsProjectMetadata {...defaultFormStyle} />
     </Box>
-    <Box w={[1,1,0.475]} bs={[0]} p={[10,15,25]}>
+    <Box w={[1,1,0.5]} mr={[0]} bs={[0]} p={[10,15,35]}>
       <Heading level={[3]} f={[3]}>Settings</Heading>
       <HorizontalRule bs={0} h={2} bi='blue' mx={0} w={[0.075]} />
-      <FieldsProjectSettings />
+      <FieldsProjectSettings {...defaultFormStyle} />
     </Box>
   </Flex>
 
-  <FieldCollectionProjectBiography foundry={'FormCard'}  />
-  <AddressFieldCollection foundry={'FormCard'}  />
-  <ContactFieldCollection foundry={'FormCard'}  />
+  <Box w={[1]} mr={[0,0, '5%']} bs={[0]} p={[10,15,35]} mt={[10,20]}>
+    <FieldCollectionProjectBiography {...defaultFormStyle} />
+  </Box>
+  <Box w={[1]} mr={[0,0, '5%']} bs={[0]} p={[10,15,35]} mt={[10,20]}>
+    <FieldsAddress {...addressFormStyle} />
+  </Box>
+  <Box w={[1]} mr={[0,0, '5%']} bs={[0]} p={[10,15,35]} mt={[10,20]}>
+    <FieldsContact  {...defaultFormStyle}/>
+  </Box>
   <Button type="submit" onClick={handleSubmit} gradient='cherry' mt={[10,15]} w={1} >Submit</Button>
 </FormBase>
 )

@@ -8,8 +8,8 @@ import ReduxField from 'organisms/ReduxField'
 
 /* ---------------------------- Module Package ------------------------------ */
 export default props => (
-  <Flex {...props.styledWrapper} >
-    <Box {...props.styledFieldOuter} >
+  <Flex direction='column' wrap='wrap' {...props.styledWrapper}>
+    <Flex {...props.styledFieldOuter} >
       <Field 
         name="nameProject"
         placeholder="Project Name"
@@ -19,11 +19,10 @@ export default props => (
         mh={50}
         f={[4]}
         fw='700'
-        {...props.styledField}
         {...props}
       />
-    </Box>
-    <Box {...props.styledFieldOuter} >
+    </Flex>
+    <Flex {...props.styledFieldOuter} >
       <Field
         name="nameProjectAlias"
         placeholder="Alias (Codename)"
@@ -32,9 +31,8 @@ export default props => (
         color='gray' 
         mh={30}
         f={[1]}
-        {...props.styledField}
         {...props}
       />
-    </Box>
+    </Flex>
   </Flex>
 )

@@ -43,8 +43,7 @@ export default props => {
         <Box p={[20,35]}>
           
           {/*--- Project ---*/}
-          {!idx(props.data, _ => _.images.imageGallery) ? null :
-          <Route exact path="/dashboard/:entity/:eid" component={ProjectProfileGallery} {...props}/>}
+          <Route exact path="/dashboard/:entity/:eid" component={ProjectProfileGallery} {...props}/>
 
           {!idx(props.data, _ => _.biography) ? null :
           <Route exact path="/dashboard/:entity/:eid" component={ProjectProfileInterfaceBiography} {...props} w={1} />}

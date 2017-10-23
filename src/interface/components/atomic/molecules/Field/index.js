@@ -35,14 +35,15 @@ const Wrapper = styled(Box)`
     vertical-align: middle;
   }
 `
+Wrapper.defaultProps = {
+  w: 1,
+}
 
-const Field = ({ error, name, invalid, label, value, type, styledInput, ...props }) => {
-  console.log(props)
-  const inputProps = { id: name, name, invalid, label, type, value, styledInput, 'aria-describedby': `${name}Error`, ...props}
-  console.log(inputProps)
+const Field = ({ error, name, invalid, label, value, type, styledInput, styledField, ...props }) => {
+  const inputProps = { id: name, name, invalid, label, type, value, ...styledInput, 'aria-describedby': `${name}Error`, ...props}
   const renderInputFirst = type === 'checkbox' || type === 'radio'
   return (
-    <Wrapper>
+    <Wrapper  {...styledField} >
       {renderInputFirst && <Input {...inputProps} />}
       {label && <Label htmlFor={inputProps.id}>{label}</Label>}
       {renderInputFirst || <Input {...inputProps} />}
@@ -65,6 +66,7 @@ Field.propTypes = {
 
 Field.defaultProps = {
   type: 'text',
+  w: 1,
 }
 
 export default Field
