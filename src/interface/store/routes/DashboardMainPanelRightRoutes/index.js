@@ -13,7 +13,6 @@ import {
   PeopleSearchAdvanced,
   OrganizationAdd,
   OrganizationSearchAdvanced,
-  ProjectAdd,
   ProjectSearchAdvanced,
   ProjectAddFullDescription,
   FormPersonAdd,
@@ -22,6 +21,10 @@ import {
   ResourceSearchAdvanced,
   ResourceAddDescription,
  } from 'foundry'
+
+ import {
+   ProjectAdd,
+ } from 'entity'
 
 
 /* ------------------------------- Component -------------------------------- */
@@ -42,7 +45,7 @@ export default () =>
   
   {/*Projects | Multiple */}
   <Route exact path="/dashboard/resources/manage" component={ResourceSearchAdvanced} />
-  <Route exact path="/dashboard/resources" component={ResourceAdd} />
+
   {/*Project | Single*/}
   <Route exact path="/dashboard/resource/add" component={ResourceAddDescription} />
 

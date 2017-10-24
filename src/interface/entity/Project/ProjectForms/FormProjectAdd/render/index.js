@@ -13,8 +13,8 @@ import {
 import {
   FieldsProjectName,
 } from 'entity'
-/* --------------------------- Styled Components ---------------------------- */
 import StyleFormDefault from 'static/style/StyleFormDefault'
+/* --------------------------- Styled Components ---------------------------- */
 export default ({handleSubmit, isSubmitting, match, ...props}) => (
 <FormBase {...props} bg='white' p={10} >
   <FieldsProjectName {...StyleFormDefault}/>

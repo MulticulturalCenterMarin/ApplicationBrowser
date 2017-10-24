@@ -2,11 +2,10 @@
 import _ from 'lodash'
 import React from 'react'
 import ReactMapGL from 'react-map-gl';
-import Dimensions from 'react-dimensions'
 import ContainerDimensions from 'react-container-dimensions'
 
 /* ------------------------- Internal Dependencies -------------------------- */
-import { Flex } from 'atomic'
+import { Flex, Box } from 'atomic'
 import Foundry from 'foundry'
 import {
   MenuOrganizationProfile
@@ -18,30 +17,32 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX;
 let itemApplyStyle = _.curry((layout,user)=> ({...user,...layout}))
 
 const Map = ({
-  data, foundry, styled, mapStyle, 
+  data, foundry, styled, mapStyle, styledMap, 
   onClick, onViewportChange,
   viewport,_onViewportChange,
-  containerHeight, containerWidth
+  containerHeight, containerWidth,
 }) => {
   if(!data) return null
   if(!Array.isArray(data)) data = [data] // It's either a documentList or a document. If document, create 1 item documentList.
   const Styled = data ? _.map(data, _.curry(itemApplyStyle)(styled && styled.item || {})) : null;
   const FoundryItems = Styled ? _.map(Styled, Foundry[foundry]) : null
   return (
-    <ContainerDimensions>
-      { ({ width, height }) => {
-      return <ReactMapGL
-      {...viewport}
-      height={height}
-      width={width}
-      mapStyle={mapStyle}
-      onClick={onClick}
-      onViewportChange={onViewportChange}
-      mapboxApiAccessToken={MAPBOX_TOKEN}
-      children={FoundryItems}
-    />
-      }}
-    </ContainerDimensions>
+    <Box {...styledMap}>
+      <ContainerDimensions>
+        { ({ width, height }) => {
+        return <ReactMapGL
+        {...viewport}
+        height={height}
+        width={width}
+        mapStyle={mapStyle}
+        onClick={onClick}
+        onViewportChange={onViewportChange}
+        mapboxApiAccessToken={MAPBOX_TOKEN}
+        children={FoundryItems}
+      />
+        }}
+      </ContainerDimensions>
+    </Box>
   )
 }
 

@@ -10,7 +10,6 @@ import { FirestoreList } from 'containers'
 import {DialogOpen, PopoverClose} from 'containers'
 import {
   ProjectsSearchAdvanced,
-  ProjectsFirestoreList
 } from 'foundry'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 /* ------------------------------- Component -------------------------------- */

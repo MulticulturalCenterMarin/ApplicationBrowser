@@ -2,21 +2,10 @@
 import React from 'react'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 /* ------------------------- Internal Dependencies -------------------------- */
+import { FirestoreList, FirestoreDocument } from 'containers'
 import assets from 'assets'
-import { 
-  Flex, Box, 
-  BackgroundImage, BackgroundGradient,
-  Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
-  Blockquote, HorizontalRule, Shape, Responsive 
-}from 'atomic'
+import { Flex, Box, Container, Heading, Section} from 'atomic'
 import {
-  ProjectAdd,
-  ProjectFirestoreDocument,
-  ProjectsFirestoreList,
-  ProjectAddFull,
-  ProjectsMap,
-  ProjectsMapSlim,
-  ProjectMarkerPopover,
   ProjectsSearchAdvanced,
 } from 'foundry'
 
@@ -32,7 +21,14 @@ export default props => (
         </Box>
         <Box w={[1,0.8]} pl={[0,0, 30]} h={300, 500} of='hidden' >
           <PerfectScrollbar>
-            <ProjectsFirestoreList/>
+            <FirestoreList
+              collection='projects'
+              delta='ProjectSearch'
+              foundry='ProjectCard'
+              styled={{
+                w: [1, 1, 0.33333333],
+              }}
+            />
           </PerfectScrollbar>
         </Box>
       </Flex>

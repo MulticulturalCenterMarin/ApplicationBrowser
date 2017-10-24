@@ -1,7 +1,8 @@
 /* ------------------------- External Dependencies -------------------------- */
-import React from 'react'
-import PerfectScrollbar from 'react-perfect-scrollbar'
 import idx from './idx';
+import React from 'react'
+import { Switch } from 'react-router-dom';
+import PerfectScrollbar from 'react-perfect-scrollbar'
 /* ------------------------- Internal Dependencies -------------------------- */
 import assets from 'assets'
 import { Absolute } from 'particles'
@@ -31,31 +32,31 @@ export default props => {
   return <div>
     <Absolute top bottom left bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} of='hidden' w={[1,1, 0.77]}>
         <PerfectScrollbar>
-          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileHero} {...props}/>
+          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileHero} data={props.data} />
         <Box p={[20,35]}>
           
-          {/*--- Project ---*/}
-          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileGallery} {...props}/>
-
-          {!idx(props.data, _ => _.biography) ? null :
-          <Route exact path="/dashboard/:entity/:eid" component={ProjectProfileInterfaceBiography} {...props} w={1} />}
-
           {/*--- People::Project ---*/}
           {!contributorsRef ? null :
             <Route exact 
               component={FirestoreListCompose}
               collection={'people'}
-              delta='ComposeTests'
+              delta='ProjectsComposePeople'
               foundry='PersonCard'
               path="/dashboard/:entity/:eid/people" 
               references={contributorsRef} 
             />
           }
           {/*--- Activity::Project ---*/}
-          <Route exact path="/dashboard/:entity/:eid/activity" component={ProjectStatusUpdates} {...props} />
+          <Route exact path="/dashboard/project/:eid/activity" component={ProjectStatusUpdates} data={props.data}/>
           
           {/*--- Edit::Project ---*/}
-          {!props.data ? null : <Route path="/dashboard/:entity/:eid/edit" component={FormProjectEdit} {...props} /> }
+          {!props.data ? null : <Route exact path="/dashboard/project/:eid/edit" component={FormProjectEdit} data={props.data} /> }
+
+          {/*--- Project ---*/}
+          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileGallery} data={props.data} />
+
+          {!idx(props.data, _ => _.biography) ? null :
+          <Route exact path="/dashboard/:entity/:eid" component={ProjectProfileInterfaceBiography} data={props.data} w={1} />}
 
         </Box>
       </PerfectScrollbar>

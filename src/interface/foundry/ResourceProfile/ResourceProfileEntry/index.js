@@ -24,47 +24,31 @@ import {
   ResourceProfileHero,
 } from 'foundry'
 import {
+  EntityProfileHero,
+  EntityProfileGallery,
+  FormProjectEdit,
+  ProjectProfileInterfaceBiography,
+  ProjectProfileInterfaceIdentity,
+  ProjectProfileMenu,
+  ProjectStatusUpdates,
+} from 'entity'
+import {
   FirestoreListCompose
 } from 'containers'
 
 /* ------------------------------- Component -------------------------------- */
 export default props => { 
-  console.log(props)
-  let contributors = idx(props.data, _ => _.contributors.contributorPeople)
-  let contributorsRef;
-  if(contributors) {
-    contributorsRef = contributors.map(i=> i.eid)
-  }
+  let contributors = idx(props.data, _ => _.contributors.contributorPeople), contributorsRef
+  if(contributors) contributorsRef = contributors.map(i=> i.eid)
 
   return <div>
     <Absolute top bottom left bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} of='hidden' w={[1,1, 0.77]}>
         <PerfectScrollbar>
-          <Route exact path="/dashboard/:entity/:eid" component={ResourceProfileHero} {...props}/>
+          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileHero} data={props.data} />
         <Box p={[20,35]}>
-          
-          {/*--- Resource ---*/}
-          <Route exact path="/dashboard/:entity/:eid" component={ResourceProfileGallery} {...props}/>
 
-          {!idx(props.data, _ => _.biography) ? null :
-          <Route exact path="/dashboard/:entity/:eid" component={ResourceProfileInterfaceBiography} {...props} w={1} />}
-
-          {/*--- People::Resource ---*/}
-          {!contributorsRef ? null :
-            <Route exact 
-              component={FirestoreListCompose}
-              collection={'people'}
-              delta='ComposeTests'
-              foundry='PersonCard'
-              path="/dashboard/:entity/:eid/people" 
-              references={contributorsRef} 
-            />
-          }
-          {/*--- Activity::Resource ---*/}
-          <Route exact path="/dashboard/:entity/:eid/activity" component={ResourceStatusUpdates} {...props} />
-          
-          {/*--- Edit::Resource ---*/}
-          {!props.data ? null : <Route path="/dashboard/:entity/:eid/edit" component={FormResourceEdit} {...props} /> }
-
+            {/*--- Project ---*/}
+            <Route exact path="/dashboard/:entity/:eid" component={EntityProfileGallery} data={props.data} />
         </Box>
       </PerfectScrollbar>
     </Absolute>
@@ -79,5 +63,6 @@ export default props => {
         </Box>
       </PerfectScrollbar>
     </Absolute>
+
   </div>
 }

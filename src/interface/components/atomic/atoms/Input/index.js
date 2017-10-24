@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { ifProp } from 'styled-tools'
 import { font, palette } from 'styled-theme'
-import { color, fontSize, space, width, height, minHeight, borderRadius } from 'quarks'
+import { color, boxShadow, fontSize, space, width, height, minHeight, borderRadius } from 'quarks'
 
 
 const styles = css`
@@ -11,6 +11,7 @@ const styles = css`
   border: 1px solid ${ifProp('invalid', palette('danger', 2), palette('grayscale', 3))};
   border-radius: 2px;
   ${borderRadius}
+  ${boxShadow}
   box-sizing: border-box;
   ${color}
   display: block;

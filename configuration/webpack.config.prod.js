@@ -104,6 +104,7 @@ module.exports = {
       /*--- Higher-Order ---*/
       containers: path.resolve(__dirname, '../src/interface/containers'),
       foundry: path.resolve(__dirname, '../src/interface/foundry'),
+       entity: path.resolve(__dirname, '../src/interface/entity'),
       forms: path.resolve(__dirname, '../src/interface/forms'),
       templates: path.resolve(__dirname, '../src/interface/components/templates'),
 

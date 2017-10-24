@@ -6,9 +6,9 @@ import {
   Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
   Blockquote, HorizontalRule, Shape, Responsive 
 } from 'atomic'
-import forms, {
+import {
   SearchProjectAdvanced
-} from 'workshop/forms'
+} from 'foundry'
 /* ------------------------------- Component -------------------------------- */
 export default props => 
 <Box p={[10]} >

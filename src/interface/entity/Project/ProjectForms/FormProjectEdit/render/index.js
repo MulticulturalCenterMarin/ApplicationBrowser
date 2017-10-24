@@ -9,11 +9,13 @@ import { Flex, Box, Button, Container, Heading, HorizontalRule, ReduxField }from
 import {
   FieldsAddress,
   FieldsContact,
-  FieldsProjectName,
-  FieldsProjectMetadata,
-  FieldsProjectSettings,
-  FieldCollectionProjectBiography,
+  FieldsMetadata,
+  FieldsSettings,
+  FieldsBiography,
 } from 'foundry'
+import {
+  FieldsProjectName,
+} from 'entity'
 import StyleFormDefault from 'static/style/StyleFormDefault'
 const addressFormStyle = {
     styledInput:{
@@ -35,17 +37,17 @@ export default ({handleSubmit, isSubmitting, match, ...props}) => (
     <Box w={[1,1,0.5]} mr={[0]} bs={[0]} p={[10,15,25]}>
       <Heading level={[3]} f={[3]}>Tagging + Metadata</Heading>
       <HorizontalRule bs={0} h={2} bi='blue' mx={0} w={[0.075]} />
-      <FieldsProjectMetadata {...StyleFormDefault} />
+      <FieldsMetadata {...StyleFormDefault} />
     </Box>
     <Box w={[1,1,0.5]} mr={[0]} bs={[0]} p={[10,15,35]}>
       <Heading level={[3]} f={[3]}>Settings</Heading>
       <HorizontalRule bs={0} h={2} bi='blue' mx={0} w={[0.075]} />
-      <FieldsProjectSettings {...StyleFormDefault} />
+
     </Box>
   </Flex>
 
   <Box w={[1]} mr={[0,0, '5%']} bs={[0]} p={[10,15,35]} mt={[10,20]}>
-    <FieldCollectionProjectBiography {...StyleFormDefault} />
+    <FieldsBiography {...StyleFormDefault} />
   </Box>
   <Box w={[1]} mr={[0,0, '5%']} bs={[0]} p={[10,15,35]} mt={[10,20]}>
     <FieldsAddress {...addressFormStyle} />

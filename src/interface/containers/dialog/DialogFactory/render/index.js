@@ -9,7 +9,7 @@ import {
   Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
   Blockquote, HorizontalRule, Shape, Responsive 
 }from 'atomic'
-import {Item, ProjectAdd} from 'foundry'
+import {Item} from 'foundry'
 /* ------------------------------- Component -------------------------------- */
 const DialogFactory = (props) => {
   // Extract Properties | Destructure

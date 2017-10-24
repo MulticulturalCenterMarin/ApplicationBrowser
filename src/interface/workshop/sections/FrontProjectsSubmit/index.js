@@ -10,7 +10,6 @@ import {
   Blockquote, HorizontalRule, Shape, Responsive 
 }from 'atomic'
 import {
-  ProjectAdd,
   ProjectFirestoreDocument,
   ProjectsFirestoreList,
   ProjectAddFull,
@@ -18,7 +17,7 @@ import {
   ProjectsMapSlim,
   ProjectMarkerPopover,
   ProjectsSearchAdvanced,
-} from 'foundry'
+} from 'entity'
 
 import {
     ProjectAddDetails,
