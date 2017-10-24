@@ -14,16 +14,6 @@ import {
   OrganizationProfileGraphRequest,
   OrganizationsMapMarkers,
 
-  ProjectAddFull,
-  ProjectFirestoreDocument,
-  ProjectsFirestoreList,
-  ProjectsMap,
-  ProjectsMapSlim,
-  ProjectMarkerPopover,
-  FormProjectAddFull,
-  FormProjectEdit,
-  FormStorageUpload,
-
   ResourceFirestoreDocument,
   ResourceFirestoreList,
   ResourceAdd,
@@ -44,6 +34,19 @@ import {
   QueryUsers,
   QueryUsersInternal,
  } from 'foundry'
+
+import {
+  ProjectAddFull,
+  ProjectFirestoreDocument,
+  ProjectsFirestoreList,
+  ProjectsMap,
+  ProjectsMapSlim,
+  ProjectMarkerPopover,
+  FormProjectAddFull,
+  FormProjectEdit,
+  FormStorageUpload,
+} from 'entity'
+
 /* ------------------------------- Component -------------------------------- */
 
 export default () => (

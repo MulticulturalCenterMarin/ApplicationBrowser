@@ -1,6 +1,7 @@
 /* ------------------------- External Dependencies -------------------------- */
 import React from 'react'
 import Foundry from 'foundry'
+import Entity from 'entity'
 /* ---------------------------- Module Package ------------------------------ */
 export default ({data, foundry, styled, ...props}) => !foundry 
 ? null 

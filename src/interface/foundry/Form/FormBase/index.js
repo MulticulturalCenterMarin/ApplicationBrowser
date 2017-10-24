@@ -24,7 +24,7 @@ const queryLifecycle = lifecycle(
       styledFieldOuter: {
         my: [5],
         w: 1,
-      },
+      }, 
       styledWrapper: {
         direction: ['column', 'column', 'row'],
         p: 10,
@@ -32,12 +32,10 @@ const queryLifecycle = lifecycle(
       }
     }
     const styled = this.props.styled || {}
-    console.log(styled)
     const tp = this.props
     this.setState({
       childrenTransformed: React.Children.map(this.props.children, function(child) {
         const styledFieldOuter = child.props.styledFieldOuter
-        console.log(child.props)
         return child.props.foundry 
         ? <Item foundry={child.props.foundry} 
           {...{...defaultFormStyles.styledFieldOuter, ...styledFieldOuter}} 

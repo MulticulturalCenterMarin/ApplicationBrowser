@@ -35,7 +35,7 @@ const RenderChip = ({input, hintText, floatingLabelText, dataSource, dataSourceC
     onRequestDelete={(deletedChip) => {
       let values = input.value || [];
       if(!values) return 
-      values = values.filter(v => v.id !== deletedChip);
+      values = values.filter(v => v.eid !== deletedChip);
       input.onChange(values);
     }}
     onBlur={() => input.onBlur()}
