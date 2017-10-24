@@ -36,15 +36,11 @@ import {
  } from 'foundry'
 
 import {
-  ProjectAddFull,
-  ProjectFirestoreDocument,
-  ProjectsFirestoreList,
-  ProjectsMap,
-  ProjectsMapSlim,
-  ProjectMarkerPopover,
-  FormProjectAddFull,
   FormProjectEdit,
-  FormStorageUpload,
+  FormProjectAddFull,
+  ProjectAddFull,
+  ProjectMarkerPopover,
+  ResourceAddFull,
 } from 'entity'
 
 import {
@@ -113,14 +109,12 @@ export default () => (
     }}
   />
   <Switch>
+    <Route exact path="/dashboard/resource/add" component={ResourceAddFull} />
     <Route path="/dashboard/resource/:eid" component={FirestoreDocument}
       collection="resources"
       foundry={'ResourceProfileEntry'}
      />
   </Switch>
-
-  <Route path="/dashboard/upload" component={FormStorageUpload} />
-
 
   <Route path="/dashboard/profile" component={UserProfileDashboard} />
 

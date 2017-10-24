@@ -24,20 +24,8 @@ import {
  
 
 /* ---------------------------- Module Package ------------------------------ */
-/*---*--- Recompose ---*---*/
-const defaultState = withState({
-  list: null
-})
-const defaultProps = withProps({
-
-})
-
 /*---*--- Lifecylce Methods ---*---*/
 const queryLifecycle = lifecycle({
-  /*--- Component Mount ---*/
-  componentDidMount() {
-
-  },
 
   /*--- Component Update ---*/
   componentDidUpdate(prevProps) {
@@ -47,15 +35,6 @@ const queryLifecycle = lifecycle({
   }
 })
 
-
-/*---*--- Redux ---*---*/
-const mapStateToProps = (state, props) => {
-   
-}
-
-const mapDispatchToProps = (dispatch, props) => ({
-
-})
 /* -------------------------- Form Configuration ---------------------------- */
 /*--- Event Handlers ---*/
 const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
@@ -84,7 +63,7 @@ const validate = createValidator({
 })
 
 const config = {
-  form: 'FormComposed',
+  form: 'FormStatusUpdate',
   fields: [],
   destroyOnUnmount: true,
   onSubmit,
@@ -95,8 +74,6 @@ const config = {
 
 export default compose(
   reduxForm(config),
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(),
   queryLifecycle,
-  defaultState,
-  defaultProps,
 )(Render);

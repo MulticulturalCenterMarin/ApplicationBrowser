@@ -13,16 +13,16 @@ import {
 import {
   ImageList,
   FormAddContributorPerson,
-  FormStatusUpdate
+  FormStatusUpdate,
+  EntityStatusUpdates,
 } from 'foundry'
 import {
+  FormProjectEdit,
   EntityProfileHero,
   EntityProfileGallery,
-  FormProjectEdit,
-  ProjectProfileInterfaceBiography,
-  ProjectProfileInterfaceIdentity,
+  EntityProfileInterfaceBiography,
+  EntityProfileInterfaceIdentity,
   ProjectProfileMenu,
-  ProjectStatusUpdates,
 } from 'entity'
 /* ------------------------------- Component -------------------------------- */
 export default props => { 
@@ -47,7 +47,7 @@ export default props => {
             />
           }
           {/*--- Activity::Project ---*/}
-          <Route exact path="/dashboard/project/:eid/activity" component={ProjectStatusUpdates} data={props.data}/>
+          <Route exact path="/dashboard/project/:eid/activity" component={EntityStatusUpdates} collection='projects' data={props.data}/>
           
           {/*--- Edit::Project ---*/}
           {!props.data ? null : <Route exact path="/dashboard/project/:eid/edit" component={FormProjectEdit} data={props.data} /> }
@@ -56,14 +56,14 @@ export default props => {
           <Route exact path="/dashboard/:entity/:eid" component={EntityProfileGallery} data={props.data} />
 
           {!idx(props.data, _ => _.biography) ? null :
-          <Route exact path="/dashboard/:entity/:eid" component={ProjectProfileInterfaceBiography} data={props.data} w={1} />}
+          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileInterfaceBiography} data={props.data} w={1} />}
 
         </Box>
       </PerfectScrollbar>
     </Absolute>
     <Absolute top right gradient='gray' pos={['relative !important', 'relative !important', 'absolute !important']} bs={[3]} h={[1]} w={[1,1, 0.23]} z={15}>
       <PerfectScrollbar>
-        <ProjectProfileInterfaceIdentity {...props} w={1} />
+        <EntityProfileInterfaceIdentity {...props} w={1} />
         <ProjectProfileMenu {...props} />
         {/*--- Project ---*/}
         <Box p={[10]} >

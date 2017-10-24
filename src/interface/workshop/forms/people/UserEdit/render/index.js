@@ -17,7 +17,7 @@ import {
 import {Button, Flex, Box, Heading, Paragraph, ReduxField, HorizontalRule, Span} from 'atomic'
 
 /*--- Field Elements ---*/
-import { NameFieldCollection, ContactFieldCollection, AddressFieldCollection, FieldRelationshipsPerson, FieldCollectionPersonBiography } from 'containers/fields'
+import { NameFieldCollection, ContactFieldCollection, AddressFieldCollection, FieldCollectionPersonBiography } from 'containers/fields'
 /* --------------------------- Styled Components ---------------------------- */
 const FormWrapper = styled.form`
   background: #FFF;

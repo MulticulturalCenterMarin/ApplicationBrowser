@@ -1,8 +1,15 @@
 /* ------------------------- External Dependencies -------------------------- */
+import _ from 'lodash'
 import React from 'react';
+import {
+  compose,
+  lifecycle,
+  withProps,
+  withState,
+  renderComponent
+} from 'recompose'
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
-import _ from 'lodash'
 import filterKeys from 'filter-keys'
 
 /* ------------------------- Internal Dependencies -------------------------- */
@@ -15,8 +22,6 @@ import {entityAddRequest} from 'store/departments/actions'
 import FormRender from './render'
 
 /* --------------------------- Component Entry ------------------------------ */
-const FormRedux = props => <FormRender { ...props} />
-
 /*-- Event Handlers ---*/
 const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
   /*--- Extraction ---*/
@@ -37,6 +42,22 @@ const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
   }))
 })
 
+/*---*--- Lifecylce Methods ---*---*/
+const queryLifecycle = lifecycle({
+  /*--- Component Mount ---*/
+  componentDidMount() {
+
+  },
+
+  /*--- Component Update ---*/
+  componentDidUpdate(prevProps) {
+    if(this.props.submitting === true) {
+      this.props.reset()
+    }
+  }
+})
+
+
 /* ----------------------------- Form Validation -------------------------------- */
 const validate = createValidator({
   nameProject: required,
@@ -53,4 +74,11 @@ const config = {
   validate
 }
 
-export default connect()(reduxForm(config)(FormRedux))
+const FormRedux = props => <FormRender { ...props} />
+const formRedux = reduxForm(config)
+
+export default compose(
+  formRedux,
+  connect(),
+  queryLifecycle,
+)(FormRedux);

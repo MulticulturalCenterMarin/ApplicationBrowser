@@ -28,15 +28,6 @@ import {
 /* ------------------------ Initialize Dependencies ------------------------- */
 import FormRender from './render'
 
-
-/*---*--- Recompose ---*---*/
-const defaultState = withState({
-
-})
-const defaultProps = withProps({
-
-})
-
 /*---*--- Lifecylce Methods ---*---*/
 const queryLifecycle = lifecycle({
   /*--- Component Mount ---*/
@@ -108,6 +99,4 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   formRedux,
   queryLifecycle,
-  defaultState,
-  defaultProps,
 )(FormRedux);

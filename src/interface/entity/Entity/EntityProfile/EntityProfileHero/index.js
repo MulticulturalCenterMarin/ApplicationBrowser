@@ -3,10 +3,7 @@ import idx from './idx';
 import React from 'react'
 import { Absolute } from 'particles'
 import {
- Flex, Box,
- BackgroundImage, BackgroundGradient,
- Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
- Blockquote, HorizontalRule, Shape, Responsive, Route
+ Flex, Box, BackgroundImage, BackgroundGradient, Heading, Route
 } from 'atomic'
 import {
   ImageList,
@@ -23,15 +20,16 @@ export default props => <Box
       <BackgroundImage src={idx(props.data, _ => _.images.imageBanner)} o={0.5}/>
       }
       <Flex align='center' direction={['column']} justify='center' color='white' w={1} ta='center' >
-        <Heading f={[6,7]} level={3} children={idx(props.data, _ => _.name.nameProject)}  ts={'darkPurple'} />
-        <Heading f={[3]} level={4} ml={[5]} fw='300' >Alias: {idx(props.data, _ => _.name.nameProjectAlias)}</Heading>
-        <Box z={10}>
-          {!idx(props.data, _ => _.metadata.metaVideoURL) ? null : <VideoEmbed url={idx(props.data, _ => _.metadata.metaVideoURL)}/>}
-        </Box>
+        { !idx(props.data, _ => _.name.nameDisplay) ? null :
+        <Heading f={[6,7]} level={3} children={idx(props.data, _ => _.name.nameDisplay)} ts={'darkPurple'} />}
+        { !idx(props.data, _ => _.name.nameAlias) ? null :
+        <Heading f={[3]} level={4} ml={[5]} fw='300' >Alias: {idx(props.data, _ => _.name.nameAlias)}</Heading>}
+        {!idx(props.data, _ => _.metadata.metadataVideo) ? null : 
+        <Box z={10}><VideoEmbed url={idx(props.data, _ => _.metadata.metadataVideo)}/></Box>}
       </Flex>
       <Absolute bottom right>
         <Box p={20} w={[1,1, 510]} >
-          {!props.data ? null : <Route path="/dashboard/:entity/:eid" component={FormBannerAdd}/> }
+          {!props.data ? null : <Route path="/dashboard/:entity/:eid" component={FormBannerAdd}  /> }
         </Box>
       </Absolute>
     </Box>

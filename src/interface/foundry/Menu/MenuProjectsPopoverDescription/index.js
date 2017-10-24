@@ -10,7 +10,7 @@ import { FirestoreList } from 'containers'
 import {DialogOpen, PopoverClose} from 'containers'
 import {
   ProjectsSearchAdvanced,
-} from 'foundry'
+} from 'entity'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 /* ------------------------------- Component -------------------------------- */
 export default props => <Box w={[1,1,675]} bs={4} br={10} >

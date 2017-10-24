@@ -24,8 +24,8 @@ export default (props) => {
   /*--- Extraction ---*/
   const{ id, data } = props
   /*--- Extraction ---*/
-  const name = idx(props.data, _ => _.name.nameResource)
-  const nameAlias = idx(props.data, _ => _.name.nameResourceAlias)
+  const name = idx(props.data, _ => _.name.nameDisplay)
+  const nameAlias = idx(props.data, _ => _.name.nameAlias)
   const phone = idx(props.data, _ => _.contact.contactPhone)
   const email = idx(props.data, _ => _.contact.contactEmail)
   const url = idx(props.data, _ => _.contact.contactURL)

@@ -22,15 +22,15 @@ import {
   ResourceStatusUpdates,
   ImageList,
   ResourceProfileHero,
+  FormAddContributorPerson,
+  FormStatusUpdate
 } from 'foundry'
 import {
   EntityProfileHero,
   EntityProfileGallery,
+  EntityProfileInterfaceBiography,
   FormProjectEdit,
-  ProjectProfileInterfaceBiography,
-  ProjectProfileInterfaceIdentity,
   ProjectProfileMenu,
-  ProjectStatusUpdates,
 } from 'entity'
 import {
   FirestoreListCompose
@@ -44,11 +44,15 @@ export default props => {
   return <div>
     <Absolute top bottom left bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} of='hidden' w={[1,1, 0.77]}>
         <PerfectScrollbar>
-          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileHero} data={props.data} />
+          {!idx(props, _ => _.data) ? null :
+          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileHero} data={props.data} />}
         <Box p={[20,35]}>
 
             {/*--- Project ---*/}
             <Route exact path="/dashboard/:entity/:eid" component={EntityProfileGallery} data={props.data} />
+
+             {!idx(props.data, _ => _.biography) ? null :
+            <Route exact path="/dashboard/:entity/:eid" component={EntityProfileInterfaceBiography} data={props.data} w={1} />}
         </Box>
       </PerfectScrollbar>
     </Absolute>
@@ -58,8 +62,18 @@ export default props => {
         <ResourceProfileMenu {...props} />
         {/*--- Resource ---*/}
         <Box p={[10]} >
-          {!props.data ? null : <Route path="/dashboard/:entity/:eid" component={FormResourceUpdate}/> }
-          {!props.data ? null : <Route path="/dashboard/:entity/:eid" valueDefault={contributors} component={FormResourceAddContributorPerson}/> }
+       {!props.data ? null : 
+          <Route path="/dashboard/:entity/:eid" 
+            component={FormStatusUpdate} 
+            collection="projects" 
+          /> }
+          {!props.data ? null : 
+          <Route path="/dashboard/:entity/:eid"
+            component={FormAddContributorPerson}
+            valueDefault={contributors} 
+            collection="projects"
+            delta="ProjectPeopleSearch"
+          /> }
         </Box>
       </PerfectScrollbar>
     </Absolute>

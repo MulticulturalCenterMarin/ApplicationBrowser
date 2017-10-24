@@ -8,11 +8,13 @@ import {
   EntityProfileMap,
   PeopleSearchAdvanced,
   OrganizationSearchAdvanced,
-  ResourceSearch,
  } from 'foundry'
  import {
   SearchProjectAdvanced
 } from 'foundry'
+import { 
+  ResourceSearch,
+} from 'entity'
 /* ------------------------------- Component -------------------------------- */
 export default () => 
 <div>

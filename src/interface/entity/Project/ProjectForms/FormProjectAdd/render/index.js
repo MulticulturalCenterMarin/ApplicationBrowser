@@ -6,18 +6,17 @@ import { Field } from 'redux-form'
 import { FormBase } from 'foundry'
 import { Flex, Box, Button, Heading, ReduxField } from 'atomic'
 import {
+  FieldsEntityName,
   FieldsContact,
   FieldsBiography,
   FieldsMetadata,
 } from 'foundry'
-import {
-  FieldsProjectName,
-} from 'entity'
+
 import StyleFormDefault from 'static/style/StyleFormDefault'
 /* --------------------------- Styled Components ---------------------------- */
 export default ({handleSubmit, isSubmitting, match, ...props}) => (
 <FormBase {...props} bg='white' p={10} >
-  <FieldsProjectName {...StyleFormDefault}/>
+  <FieldsEntityName {...StyleFormDefault}/>
   <Heading level={[3]} f={[3]}>Project Metadata</Heading>
   <FieldsMetadata {...StyleFormDefault}/>
   <Heading level={[3]} f={[3]}>Contact Information</Heading>

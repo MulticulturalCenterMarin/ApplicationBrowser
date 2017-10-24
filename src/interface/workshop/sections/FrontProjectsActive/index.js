@@ -7,7 +7,7 @@ import assets from 'assets'
 import { Flex, Box, Container, Heading, Section} from 'atomic'
 import {
   ProjectsSearchAdvanced,
-} from 'foundry'
+} from 'entity'
 
 /* ------------------------------- Component -------------------------------- */
 export default props => (

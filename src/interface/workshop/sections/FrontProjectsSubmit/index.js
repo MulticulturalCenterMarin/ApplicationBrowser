@@ -10,13 +10,7 @@ import {
   Blockquote, HorizontalRule, Shape, Responsive 
 }from 'atomic'
 import {
-  ProjectFirestoreDocument,
-  ProjectsFirestoreList,
   ProjectAddFull,
-  ProjectsMap,
-  ProjectsMapSlim,
-  ProjectMarkerPopover,
-  ProjectsSearchAdvanced,
 } from 'entity'
 
 import {

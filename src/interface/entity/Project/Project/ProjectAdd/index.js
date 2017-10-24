@@ -1,10 +1,7 @@
 /* ------------------------- External Dependencies -------------------------- */
 import React from 'react'
 import {
-  Box, Flex,
-  BackgroundImage, BackgroundGradient,
-  Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
-  Blockquote, HorizontalRule, Shape, Responsive 
+  Box
 } from 'atomic'
 import {
   FormProjectAdd,
