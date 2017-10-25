@@ -28,7 +28,7 @@ import {
 import {NOTIFICATION_OPEN, authSyncUser} from 'store/departments/actions'
 import notificationStaticContent from 'content/notifications'
 /* ------------------------ Initialize Dependencies ------------------------- */
-const authProvider = new firebase.auth.GithubAuthProvider();
+const authProvider = new firebase.auth.GoogleAuthProvider();
 
 /* ------------------------------ Saga Stories ------------------------------ */
 /*--- Login ---*/

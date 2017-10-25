@@ -23,7 +23,7 @@ _.forEach(headerRoutes, (parent, parentKey)=> {
 export default () => (
   <div>
     <Switch>
-
+      {PageRoutes.map(Route=>Route)}
       <Route exact path="/" component={Front} />
     </Switch>
   </div>);

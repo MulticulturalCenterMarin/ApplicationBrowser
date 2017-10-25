@@ -1,15 +1,24 @@
 /* ------------------------- External Dependencies -------------------------- */
 import React from 'react'
+import styled from 'styled-components'
+import { Flex, Absolute } from 'rebass'
 /* ------------------------- Internal Dependencies -------------------------- */
-import { 
-  Flex, Box, 
-  BackgroundImage, BackgroundGradient,
-  Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
-  Blockquote, HorizontalRule, Shape, Responsive 
-} from 'atomic'
+
+/* --------------------------- Styled Components ---------------------------- */
+const Section = styled.section`
+  display: inline-block;
+  float: left;
+  width: 100%;
+`
+/* ------------------------- Component Properties --------------------------- */
 /* ------------------------------- Component -------------------------------- */
-export default props => (
-  <Section {...props}>
-      {props.children}
-  </Section>
-)
+const Template = ({ ...props }) => {
+  return (
+    <Section {...props}>
+        {props.children}
+    </Section>
+  )
+}
+
+/* ---------------------------- Export Package ------------------------------ */
+export default Template
