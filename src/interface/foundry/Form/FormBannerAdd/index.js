@@ -63,11 +63,11 @@ const mapDispatchToProps = (dispatch, props) => ({
 const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
   const metadata = {
     branch: [
-      'projects',
+      props.collection,
       props.match.params.eid,
     ],
     delta: `${props.match.params.eid}|BannerUpdate`,
-    location: 'projects',
+    location: `${props.collection}/${props.match.params.eid}/banner`,
     trigger: props.match.params.eid,
   }
   dispatch(entityBannerAddRequest({payload: data.storageUpload, metadata}))

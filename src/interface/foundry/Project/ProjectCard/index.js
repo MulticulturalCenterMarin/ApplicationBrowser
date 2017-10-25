@@ -32,6 +32,10 @@ export default (props) => {
   const url = idx(props.data, _ => _.contact.contactURL)
   const imageBanner = idx(props.data, _ => _.images.imageBanner)
 
+    const street = idx(props.data, _ => _.address.addressStreet)
+  const city = idx(props.data, _ => _.address.addressCity)
+  const zip = idx(props.data, _ => _.address.addressZip)
+
   if (!data) return null
   /*--- Component ---*/
   return <Flex direction={['row']} align='stretch' justify='center' p={[10]} {...props} key={id} >
@@ -48,6 +52,13 @@ export default (props) => {
           </Link>
           { !email?null:<Heading f={[2]} level={3} fw={[300]}><strong>Email:</strong>{email}</Heading>}
           { !url?null:<Heading f={[3]} level={4} fw={[300]}><strong>URL</strong>{url}</Heading>}
+          { !street ?null
+          :<HorizontalRule bc='blue' o={0.3}/>
+          }
+          
+          { !street ?null
+          :<Heading f={[2]} level={3} fw={[300]}>Addresss: {street + ", " + city + " " + zip } </Heading>
+          }
         </Box>
       </Box>
     </Flex>

@@ -25,7 +25,7 @@ const viewportState = withState(
   'viewport', 'setViewport', {
     latitude: 37.95,
     longitude: -122.4376,
-    zoom: 2,
+    zoom: 9,
     bearing: 0,
     pitch: 0,
   }

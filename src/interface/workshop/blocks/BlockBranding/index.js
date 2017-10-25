@@ -5,7 +5,9 @@ import assets from 'assets'
 import { Flex, Box, Heading, Image, Span, Link } from 'atomic'
 import UserProfile from 'containers/user/UserProfile'
 import { DrawerOpen } from 'containers'
-
+import {
+  MenuProjectsPopover
+} from 'foundry'
 
 /* --------------------------- Styled Components ---------------------------- */
 
@@ -19,6 +21,7 @@ export default props => (
       </Flex>
       
       <Flex align="center" w={[1, 1, 0.35]} justify="flex-start" display={['none', 'none', 'Flex']} py={[15]} >
+        <MenuProjectsPopover/>
         <Link to="/why" color={['blueLight']}><Heading f={[1]} level={[5]} display='inline' px={10}>Why</Heading></Link>
         <Link to="/tools" color={['blueLight']}><Heading f={[1]} level={[5]} display='inline' px={10}>Tools</Heading></Link>
         <Link to="/community" color={['blueLight']}><Heading f={[1]} level={[5]} display='inline' px={10}>Community</Heading></Link>

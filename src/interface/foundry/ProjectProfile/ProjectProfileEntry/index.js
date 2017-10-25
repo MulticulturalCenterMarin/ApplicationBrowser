@@ -32,7 +32,7 @@ export default props => {
   return <div>
     <Absolute top bottom left bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} of='hidden' w={[1,1, 0.77]}>
         <PerfectScrollbar>
-          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileHero} data={props.data} />
+          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileHero} collection='projects' data={props.data} />
         <Box p={[20,35]}>
           
           {/*--- People::Project ---*/}
@@ -42,7 +42,7 @@ export default props => {
               collection={'people'}
               delta='ProjectsComposePeople'
               foundry='PersonCard'
-              path="/dashboard/:entity/:eid/people" 
+              path='/dashboard/:entity/:eid/people'
               references={contributorsRef} 
             />
           }
@@ -53,7 +53,8 @@ export default props => {
           {!props.data ? null : <Route exact path="/dashboard/project/:eid/edit" component={FormProjectEdit} data={props.data} /> }
 
           {/*--- Project ---*/}
-          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileGallery} data={props.data} />
+          <Route exact path="/dashboard/:entity/:eid"
+          component={EntityProfileGallery} collection='projects' data={props.data} />
 
           {!idx(props.data, _ => _.biography) ? null :
           <Route exact path="/dashboard/:entity/:eid" component={EntityProfileInterfaceBiography} data={props.data} w={1} />}

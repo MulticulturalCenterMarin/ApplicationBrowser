@@ -14,6 +14,6 @@ export default props => <Flex>
       }
     </Box>
     <Box w={[1,1,0.25]}p={[10]}>
-      <Route exact path="/dashboard/:entity/:eid" component={FormGalleryAdd} collection='projects' />
+      <Route exact path="/dashboard/:entity/:eid" component={FormGalleryAdd} collection={props.collection} />
     </Box>
   </Flex> 

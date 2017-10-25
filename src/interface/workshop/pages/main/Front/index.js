@@ -16,9 +16,10 @@ import {
   FrontPrograms,
   FrontProjectsActive,
   FrontProjectsSubmit,
+  FrontOrganizationSearch,
+  FrontResourcesSearch,
 } from 'workshop/sections'
 import { CommunityPrograms } from 'workshop/blocks'
-
 
 import {
   FirestoreListCompose
@@ -31,9 +32,11 @@ export default props => (
   <Shape top left right h={[ '70px', '90px', "125px"]} svg={assets.svg.waves} w={[1]} transform={['rotate(180deg)']} z={0} />
   <FrontProjectsActive/>
 
-
 <MediaQuery query='(min-width: 1224px)' component={Section}>
+   <FrontIntroduction/>
+   <FrontOrganizationSearch/>
    <FrontJourney/>
+   <FrontResourcesSearch/>
    <FrontPrograms/>
 
    <Section bg={['sand']} py={[20,40]} >

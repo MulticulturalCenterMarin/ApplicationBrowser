@@ -45,14 +45,14 @@ export default props => {
     <Absolute top bottom left bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} of='hidden' w={[1,1, 0.77]}>
         <PerfectScrollbar>
           {!idx(props, _ => _.data) ? null :
-          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileHero} data={props.data} />}
+          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileHero} collection='resources' data={props.data} />}
         <Box p={[20,35]}>
 
             {/*--- Project ---*/}
-            <Route exact path="/dashboard/:entity/:eid" component={EntityProfileGallery} data={props.data} />
+            <Route exact path="/dashboard/:entity/:eid" component={EntityProfileGallery} collection='resources' data={props.data} />
 
              {!idx(props.data, _ => _.biography) ? null :
-            <Route exact path="/dashboard/:entity/:eid" component={EntityProfileInterfaceBiography} data={props.data} w={1} />}
+            <Route exact path="/dashboard/:entity/:eid" component={EntityProfileInterfaceBiography} collection='resources' data={props.data} w={1} />}
         </Box>
       </PerfectScrollbar>
     </Absolute>

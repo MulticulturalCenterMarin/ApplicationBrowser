@@ -29,7 +29,7 @@ export default props => <Box
       </Flex>
       <Absolute bottom right>
         <Box p={20} w={[1,1, 510]} >
-          {!props.data ? null : <Route path="/dashboard/:entity/:eid" component={FormBannerAdd}  /> }
+          {!props.data ? null : <Route path="/dashboard/:entity/:eid" component={FormBannerAdd} collection={props.collection}  /> }
         </Box>
       </Absolute>
     </Box>

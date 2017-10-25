@@ -59,7 +59,7 @@ const mapDispatchToProps = (dispatch, props) => {
           props.match.params.eid,
         ],
         delta: props.match.params.eid,
-        location: props.collection,
+        location: `${props.collection}/${props.match.params.eid}/gallery`,
       }
     }
     ))}
