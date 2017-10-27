@@ -34,8 +34,6 @@ const RenderChip = ({input, hintText, floatingLabelText, dataSource, dataSourceC
     }}
     onRequestDelete={(deletedChip) => {
       let values = input.value || [];
-      console.log(values)
-      console.log('wining')
       if(!values) return 
       values = values.filter(v => v.eid !== deletedChip);
       input.onChange(values);

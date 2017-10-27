@@ -18,6 +18,7 @@ import {
   FrontProjectsSubmit,
   FrontOrganizationSearch,
   FrontResourcesSearch,
+  FrontArticleSearch,
 } from 'workshop/sections'
 import { CommunityPrograms } from 'workshop/blocks'
 
@@ -38,6 +39,7 @@ export default props => (
    <FrontJourney/>
    <FrontResourcesSearch/>
    <FrontPrograms/>
+   <FrontArticleSearch/>
 
    <Section bg={['sand']} py={[20,40]} >
     <Container w={[1,1, 1120]} >

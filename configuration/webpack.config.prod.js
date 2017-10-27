@@ -93,7 +93,7 @@ module.exports = {
     // for React Native Web.
     extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      content: path.resolve(__dirname, '../src/static'), // TODO: Remove
+    content: path.resolve(__dirname, '../src/static'), // TODO: Remove
       static: path.resolve(__dirname, '../src/static'),
       interface: path.resolve(__dirname, '../src/interface'),
       wasm: path.resolve(__dirname, '../src/wasm'),
@@ -103,8 +103,8 @@ module.exports = {
 
       /*--- Higher-Order ---*/
       containers: path.resolve(__dirname, '../src/interface/containers'),
+      entity: path.resolve(__dirname, '../src/interface/entity'),
       foundry: path.resolve(__dirname, '../src/interface/foundry'),
-       entity: path.resolve(__dirname, '../src/interface/entity'),
       forms: path.resolve(__dirname, '../src/interface/forms'),
       templates: path.resolve(__dirname, '../src/interface/components/templates'),
 

@@ -1,11 +1,7 @@
 /* ------------------------- External Dependencies -------------------------- */
+import React from 'react';
 import { connect } from 'react-redux';
-
-/* ------------------------- Internal Dependencies -------------------------- */
 import Render from './render';
-
-/* ------------------------ Initialize Dependencies ------------------------- */
-
 /* ---------------------------- Module Package ------------------------------ */
 import { popoverClose } from 'store/departments/actions'
 

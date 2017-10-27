@@ -20,7 +20,7 @@ const DrawerFactory = (props) => (
       z={2000}
     >
     <Absolute top right br={9999} mt={[5]} mr={[5]} gradient='cherry' p={[5]}  ><DrawerClose><Heading f={[2]} level={[6]}><a>x</a></Heading></DrawerClose></Absolute>
-    <PerfectScrollbar>
+    <PerfectScrollbar wheelPropagation>
       {props.children}
     </PerfectScrollbar>
 	</Drawer>

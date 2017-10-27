@@ -20,7 +20,7 @@ export default props => (
   {...props}>
     <Container textAlign={['center']} w={[1,1, 720]} >
       <Heading f={[5,6]} level={[3]} color={['blueLight']} fontWeight={[700]} >Join The Community</Heading>
-      <Paragraph f={[]}>Start building, organizing and using Ethereum solutions today. </Paragraph>
+      <Paragraph f={[]}>Start building, organizing and growing with the Multicultural Center of Marin today. </Paragraph>
       <Login f={3} px={[20,25]} py={[10,15]} gradient='cherry' children='Login/Register'  />
     </Container>
 </Section>

@@ -47,8 +47,8 @@ const mapDispatchToProps = (dispatch, props) => ({
 /*-- Event Handlers ---*/
 const onSubmit = (data, dispatch) => new Promise((resolve, reject) => {
   const where = []
-  if(data.searchProjectName) where.push(['name.nameProject', '==', data.searchProjectName ])
-  if(data.searchProjectAlias) where.push(['name.nameProjectAlias', '==', data.searchProjectAlias ])
+  if(data.searchProjectName) where.push(['name.nameDisplay', '==', data.searchProjectName ])
+  if(data.searchProjectAlias) where.push(['name.nameAlias', '==', data.searchProjectAlias ])
   dispatch(
     firestoreDocumentFilterGetRequest({
       payload: {},

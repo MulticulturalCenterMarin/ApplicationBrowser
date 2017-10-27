@@ -1,3 +1,3 @@
 export default {
-  loginWelcome: `Welcome to the Internet Engineers Guild` 
+  loginWelcome: `Welcome to Multicultural Center of Marin` 
 }

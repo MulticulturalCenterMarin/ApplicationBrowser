@@ -1,6 +1,15 @@
 import assets from 'assets'
 const drawerMenuItems = [
   {
+    title: 'Profile',
+    branch: 'dashboard/organization',
+    destination: '',
+    svg: assets.svg.womanHead,
+    icon: {
+      svgColor: 'purple'
+    }
+  },
+  {
     title: 'Activity',
     branch: 'dashboard/organization',
     destination: 'activity',

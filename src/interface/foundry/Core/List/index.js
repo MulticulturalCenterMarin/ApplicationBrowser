@@ -8,11 +8,13 @@ import Foundry from 'foundry'
 import StyleCompose from 'logic/interface/StyleCompose'
 
 /* ------------------------------- Component -------------------------------- */
-export default ({data, foundry, styled, styledContainer}) => {
-  const Item = data ? _.map(data, StyleCompose(styled)) : null;
-  const List = Item ? _.map(Item, Foundry[foundry]) : null
+export default ({data, foundry, styled, styledContainer, ...props}) => {
+  if(!foundry || !data) return null
+  const Items = data ? _.map(data, StyleCompose(styled)) : null;
+  const ItemsPropped = _.map(Items, item=> ({...item, ...props}))
+  const List = Items ? _.map(ItemsPropped, Foundry[foundry]) : null
   return (
-    <Flex direction={['row']} wrap='wrap' {...styledContainer} > 
+    <Flex direction={['row']} wrap='wrap' {...styledContainer}  > 
       {List}
     </Flex>
   )

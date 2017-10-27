@@ -30,7 +30,7 @@ const assets = {
   svg: {
     ...shapes
   },
-  screenshots: {
+  screen: {
     ...screenshots
   }
 }

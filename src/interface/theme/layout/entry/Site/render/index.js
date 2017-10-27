@@ -10,6 +10,7 @@ import { Footer}  from 'workshop/zones'
 /* ---------------------------- Module Package ------------------------------ */
 export default props => (
 <Absolute left right top bottom>
+<BlockTop/>
 <BlockBranding/>
   
   {/* Header Zone */}

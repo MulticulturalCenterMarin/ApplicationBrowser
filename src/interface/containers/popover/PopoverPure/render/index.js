@@ -15,7 +15,13 @@ export default (props) =>(
     isOpen={props.isOpen}
     place={props.place || 'below'}
     preferPlace={props.preferPlace || 'below'}
-    body={!props.body ? <Item foundry={props.foundry}/> : props.body }
+    body={
+      !props.body 
+      ? <Item foundry={props.foundry}/> 
+      : (typeof props.body === 'function')
+        ? React.createElement(props.body)
+        : React.cloneElement(props.body)
+    }
     tipSize={0.1}
     onOuterAction={() =>{props.togglePopover(n => n = n ? false : true); props.popoverClose()}  }
   >

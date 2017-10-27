@@ -1,30 +1,66 @@
 import assets from 'assets'
 const drawerMenuItems = [
   {
-    title: 'Activity',
+    title: 'Project Profile',
     branch: 'dashboard/project',
-    destination: 'activity',
-    svg: assets.svg.backpack,
-    icon: {
-      svgColor: 'red'
-    }
-  },
-  {
-    title: 'People',
-    branch: 'dashboard/project',
-    destination: 'people',
+    destination: '',
     svg: assets.svg.dna,
     icon: {
       svgColor: 'blue'
     }
   },
   {
-    title: 'Edit',
+    title: 'Edit Profile',
     branch: 'dashboard/project',
     destination: 'edit',
     svg: assets.svg.cog,
     icon: {
-      svgColor: 'green'
+      svgColor: 'blue'
+    }
+  },
+  {
+    title: 'Recent Activity',
+    branch: 'dashboard/project',
+    destination: 'activity',
+    svg: assets.svg.dataAnalytics,
+    icon: {
+      svgColor: 'blue'
+    }
+  },
+  {
+    title: 'Status Updates',
+    branch: 'dashboard/project',
+    destination: 'activity',
+    svg: assets.svg.mobileSend,
+    icon: {
+      svgColor: 'blue'
+    }
+  },
+  {
+    title: 'Contributors',
+    branch: 'dashboard/project',
+    destination: 'people',
+    svg: assets.svg.girl,
+    icon: {
+      svgColor: 'blue'
+    }
+  },
+  {
+    title: 'Task Assignment',
+    branch: 'dashboard/project',
+    destination: 'tasks',
+    svg: assets.svg.flowChart,
+    icon: {
+      svgColor: 'blue'
+    }
+  },
+  {
+    title: 'Administrator Settings',
+    branch: 'dashboard/project',
+    destination: 'settings',
+    svg: assets.svg.folderLinked,
+    icon: {
+      svgColor: 'blue'
     }
   },
 ]

@@ -31,7 +31,7 @@ export default () => (
     <DrawerFactory>
     <DialogFactory/>
       <AsideDrawerMenu/>
-    </DrawerFactory>>
+    </DrawerFactory>
     <ToastContainer {...ToastSetting}/>
   </Box>
   <Magic>

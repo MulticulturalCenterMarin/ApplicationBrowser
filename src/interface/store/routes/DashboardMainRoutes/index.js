@@ -5,52 +5,87 @@ import { Route } from 'atomic'
 /* ------------------------- External Dependencies -------------------------- */
 import { FirestoreList, FirestoreDocument } from 'containers'
 import {
-  OrganizationFirestoreDocument,
-  OrganizationFirestoreList,
-  OrganizationAddFull,
-  OrganizationMap,
-  OrganizationMapSlim,
-  OrganizationSearchLocal,
-  OrganizationProfileGraphRequest,
-  OrganizationsMapMarkers,
-
-  ResourceFirestoreDocument,
-  ResourceFirestoreList,
-  ResourceAdd,
-  ResourceMap,
-  ResourceMapSlim,
-  ResourceMarkerPopover,
-
-  PeopleFirestoreList,
-  PeopleMap,
-  PeopleMapSlim,
-  PeopleMarkerPopover,
-  PersonFirestoreDocument,
-  PersonAddFull,
-
-  UserProfile,
+  MapAdvancedCompose,
   UserProfileDashboard,
-  UserProfileDashboardRequest,
-  QueryUsers,
-  QueryUsersInternal,
  } from 'foundry'
 
 import {
-  FormProjectEdit,
-  FormProjectAddFull,
+  ArticleAddFull,
+  OrganizationAddFull,
+  PersonAddFull,
   ProjectAddFull,
-  ProjectMarkerPopover,
   ResourceAddFull,
 } from 'entity'
-
-import {
-  MapAdvancedCompose,
- } from 'foundry'
 /* ------------------------------- Component -------------------------------- */
 
 export default () => (
 <div>
-  {/*--- 
+  <Route path="/dashboard/profile" component={UserProfileDashboard} />
+  {/*--- Article
+    + Top (news) 
+    - news/map => MapAdvancedCompose
+    - news => MapAdvancedCompose
+    - news => FirestoreList
+    + Switch (article)
+      - article/add => ArticleAddFull
+      - article => FirestoreDocument
+  ---*/}
+  <Route exact path="/dashboard/news" component={FirestoreList} 
+    delta='ArticleSearch'
+    entity='article'
+    foundry='EntityCard'
+    styled={{
+      w: [1, 1, 0.5],
+    }}
+  />
+  <Switch>
+    <Route exact path="/dashboard/article/add" component={ArticleAddFull} />
+    <Route path="/dashboard/article/:eid" component={FirestoreDocument}
+      collection="articles"
+      foundry={'ArticleProfileEntry'}
+     />
+  </Switch>
+  <Route path="/dashboard/profile" component={UserProfileDashboard} />
+  {/*--- Person
+    + Top (people) 
+    - people/map => MapAdvancedCompose
+    - people => MapAdvancedCompose
+    - people => FirestoreList
+    + Switch (person)
+      - person/add => PersonAddFull
+      - person => FirestoreDocument
+  ---*/}
+  <Route exact path="/dashboard/people/map" component={MapAdvancedCompose}
+  delta='PersonSearch' 
+    collection='people' 
+    foundry='PersonMarkerPopover'
+    styledMap={{h:[320,420,660]}} 
+   />
+  <Route exact path="/dashboard/people" component={MapAdvancedCompose} 
+    delta='PersonSearch' 
+    collection='people' 
+    foundry='PersonMarkerPopover'
+    styledMap={{h:[200,280,360]}} 
+  />
+  <Route exact path="/dashboard/people" component={FirestoreList} 
+    collection='people'
+    delta='PersonSearch'
+    entity='person'
+    foundry='EntityCard'
+    styled={{
+      w: [1, 1, 0.5],
+    }}
+  />
+  <Switch>
+    <Route exact path="/dashboard/person/add" component={PersonAddFull} />
+    <Route path="/dashboard/person/:eid" component={FirestoreDocument}
+      collection="people"
+      foundry={'PersonProfileEntry'}
+     />
+  </Switch>
+
+
+  {/*--- Project
     + Top (projects) 
     - projects/map => MapAdvancedCompose
     - projects => MapAdvancedCompose
@@ -74,9 +109,10 @@ export default () => (
   <Route exact path="/dashboard/projects" component={FirestoreList} 
     collection='projects'
     delta='ProjectSearch'
-    foundry='ProjectCard'
+    entity='project'
+    foundry='EntityCard'
     styled={{
-      w: [1, 1, 0.3],
+      w: [1, 1, 0.5],
     }}
   />
   <Switch>
@@ -87,7 +123,15 @@ export default () => (
      />
   </Switch>
  
-  {/*--- Resource ---*/}
+  {/*--- Resource
+    + Top (resources) 
+    - resources/map => MapAdvancedCompose
+    - resources => MapAdvancedCompose
+    - resources => FirestoreList
+    + Switch (resource)
+      - resource/add => ProjectAddFull
+      - resource => FirestoreDocument
+  ---*/}
   <Route exact path="/dashboard/resources/map" component={MapAdvancedCompose}
     delta='ResourceSearch' 
     collection='resources' 
@@ -103,9 +147,10 @@ export default () => (
   <Route exact path="/dashboard/resources" component={FirestoreList} 
     collection='resources'
     delta='ResourceSearch'
-    foundry='ResourceCard'
+    entity='resource'
+    foundry='EntityCard'
     styled={{
-      w: [1, 1, 0.3],
+      w: [1, 1, 0.5],
     }}
   />
   <Switch>
@@ -115,20 +160,43 @@ export default () => (
       foundry={'ResourceProfileEntry'}
      />
   </Switch>
+  {/*--- Organization
+    + Top (organizations) 
+    - organizations/map => MapAdvancedCompose
+    - organizations => MapAdvancedCompose
+    - organizations => FirestoreList
+    + Switch (organization)
+      - organization/add => ProjectAddFull
+      - organization => FirestoreDocument
+  ---*/}
+  <Route exact path="/dashboard/organizations/map" component={MapAdvancedCompose}
+    delta='OrganizationSearch' 
+    collection='organizations' 
+    foundry='OrganizationMarkerPopover'
+    styledMap={{h:[320,420,660]}} 
+   />
+  <Route exact path="/dashboard/organizations" component={MapAdvancedCompose} 
+    delta='OrganizationSearch' 
+    collection='organizations' 
+    foundry='OrganizationMarkerPopover'
+    styledMap={{h:[200,280,360]}} 
+  />
+  <Route exact path="/dashboard/organizations" component={FirestoreList} 
+    collection='organizations'
+    delta='OrganizationSearch'
+    entity='organization'
+    foundry='EntityCard'
+    styled={{
+      w: [1, 1, 0.5],
+    }}
+  />
+  <Switch>
+    <Route exact path="/dashboard/organization/add" component={OrganizationAddFull} />
+    <Route path="/dashboard/organization/:eid" component={FirestoreDocument}
+      collection="organizations"
+      foundry={'OrganizationProfileEntry'}
+     />
+  </Switch>
 
-  <Route path="/dashboard/profile" component={UserProfileDashboard} />
 
-    <Route exact path="/dashboard/organizations/map" component={OrganizationMap} />
-  <Route exact path="/dashboard/organizations" component={OrganizationMapSlim} />
-  <Route exact path="/dashboard/organizations" component={OrganizationFirestoreList} />
-  <Route path="/dashboard/organization/:eid" component={OrganizationFirestoreDocument} />
-
-  {/*--- People ---*/}
-
-  <Route exact path="/dashboard/people/map" component={PeopleMap} />
-  <Route exact path="/dashboard/people" component={PeopleMapSlim} />
-  <Route exact path="/dashboard/people" component={PeopleFirestoreList} />
-  <Route exact path="/dashboard/person/add" component={PersonAddFull} />
-  
-  <Route path="/dashboard/person/:eid" component={PersonFirestoreDocument} />
 </div>);

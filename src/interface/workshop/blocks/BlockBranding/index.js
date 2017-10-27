@@ -6,7 +6,10 @@ import { Flex, Box, Heading, Image, Span, Link } from 'atomic'
 import UserProfile from 'containers/user/UserProfile'
 import { DrawerOpen } from 'containers'
 import {
-  MenuProjectsPopover
+  MenuProjectsPopover,
+  MenuResourcePopover,
+  MenuOrganizationPopover,
+  MenuNewsPopover,
 } from 'foundry'
 
 /* --------------------------- Styled Components ---------------------------- */
@@ -22,11 +25,9 @@ export default props => (
       
       <Flex align="center" w={[1, 1, 0.35]} justify="flex-start" display={['none', 'none', 'Flex']} py={[15]} >
         <MenuProjectsPopover/>
-        <Link to="/why" color={['blueLight']}><Heading f={[1]} level={[5]} display='inline' px={10}>Why</Heading></Link>
-        <Link to="/tools" color={['blueLight']}><Heading f={[1]} level={[5]} display='inline' px={10}>Tools</Heading></Link>
-        <Link to="/community" color={['blueLight']}><Heading f={[1]} level={[5]} display='inline' px={10}>Community</Heading></Link>
-        <Link to="/memberships" color={['blueLight']}><Heading f={[1]} level={[5]} display='inline' px={10}>Memberships</Heading></Link>
-        <Link to="/opportunity" color={['blueLight']}><Heading f={[1]} level={[5]} display='inline' px={10}>Opportunity</Heading></Link>
+        <MenuOrganizationPopover/>
+        <MenuResourcePopover/>
+        <MenuNewsPopover/>
       </Flex>
       <Flex align="center" justify={[ 'center', 'center', 'flex-end']} pr={[null, null, 15]} py={[5, 5, 'inherit']} w={[1, 1, 0.23]}>
         <UserProfile py={[10]} />

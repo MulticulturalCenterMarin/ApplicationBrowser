@@ -21,17 +21,15 @@ import {
 
 /* ------------------------------- Component -------------------------------- */
 export default props => {
-  if(!MenuPersonProfile) return null
   const ProfileMenuMap = <Box bg='white' bs={[1]} p={[10]} >{MenuPersonProfile.map(item=> <LinkIconContext {...item} {...props} /> )}</Box>
-  const nameFirst = idx(props,_=>_.data.name.nameFirst)
-  const nameLast = idx(props,_=>_.data.name.nameLast)
+  const nameDisplay = idx(props,_=>_.data.name.nameDisplay)
   const latitude = idx(props,_=>_.data.address.geopoint.latitude)
   const longitude = idx(props,_=>_.data.address.geopoint.longitude)
   if(!latitude || !longitude) return null
   return <Marker latitude={latitude} longitude={longitude} offsetLeft={0} offsetTop={0}>
-    <PopoverPure body={ProfileMenuMap} >
+    <PopoverPure body={ProfileMenuMap} delta={`${props.id}|MarkerPopover`} >
       <Box bg='white' p={7.5} br={2} bs={1}>
-        <Heading level={[6]} f={[1]}>{nameFirst + " " + nameLast}</Heading>
+        <Heading level={[6]} f={[1]}>{nameDisplay}</Heading>
       </Box>
     </PopoverPure>
   </Marker>

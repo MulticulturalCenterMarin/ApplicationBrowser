@@ -22,7 +22,7 @@ const Map = ({
   viewport,_onViewportChange,
   containerHeight, containerWidth,
 }) => {
-  if(!data) return null
+  if(!foundry || !data) return null
   if(!Array.isArray(data)) data = [data] // It's either a documentList or a document. If document, create 1 item documentList.
   const Styled = data ? _.map(data, _.curry(itemApplyStyle)(styled && styled.item || {})) : null;
   const FoundryItems = Styled ? _.map(Styled, Foundry[foundry]) : null

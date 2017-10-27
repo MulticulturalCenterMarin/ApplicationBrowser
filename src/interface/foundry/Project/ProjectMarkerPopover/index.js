@@ -21,7 +21,6 @@ import {
 
 /* ------------------------------- Component -------------------------------- */
 export default props => {
-  console.log(props)
   const ProfileMenuMap = <Box bg='white' bs={[1]} p={[10]} >{MenuProjectProfile.map(item=> <LinkIconContext {...item} {...props} /> )}</Box>
   const nameDisplay = idx(props,_=>_.data.name.nameDisplay)
   const latitude = idx(props,_=>_.data.address.geopoint.latitude)

@@ -1,6 +1,5 @@
 /* ------------------------- External Dependencies -------------------------- */
 import React from 'react'
-import styled from 'styled-components'
 /* ------------------------- Internal Dependencies -------------------------- */
 import assets from 'assets'
 import { Box, Flex, BackgroundImage, BackgroundGradient, Button, Container, Heading, Paragraph, Section } from 'atomic'
