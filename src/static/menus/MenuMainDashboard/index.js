@@ -52,6 +52,57 @@ const drawerMenuItems = [
     ]
   },
   {
+    title: 'Events',
+    to: '/dashboard/events',
+    svg: assets.svg.bookmark,
+    gradient: 'redOrange',
+    
+    childrenItems: [
+      {
+        title: 'Latest Articles',
+        to: '/dashboard/events/latest',
+        svg: assets.svg.lightening,
+        gradient: 'redOrange',
+        titleWrap: {
+          bg:'white',
+          px: [10,15],
+        },
+         wrapper: {
+          display: 'flex',
+          align: 'center',
+        },
+      },
+      {
+        title: 'Upcoming Schedule',
+        to: '/dashboard/events/schedule',
+        svg: assets.svg.flowChart,
+        gradient: 'redOrange',
+        titleWrap: {
+          bg:'white',
+          px: [10,15],
+        },
+         wrapper: {
+          display: 'flex',
+          align: 'center',
+        },
+      },
+      {
+        title: 'Recent Reports',
+        to: '/dashboard/events/reporting',
+        svg: assets.svg.graphVisualization,
+        gradient: 'redOrange',
+        titleWrap: {
+          bg:'white',
+          px: [10,15],
+        },
+        wrapper: {
+          display: 'flex',
+          align: 'center',
+        },
+      },
+    ]
+  },
+  {
     title: 'Communications',
     to: '/dashboard/communications',
     svg: assets.svg.chatHeads,
@@ -87,8 +138,8 @@ const drawerMenuItems = [
             },
           },
           {
-            title: 'Recent Activity',
-            to: '/dashboard/communications/hotline/immigration/activity/recent',
+            title: 'Messages',
+            to: '/dashboard/communications/hotline/immigration/messages',
             svg: assets.svg.chatHeads,
             gradient: 'cherry',
             titleWrap: {

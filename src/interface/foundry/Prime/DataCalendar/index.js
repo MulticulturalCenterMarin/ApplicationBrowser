@@ -9,7 +9,7 @@ const defaultState = withState({
 
 })
 const defaultProps = withProps({
-  culture: 'en',
+  culture: 'es',
   cultures: ['en', 'en-GB', 'es', 'fr', 'ar-AE'],
 })
 
@@ -19,7 +19,7 @@ const queryLifecycle = lifecycle(
   /*--- Did Mount | BEGIN ---*/
   componentDidMount()
   {
-
+    
   },
   /*--- Did Mount | END ---*/
 

@@ -6,23 +6,23 @@ import {Column} from 'primereact/components/column/Column';
 const displaySelection = (data) => <div style={{textAlign: 'left'}}>No Selection</div>
 /* ------------------------------- Component -------------------------------- */
 export default ({
-  data,datas, foundry, styled,
+  dataFeed, columns,
+  tableHeader,
   selectedItems, displaySelection,
   onSelectionChange
 }) => {
-  _.omit(datas, ['startTime', 'end'])
+  _.omit(dataFeed, ['startTime', 'end'])
 return <DataTable 
-  value={data} 
+  value={dataFeed ? dataFeed : []} 
   selectionMode="multiple" 
-  header="Hotline Call Record" 
+  header={tableHeader}
   selection={selectedItems}
   sortable={true}
   sortMode="multiple"
   onSelectionChange={onSelectionChange}
   >
-    <Column field="id" header="ID" />
-    <Column field="direction" header="Direction" sortable={true}/>
-    <Column field="duration" header="Duration" sortable={true}/>
-    <Column field="from" header="From" sortable={true}/>
-    <Column field="forwardedFrom" header="Forwarded From"sortable={true}/>
+    {
+      columns.map(column=><Column field={column.field} header={column.header} sortable={true}/>)
+    }
+
 </DataTable>}

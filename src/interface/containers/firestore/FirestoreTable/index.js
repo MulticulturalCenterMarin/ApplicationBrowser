@@ -17,18 +17,18 @@ const queryLifecycle = lifecycle(
         metadata:{
           branch: [this.props.collection],
           delta: this.props.delta,
-          filter: this.props.filter
+          filters: this.props.filters
         }
       })
     }
   }
 })
+
 const mapStateToProps = (state, props) => {
-  const d = fromFirestore.getQueryData(state, props.delta)
-  if (!d) return null
-  const t = d.map(item=>({id:item.id, ...item.data}))
+  const data = fromFirestore.getQueryData(state, props.delta)
+  if (!data) return null
   return {
-    data: t
+    dataFeed: data.map(item=>({id:item.id, ...item.data}))
   }
 }
 

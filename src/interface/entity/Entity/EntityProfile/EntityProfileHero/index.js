@@ -14,6 +14,7 @@ import {
 export default props => <Box
       bs={3}
       color='white'
+      position='relative'
       mh={[200,260]} py={[40,80]} of='hidden' ta='center' >
       <BackgroundGradient gradient='ibize' />
       {!idx(props.data, _ => _.images.imageBanner) ? null : 

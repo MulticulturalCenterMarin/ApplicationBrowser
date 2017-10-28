@@ -56,7 +56,7 @@ const queryLifecycle = lifecycle(
         metadata:{
           branch: [this.props.collection],
           delta: this.props.delta,
-          filter: this.props.filter
+          filters: this.props.filters
         }
       })
     }

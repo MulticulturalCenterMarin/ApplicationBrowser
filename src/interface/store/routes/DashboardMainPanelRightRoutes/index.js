@@ -7,6 +7,10 @@ import {
   ArticleAdd,
   ArticleAddFullDescription,
   ArticleSearch,
+  
+  EventAdd,
+  EventAddFullDescription,
+  EventSearch,
 
   ProjectAdd,
   ProjectAddFullDescription,
@@ -29,11 +33,15 @@ import {
 /* ------------------------------- Component -------------------------------- */
 export default () => 
 <div>
+   {/* Events */}
+  <Route exact path="/dashboard/events/manage" component={EventSearch} />
+  <Route exact path="/dashboard/events" component={EventAdd} />
+  <Route exact path="/dashboard/events/add" component={EventAddFullDescription} />
    {/* News */}
   <Route exact path="/dashboard/news/manage" component={ArticleSearch} />
   <Route exact path="/dashboard/news" component={ArticleAdd} />
   <Route exact path="/dashboard/article/add" component={ArticleAddFullDescription} />
-   {/*Organization */}
+   {/* People */}
   <Route exact path="/dashboard/people/manage" component={PersonSearch} />
   <Route exact path="/dashboard/people" component={PersonAdd} />
   <Route exact path="/dashboard/person/add" component={PersonAddFullDescription} />

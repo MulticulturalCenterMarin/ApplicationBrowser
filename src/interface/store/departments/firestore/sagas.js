@@ -125,6 +125,7 @@ function* documentAllGet({payload, metadata}) {
 function* documentFilterGet({payload, metadata}) {
   try {
     const { branch, filters } = metadata
+    console.log(filters)
     const data = yield call(reduxSagaFirebase.firestore.documentFilterGet, branch, filters);
     yield put(firestoreDocumentFilterGetSuccess({payload: data, metadata}))
   } catch(e) {

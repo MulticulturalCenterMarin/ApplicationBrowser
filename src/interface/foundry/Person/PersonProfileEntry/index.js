@@ -4,15 +4,18 @@ import React from 'react'
 import { Switch } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 /* ------------------------- Internal Dependencies -------------------------- */
+import Invert from 'logic/interface/FlowInvert'
 import assets from 'assets'
 import { Absolute } from 'particles'
 import { Flex, Box, Route }from 'atomic'
 import {
+  FirestoreFeed,
   FirestoreListCompose
 } from 'containers'
 import {
   ImageList,
   FormAddContributorPerson,
+  FormProfileSmsSend,
   FormStatusUpdate,
   EntityStatusUpdates,
 } from 'foundry'
@@ -27,8 +30,10 @@ import {
 /* ------------------------------- Component -------------------------------- */
 export default props => { 
   let contributors = idx(props.data, _ => _.contributors.contributorPeople), contributorsRef
+  let phone = idx(props.data, _ => _.contact.contactPhone)
   if(contributors) contributorsRef = contributors.map(i=> i.eid)
-
+  console.log(phone)
+  if(phone) console.log(Invert.phoneUnformatted(phone))
   return <div>
     <Absolute top bottom left bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} of='hidden' w={[1,1, 0.77]}>
         <PerfectScrollbar>
@@ -51,6 +56,86 @@ export default props => {
           
           {/*--- Edit::Person ---*/}
           {!props.data ? null : <Route exact path="/dashboard/person/:eid/edit" component={FormPersonEdit} data={props.data} /> }
+
+
+          {!phone ? null :
+          <Route exact path="/dashboard/person/:eid/sms"
+            phoneTo={Invert.phoneUnformatted(phone)}
+            component={FormProfileSmsSend} 
+          />
+          }
+          {!phone ? null :
+          <Route exact path="/dashboard/person/:eid/sms" component={FirestoreFeed} 
+              delta='MessagesSearch'
+              collection='messages'
+              foundry='DataTable'
+              filters={{
+                where: [
+                  ['to', '==', Invert.phoneUnformatted(phone)]
+                ]
+              }}
+              tableHeader={'Text Message (SMS) Records'}
+              columns={[
+                {
+                  field: 'status',
+                  header: 'Status',
+                },
+                {
+                  field: 'direction',
+                  header: 'Direction',
+                },
+                {
+                  field: 'body',
+                  header: 'Body',
+                },
+                {
+                  field: 'from',
+                  header: 'From',
+                },
+                {
+                  field: 'to',
+                  header: 'To',
+                },
+              ]}
+            />
+          }
+          {!phone ? null :
+          <Route exact path="/dashboard/person/:eid/calls" component={FirestoreFeed} 
+              delta='MessagesSearch'
+              collection='calls'
+              foundry='DataTable'
+              filters={{
+                where: [
+                  ['to', '==', Invert.phoneUnformatted(phone)]
+                ]
+              }}
+              tableHeader={'Call Records'}
+              columns={[
+                {
+                  field: 'status',
+                  header: 'Status',
+                },
+                {
+                  field: 'duration',
+                  header: 'Duration(seconds)',
+                },
+        
+                {
+                  field: 'forwardedFrom',
+                  header: 'Forwarding',
+                },
+                {
+                  field: 'from',
+                  header: 'From',
+                },
+                {
+                  field: 'to',
+                  header: 'To',
+                },
+              ]}
+            />
+          }
+
 
           {/*--- Person ---*/}
           <Route exact path="/dashboard/:entity/:eid"

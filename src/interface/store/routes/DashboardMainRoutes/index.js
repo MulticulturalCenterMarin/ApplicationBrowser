@@ -3,7 +3,7 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import { Route } from 'atomic' 
 /* ------------------------- External Dependencies -------------------------- */
-import { FirestoreList, FirestoreDocument, FirestoreTable } from 'containers'
+import { FirestoreList, FirestoreDocument, FirestoreTable, FirestoreFeed } from 'containers'
 import {
   MapAdvancedCompose,
   UserProfileDashboard,
@@ -31,19 +31,74 @@ export default () => (
       - communications/add => ProjectAddFull
       - communications => FirestoreDocument
   ---*/}
-  <Route exact path="/dashboard/communications" component={DataCalendar} 
-    delta='CallRecordSearch'
-    collection='callRecords' 
+  <Route exact path="/dashboard/communications" component={FirestoreFeed} 
+    delta='EventsCalendar'
+    collection='events' 
+    foundry='DataCalendar'
     styled={{
       w: [1, 1, 0.5],
     }}
   />
   <Route path="/dashboard/communications/hotline/:entity/calls/log" component={FirestoreTable} 
     delta='CallRecordSearch'
-    collection='callRecords' 
+    collection='calls'
+    columns={[
+      {
+        field: 'status',
+        header: 'Status',
+      },
+      {
+        field: 'direction',
+        header: 'Direction',
+      },
+      {
+        field: 'duration',
+        header: 'Duration',
+      },
+      {
+        field: 'fromFormatted',
+        header: 'From',
+      },
+      {
+        field: 'to',
+        header: 'To',
+      },
+    ]}
     styled={{
       w: [1, 1, 0.5],
     }}
+  />
+  <Route exact path="/dashboard/communications/hotline/:entity/messages" component={FirestoreFeed} 
+    delta='MessagesSearch'
+    collection='messages'
+    foundry='DataTable'
+    filters={{
+      where: [
+        ['to', '==', '+14158791469']
+      ]
+    }}
+    columns={[
+      {
+        field: 'status',
+        header: 'Status',
+      },
+      {
+        field: 'direction',
+        header: 'Direction',
+      },
+      {
+        field: 'body',
+        header: 'Body',
+      },
+      {
+        field: 'from',
+        header: 'From',
+      },
+      {
+        field: 'to',
+        header: 'To',
+      },
+    ]}
   />
 
 
@@ -70,6 +125,39 @@ export default () => (
     <Route path="/dashboard/article/:eid" component={FirestoreDocument}
       collection="articles"
       foundry={'ArticleProfileEntry'}
+     />
+  </Switch>
+  {/*--- *** Event ***
+    + Top (events) 
+    - events/map => MapAdvancedCompose
+    - events => MapAdvancedCompose
+    - events => FirestoreList
+    + Switch (event)
+      - event/add => ArticleAddFull
+      - event => FirestoreDocument
+  ---*/}
+  <Route exact path="/dashboard/events" component={FirestoreFeed} 
+    delta='EventSearch'
+    collection='events'
+    foundry='DataCalendar'
+    styledContainer={{
+      position: 'relative',
+      h: [500],
+    }}
+  />
+  <Route exact path="/dashboard/events" component={FirestoreList} 
+    delta='EventSearch'
+    entity='event'
+    foundry='EntityCardDashboard'
+    styled={{
+      w: [1, 1, 0.5],
+    }}
+  />
+  <Switch>
+    <Route exact path="/dashboard/event/add" component={ArticleAddFull} />
+    <Route path="/dashboard/event/:eid" component={FirestoreDocument}
+      collection="events"
+      foundry={'EventProfileEntry'}
      />
   </Switch>
   <Route path="/dashboard/profile" component={UserProfileDashboard} />

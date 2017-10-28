@@ -5,6 +5,7 @@ import {Route} from 'atomic'
 /* ------------------------- Internal Dependencies -------------------------- */
 import { 
   ArticleSearch,
+  EventSearch,
   ProjectSearch,
   PersonSearch,
   ResourceSearch,
@@ -14,6 +15,7 @@ import {
 export default () => 
 <div>
   <Route exact path="/dashboard/news" component={ArticleSearch} />
+  <Route exact path="/dashboard/events" component={EventSearch} />
   <Route exact path="/dashboard/people" component={PersonSearch} />
   <Route exact path="/dashboard/projects" component={ProjectSearch} />
   <Route exact path="/dashboard/organizations" component={OrganizationSearch} />

@@ -42,7 +42,7 @@ export default (props) => {
       <Box {...mainLayout}>
         {!imageBanner ? null : 
          <Link to={`/${props.entity}/${id}`} color='blue'>
-          <Box h={[100,160]} of='hidden'>
+          <Box h={[100,160]} of='hidden' position='relative'>
             <BackgroundImage src={imageBanner}/>
           </Box>
         </Link>

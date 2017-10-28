@@ -3,7 +3,6 @@
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
-const globalizePlugin = require('globalize-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
@@ -284,17 +283,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new globalizePlugin({
-      production: true/false, // true: production, false: development
-      developmentLocale: "en", // locale to be used for development.
-      supportedLocales: [ "en", "es", "zh"], // locales that should be built support for.
-      cldr: function() {}, // CLDR data (optional)
-      messages: "messages/[locale].json", // messages (optional)
-      timeZoneData: function() {}, // time zone data (optional)
-      output: "globalize-compiled-data-[locale].[hash].js", // build output.
-      moduleFilter: filterFunction, // filter for modules to exclude from processing
-      tmpdirBase: ".", // optional for non create-react-apps
-    }),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
