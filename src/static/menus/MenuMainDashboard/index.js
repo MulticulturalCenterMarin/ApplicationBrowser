@@ -1,7 +1,7 @@
 import assets from 'assets'
 const drawerMenuItems = [
   {
-    title: 'News/Articles',
+    title: 'Articles',
     to: '/dashboard/news',
     svg: assets.svg.idea,
     gradient: 'redOrange',
@@ -52,15 +52,15 @@ const drawerMenuItems = [
     ]
   },
   {
-    title: 'Rapid Response',
-    to: '/dashboard/volunteer/hotline/rapid-response',
+    title: 'Communications',
+    to: '/dashboard/communications',
     svg: assets.svg.chatHeads,
     gradient: 'cherry',
     
     childrenItems: [
       {
-        title: 'Activity',
-        to: '/dashboard/volunteer/hotline/rapid-response/activity',
+        title: 'Rapid Response',
+        to: '/dashboard/communications/hotline/immigration',
         svg: assets.svg.lightening,
         gradient: 'cherry',
         titleWrap: {
@@ -71,10 +71,40 @@ const drawerMenuItems = [
           display: 'flex',
           align: 'center',
         },
+        childrenItems: [
+          {
+            title: 'Call Logs',
+            to: '/dashboard/communications/hotline/immigration/calls/log',
+            svg: assets.svg.chat,
+            gradient: 'cherry',
+            titleWrap: {
+              bg:'white',
+              px: [10,15],
+            },
+            wrapper: {
+              display: 'flex',
+              align: 'center',
+            },
+          },
+          {
+            title: 'Recent Activity',
+            to: '/dashboard/communications/hotline/immigration/activity/recent',
+            svg: assets.svg.chatHeads,
+            gradient: 'cherry',
+            titleWrap: {
+              bg:'white',
+              px: [10,15],
+            },
+            wrapper: {
+              display: 'flex',
+              align: 'center',
+            },
+          },
+        ],
       },
       {
-        title: 'Schedule',
-        to: '/dashboard/volunteer/hotline/rapid-response/schedule',
+        title: 'Information',
+        to: '/dashboard/communications/hotline/general',
         svg: assets.svg.flowChart,
         gradient: 'cherry',
         titleWrap: {
@@ -85,11 +115,41 @@ const drawerMenuItems = [
           display: 'flex',
           align: 'center',
         },
+        childrenItems: [
+          {
+            title: 'Call Logs',
+            to: '/dashboard/communications/hotline/general/calls/log',
+            svg: assets.svg.chatDrawn,
+            gradient: 'cherry',
+            titleWrap: {
+              bg:'white',
+              px: [10,15],
+            },
+            wrapper: {
+              display: 'flex',
+              align: 'center',
+            },
+          },
+          {
+            title: 'Recent Activity',
+            to: '/dashboard/communications/hotline/immigration/activity/recent',
+            svg: assets.svg.chatHeads,
+            gradient: 'cherry',
+            titleWrap: {
+              bg:'white',
+              px: [10,15],
+            },
+            wrapper: {
+              display: 'flex',
+              align: 'center',
+            },
+          },
+        ],
       },
       {
         title: 'Reporting',
         to: '/dashboard/volunteer/hotline/rapid-response/reporting',
-        svg: assets.svg.graphVisualization,
+        svg: assets.svg.flowChartShapes,
         gradient: 'cherry',
         titleWrap: {
           bg:'white',

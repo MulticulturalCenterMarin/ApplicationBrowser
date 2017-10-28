@@ -9,6 +9,7 @@ import geo from 'mapbox-geocoding'
 import {
   ENTITY_ADD_REQUEST,
   ENTITY_EDIT_REQUEST,
+  ENTITY_UPDATE_REQUEST,
   ENTITY_DELETE_REQUEST,
   ENTITY_PERSON_ADD_REQUEST,
   ENTITY_PERSON_EDIT_REQUEST,
@@ -40,6 +41,8 @@ import {
   entityAddFailure,
   entityEditSuccess,
   entityEditFailure,
+  entityUpdateSuccess,
+  entityUpdateFailure,
   entityDeleteSuccess,
   entityDeleteFailure,
   entityPersonAddSuccess,
@@ -161,6 +164,24 @@ function* entityEdit({payload, metadata}) {
       const geopoint = idx(geocode, _=>_.features[0].center)
       payload.address.geopoint = new firebase.firestore.GeoPoint(geopoint[1], geopoint[0])
     }
+    yield put(firestoreDocumentUpdateRequest({payload, metadata }))
+    yield put(entityEditSuccess({payload: {}, metadata}))
+    yield put(notificationOpen({payload:{title: 'Entity Edit Success'}}))
+    if(metadata.trigger) {
+      const trigger = {
+        ...metadata,
+        delta: metadata.trigger
+      }
+      yield put(firestoreDocumentGetRequest({payload:{}, metadata:trigger}))
+    }
+  } catch(e) {
+    yield put(notificationOpen({payload:{title: 'Entity Edit Failure'}}))
+    yield put(entityEditFailure({payload: e, metadata}))
+  }
+}
+
+function* entityUpdate({payload, metadata}) {
+  try {
     yield put(firestoreDocumentUpdateRequest({payload, metadata }))
     yield put(entityEditSuccess({payload: {}, metadata}))
     yield put(notificationOpen({payload:{title: 'Entity Edit Success'}}))
@@ -609,6 +630,7 @@ export default function* rxdbRootSaga() {
   yield [
    takeEvery(ENTITY_ADD_REQUEST, entityAdd),
    takeEvery(ENTITY_EDIT_REQUEST, entityEdit),
+   takeEvery(ENTITY_UPDATE_REQUEST, entityUpdate),
    takeEvery(ENTITY_DELETE_REQUEST, entityDelete),
    takeEvery(ENTITY_PERSON_ADD_REQUEST, personAdd),
    takeEvery(ENTITY_PERSON_EDIT_REQUEST, personEdit),

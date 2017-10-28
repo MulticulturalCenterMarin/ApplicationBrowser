@@ -7,7 +7,10 @@ export default (state = initialState, {type, payload}) => {
     case DIALOG_OPEN:
       return {
         title: payload.title,
-        open: payload.foundry
+        open: payload.foundry,
+        data: {
+          ...payload
+        }
       }
     case DIALOG_CLOSE:
       return {

@@ -132,16 +132,22 @@
     "yarn": "0.21.3"
   },
   "dependencies": {
+    "@google-cloud/firestore": "^0.8.2",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "express": "^4.15.4",
-    "firebase-admin": "^5.2.1",
+    "firebase-admin": "^5.4.0",
     "firebase-functions": "^0.6.3",
     "graphql": "^0.10.0",
     "graphql-server-express": "^1.1.2",
     "graphql-tools": "^1.2.2",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "moment-timezone": "^0.5.13",
+    "shortid": "^2.2.8",
+    "stripe": "^4.25.0",
+    "timezone": "^1.0.6",
     "twilio": "^3.6.6"
   }
 }

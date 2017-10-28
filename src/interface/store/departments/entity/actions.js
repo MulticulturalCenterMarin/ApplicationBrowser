@@ -6,6 +6,10 @@ export const ENTITY_EDIT_REQUEST = 'ENTITY_EDIT_REQUEST'
 export const ENTITY_EDIT_SUCCESS = 'ENTITY_EDIT_SUCCESS'
 export const ENTITY_EDIT_FAILURE = 'ENTITY_EDIT_FAILURE'
 
+export const ENTITY_UPDATE_REQUEST = 'ENTITY_UPDATE_REQUEST'
+export const ENTITY_UPDATE_SUCCESS = 'ENTITY_UPDATE_SUCCESS'
+export const ENTITY_UPDATE_FAILURE = 'ENTITY_UPDATE_FAILURE'
+
 export const ENTITY_DELETE_REQUEST = 'ENTITY_DELETE_REQUEST'
 export const ENTITY_DELETE_SUCCESS = 'ENTITY_DELETE_SUCCESS'
 export const ENTITY_DELETE_FAILURE = 'ENTITY_DELETE_FAILURE'
@@ -139,6 +143,24 @@ export const entityEditSuccess = ({payload, metadata}) => ({
 
 export const entityEditFailure = ({payload, metadata}) => ({
   type: ENTITY_EDIT_FAILURE,
+  payload,
+  metadata
+})
+// entity :: Update |  ENTITY_UPDATE
+export const entityUpdateRequest = ({payload, metadata}) => ({
+  type: ENTITY_UPDATE_REQUEST,
+  payload,
+  metadata
+})
+
+export const entityUpdateSuccess = ({payload, metadata}) => ({
+  type: ENTITY_UPDATE_SUCCESS,
+  payload,
+  metadata
+})
+
+export const entityUpdateFailure = ({payload, metadata}) => ({
+  type: ENTITY_UPDATE_FAILURE,
   payload,
   metadata
 })

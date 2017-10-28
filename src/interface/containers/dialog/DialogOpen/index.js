@@ -10,7 +10,7 @@ import Render from './render';
 import { dialogOpen } from 'store/departments/actions'
 
 const mapDispatchToProps = (dispatch, props) => ({
-  dialogOpen: () => dispatch(dialogOpen({payload:{foundry:props.foundry}}))
+  dialogOpen: () => dispatch(dialogOpen({payload:{...props}}))
 })
 
 export default connect(null, mapDispatchToProps)(Render);

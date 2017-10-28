@@ -23,6 +23,7 @@ const BlockTop = ({ ...props }) => {
      <Link to="/why" color={['blueLight']}><Heading f={[1]} level={[5]} display='inline' px={10}>Why</Heading></Link>
         <Link to="/tools" color={['blueLight']}><Heading f={[1]} level={[5]} display='inline' px={10}>Tools</Heading></Link>
         <Link to="/community" color={['blueLight']}><Heading f={[1]} level={[5]} display='inline' px={10}>Community</Heading></Link>
+        <Link to="/news" color={['blueLight']}><Heading f={[1]} level={[5]} display='inline' px={10}>News</Heading></Link>
       </Flex>
       
       <Flex align="center" w={[0.5]} justify="center" direction={['row']} >

@@ -1,7 +1,8 @@
 /* ------------------------- External Dependencies -------------------------- */
 import _ from 'lodash'
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import {Route} from 'atomic'
 /* ------------------------- External Dependencies -------------------------- */
 import headerRoutes from 'pages/header'
 import Front from 'workshop/pages/header/Front'

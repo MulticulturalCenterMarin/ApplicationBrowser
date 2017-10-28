@@ -41,7 +41,7 @@ export default (props) => {
   return <Flex direction={['row']} align='stretch' justify='center' p={[10]} {...props} key={id} >
       <Box {...mainLayout}>
         {!imageBanner ? null : 
-         <Link to={`/dashboard/${props.entity}/${id}`} color='blue'>
+         <Link to={`/${props.entity}/${id}`} color='blue'>
           <Box h={[100,160]} of='hidden'>
             <BackgroundImage src={imageBanner}/>
           </Box>

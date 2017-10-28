@@ -3,10 +3,13 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import { Route } from 'atomic' 
 /* ------------------------- External Dependencies -------------------------- */
-import { FirestoreList, FirestoreDocument } from 'containers'
+import { FirestoreList, FirestoreDocument, FirestoreTable } from 'containers'
 import {
   MapAdvancedCompose,
   UserProfileDashboard,
+  PrimeDataTable,
+  DataTable,
+  DataCalendar
  } from 'foundry'
 
 import {
@@ -20,6 +23,30 @@ import {
 
 export default () => (
 <div>
+
+  {/*--- *** Communications ***
+    + Top (dashboard/communications) 
+    - communications/map => MapAdvancedCompose
+    + Switch (project)
+      - communications/add => ProjectAddFull
+      - communications => FirestoreDocument
+  ---*/}
+  <Route exact path="/dashboard/communications" component={DataCalendar} 
+    delta='CallRecordSearch'
+    collection='callRecords' 
+    styled={{
+      w: [1, 1, 0.5],
+    }}
+  />
+  <Route path="/dashboard/communications/hotline/:entity/calls/log" component={FirestoreTable} 
+    delta='CallRecordSearch'
+    collection='callRecords' 
+    styled={{
+      w: [1, 1, 0.5],
+    }}
+  />
+
+
   <Route path="/dashboard/profile" component={UserProfileDashboard} />
   {/*--- Article
     + Top (news) 
@@ -33,7 +60,7 @@ export default () => (
   <Route exact path="/dashboard/news" component={FirestoreList} 
     delta='ArticleSearch'
     entity='article'
-    foundry='EntityCard'
+    foundry='EntityCardDashboard'
     styled={{
       w: [1, 1, 0.5],
     }}
@@ -71,7 +98,7 @@ export default () => (
     collection='people'
     delta='PersonSearch'
     entity='person'
-    foundry='EntityCard'
+    foundry='EntityCardDashboard'
     styled={{
       w: [1, 1, 0.5],
     }}
@@ -110,7 +137,7 @@ export default () => (
     collection='projects'
     delta='ProjectSearch'
     entity='project'
-    foundry='EntityCard'
+    foundry='EntityCardDashboard'
     styled={{
       w: [1, 1, 0.5],
     }}
@@ -148,7 +175,7 @@ export default () => (
     collection='resources'
     delta='ResourceSearch'
     entity='resource'
-    foundry='EntityCard'
+    foundry='EntityCardDashboard'
     styled={{
       w: [1, 1, 0.5],
     }}
@@ -185,7 +212,7 @@ export default () => (
     collection='organizations'
     delta='OrganizationSearch'
     entity='organization'
-    foundry='EntityCard'
+    foundry='EntityCardDashboard'
     styled={{
       w: [1, 1, 0.5],
     }}

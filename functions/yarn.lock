@@ -39,7 +39,7 @@
     string-format-obj "^1.1.0"
     through2 "^2.0.3"
 
-"@google-cloud/firestore@~0.8.2":
+"@google-cloud/firestore@^0.8.2", "@google-cloud/firestore@~0.8.2":
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/@google-cloud/firestore/-/firestore-0.8.2.tgz#e93a7068b723f0773c1af62f3494c0633ba2d346"
   dependencies:
@@ -1541,6 +1541,10 @@ block-stream@*:
 blocked@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/blocked/-/blocked-1.2.1.tgz#e22efe767863c65ab8197f6252929104e1ec9ce2"
+
+bluebird@^2.10.2:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-2.11.0.tgz#534b9033c022c9579c56ba3b3e5a5caafbb650e1"
 
 bluebird@^3.2.1:
   version "3.5.1"
@@ -3156,9 +3160,9 @@ findup-sync@0.4.2:
     micromatch "^2.3.7"
     resolve-dir "^0.1.0"
 
-firebase-admin@^5.2.1:
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-5.4.2.tgz#002f58be2ad8901229e525ec55fa726d12f904eb"
+firebase-admin@^5.4.0:
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-5.4.3.tgz#784114c62a6dd5a1bfc67b54fa0cfdd02147871a"
   dependencies:
     "@google-cloud/firestore" "~0.8.2"
     "@google-cloud/storage" "^1.2.1"
@@ -3167,8 +3171,7 @@ firebase-admin@^5.2.1:
     "@types/node" "^8.0.32"
     faye-websocket "0.9.3"
     google-auth-library "^0.10.0"
-    jsonwebtoken "7.1.9"
-    lodash "^4.6.1"
+    jsonwebtoken "7.4.3"
     node-forge "0.7.1"
 
 firebase-functions@^0.6.3:
@@ -4433,17 +4436,7 @@ jsonschema@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/jsonschema/-/jsonschema-1.2.0.tgz#d6ebaf70798db7b3a20c544f6c9ef9319b077de2"
 
-jsonwebtoken@7.1.9, jsonwebtoken@^7.1.9:
-  version "7.1.9"
-  resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-7.1.9.tgz#847804e5258bec5a9499a8dc4a5e7a3bae08d58a"
-  dependencies:
-    joi "^6.10.1"
-    jws "^3.1.3"
-    lodash.once "^4.0.0"
-    ms "^0.7.1"
-    xtend "^4.0.1"
-
-jsonwebtoken@^7.4.1:
+jsonwebtoken@7.4.3, jsonwebtoken@^7.4.1:
   version "7.4.3"
   resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-7.4.3.tgz#77f5021de058b605a1783fa1283e99812e645638"
   dependencies:
@@ -4451,6 +4444,16 @@ jsonwebtoken@^7.4.1:
     jws "^3.1.4"
     lodash.once "^4.0.0"
     ms "^2.0.0"
+    xtend "^4.0.1"
+
+jsonwebtoken@^7.1.9:
+  version "7.1.9"
+  resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-7.1.9.tgz#847804e5258bec5a9499a8dc4a5e7a3bae08d58a"
+  dependencies:
+    joi "^6.10.1"
+    jws "^3.1.3"
+    lodash.once "^4.0.0"
+    ms "^0.7.1"
     xtend "^4.0.1"
 
 jsprim@^1.2.2:
@@ -5124,7 +5127,13 @@ modify-values@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/modify-values/-/modify-values-1.0.0.tgz#e2b6cdeb9ce19f99317a53722f3dbf5df5eaaab2"
 
-moment@2.18.1, moment@2.x.x:
+moment-timezone@^0.5.13:
+  version "0.5.13"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.13.tgz#99ce5c7d827262eb0f1f702044177f60745d7b90"
+  dependencies:
+    moment ">= 2.9.0"
+
+moment@2.18.1, moment@2.x.x, "moment@>= 2.9.0", moment@^2.18.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
@@ -5901,6 +5910,10 @@ qs@6.5.1, qs@~6.5.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
 
+qs@~6.0.4:
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.0.4.tgz#51019d84720c939b82737e84556a782338ecea7b"
+
 qs@~6.2.0:
   version "6.2.3"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.2.3.tgz#1cfcb25c10a9b2b483053ff39f5dfc9233908cfe"
@@ -6157,7 +6170,7 @@ request-capture-har@^1.1.4:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/request-capture-har/-/request-capture-har-1.2.2.tgz#cd692cfb2cc744fd84a3358aac6ee51528cf720d"
 
-request@2, request@^2.53.0, request@^2.72.0, request@^2.81.0, request@^2.83.0:
+request@2, request@^2.53.0, request@^2.72.0, request@^2.74.0, request@^2.81.0, request@^2.83.0:
   version "2.83.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.83.0.tgz#ca0b65da02ed62935887808e6f510381034e3356"
   dependencies:
@@ -6210,7 +6223,7 @@ request@2.74.0, request@~2.74.0:
     tough-cookie "~2.3.0"
     tunnel-agent "~0.4.1"
 
-request@2.81.0, request@2.81.x, request@>=2.42.0, request@^2.74.0, request@^2.75.0, request@^2.79.0:
+request@2.81.0, request@2.81.x, request@>=2.42.0, request@^2.75.0, request@^2.79.0:
   version "2.81.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
   dependencies:
@@ -6486,6 +6499,10 @@ shelljs@0.7.6, shelljs@^0.7.3, shelljs@^0.7.5:
     glob "^7.0.0"
     interpret "^1.0.0"
     rechoir "^0.6.2"
+
+shortid@^2.2.8:
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.8.tgz#033b117d6a2e975804f6f0969dbe7d3d0b355131"
 
 shx@^0.2.2:
   version "0.2.2"
@@ -6943,6 +6960,15 @@ strip-json-comments@2.0.1, strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
+stripe@^4.25.0:
+  version "4.25.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-4.25.0.tgz#16af99c255e4fe22adbaf629f392af0715370760"
+  dependencies:
+    bluebird "^2.10.2"
+    lodash.isplainobject "^4.0.6"
+    object-assign "^4.1.0"
+    qs "~6.0.4"
+
 strong-data-uri@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/strong-data-uri/-/strong-data-uri-1.0.4.tgz#136765ebaf8e0f4ad60c4b146779f062c29d18f0"
@@ -7079,6 +7105,10 @@ timed-out@^3.0.0:
 timed-out@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/timed-out/-/timed-out-4.0.1.tgz#f32eacac5a175bea25d7fab565ab3ed8741ef56f"
+
+timezone@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/timezone/-/timezone-1.0.6.tgz#d3b50bc35c63a09ed8876a8cc3642628685ccc33"
 
 tmp@^0.0.29:
   version "0.0.29"

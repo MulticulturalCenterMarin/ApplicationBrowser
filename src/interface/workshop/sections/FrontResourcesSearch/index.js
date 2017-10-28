@@ -26,7 +26,8 @@ export default props => (
             <FirestoreList
               collection="resources"
               delta='ResourceSearch'
-              foundry='EntityCard'
+              entity="resource"
+              foundry='EntityCardDashboard'
               styled={{
                 w: [1, 1, 0.5],
               }}

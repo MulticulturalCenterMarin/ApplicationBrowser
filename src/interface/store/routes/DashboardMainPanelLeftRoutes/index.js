@@ -1,7 +1,7 @@
 /* ------------------------- External Dependencies -------------------------- */
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { Absolute } from 'particles'
+import { Switch } from 'react-router-dom';
+import {Route} from 'atomic'
 /* ------------------------- Internal Dependencies -------------------------- */
 import { 
   ArticleSearch,

@@ -1,7 +1,7 @@
 /* ------------------------- External Dependencies -------------------------- */
-import React from 'react'
 import idx from './idx';
-
+import React from 'react'
+import Markdown from 'react-remarkable'
 /* ------------------------- Internal Dependencies -------------------------- */
 import { Absolute} from 'particles'
 import { 
@@ -10,7 +10,6 @@ import {
   Button, Container, Heading, Image, Link, Paragraph, Section, Span, SVG,
   Blockquote, HorizontalRule, Shape, Responsive 
 }from 'atomic'
-
 
 import {
   FormGalleryAdd,
@@ -31,13 +30,14 @@ export default (props) => {
   const{ data } = props
   /*--- Extraction ---*/
   const id = idx(props, _ => _.id)
-  const nameDisplay = idx(props.data, _ => _.name.nameDisplay)
-  const nameAlias = idx(props.data, _ => _.name.nameAlias)
+  const contentTitle = idx(props.data, _ => _.content.contentTitle)
+  const contentTagline = idx(props.data, _ => _.content.contentTagline)
   const mission = idx(props.data, _ => _.biography.biographyMission)
   const objective = idx(props.data, _ => _.biography.biographyObjective)
   const summary = idx(props.data, _ => _.biography.biographySummary)
   const imageBanner = idx(props.data, _ => _.images.imageBanner)
-
+  
+  const contentBody = idx(props.data, _ => _.content.contentBody)
   if (!data) return null
   /*--- Component ---*/
   return <Flex direction={['row']} align='stretch' justify='center' p={[10]} {...props} key={id} >
@@ -47,45 +47,35 @@ export default (props) => {
             py={[40,80,220]}
             of='hidden'
           >
-            <BackgroundImage src={imageBanner}/>
-            <BackgroundGradient gradient='ibize' o={0.65} />
+            <BackgroundGradient gradient='ibize'/>
+            { !imageBanner ? null :
+              <BackgroundImage src={imageBanner} o={0.45} />}
               <Container
                 color='white'
                 w={[500]} >
-                <Link to={`/dashboard/${props.entity}/${id}`} color='blue' >
+                <Link to={`/${props.entity}/${id}`} color='blue' >
                   <Heading 
-                    f={[6,7]}
-                    fw={300}
                     level={3}
+                    f={[6,7]} fw={300}
                     ts='light'
-                    children={nameDisplay} 
+                    children={contentTitle} 
+                  />
+                  <Heading 
+                    f={[4,5]} fw={700}
+                    level={3}
+                    ts='dark'
+                    children={contentTagline} 
                   />
                 </Link>
-                { !mission?null:
-                  <Box>
-                    <Paragraph f={[1]}>{mission}</Paragraph>
-                  </Box>
-                  }
+                <Link to={`/dashboard/${props.entity}/${id}`} color='blue'>
+                  <Button>Administrator</Button>
+                </Link>
               </Container>
           </Box>
         }
         <Container p={[10]} w={600}  >
           <Box w={[1]} mt={[null,null, '-70px']} bg='white' br={10} bs={2} p={[10,15,25]}>
-            { !mission?null:
-            <Box>
-              <Paragraph f={[1]}>{mission}</Paragraph>
-            </Box>
-            }
-            { !objective?null:
-            <Box>
-              <Paragraph f={[1]}>{objective}</Paragraph>
-            </Box>
-            }
-            { !summary?null:
-            <Box>
-              <Paragraph f={[1]}>{summary}</Paragraph>
-            </Box>
-            }
+            <Markdown source={contentBody}/> 
           </Box>
           <Box py={[20,40]} >
             <ImageList data={idx(props.data, _ => _.images.imageGallery)} />

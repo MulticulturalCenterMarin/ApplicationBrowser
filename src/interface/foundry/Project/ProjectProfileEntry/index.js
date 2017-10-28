@@ -6,7 +6,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 /* ------------------------- Internal Dependencies -------------------------- */
 import assets from 'assets'
 import { Absolute } from 'particles'
-import { Flex, Box, Route }from 'atomic'
+import { Flex, Box, Route, Heading }from 'atomic'
 import {
   FirestoreListCompose
 } from 'containers'
@@ -15,6 +15,8 @@ import {
   FormAddContributorPerson,
   FormStatusUpdate,
   EntityStatusUpdates,
+  MarkdownEditor,
+  FormContentBasics,
 } from 'foundry'
 import {
   FormProjectEdit,
@@ -28,7 +30,6 @@ import {
 export default props => { 
   let contributors = idx(props.data, _ => _.contributors.contributorPeople), contributorsRef
   if(contributors) contributorsRef = contributors.map(i=> i.eid)
-  console.log(contributorsRef)
 
   return <div>
     <Absolute top bottom left bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} of='hidden' w={[1,1, 0.77]}>
@@ -43,7 +44,7 @@ export default props => {
               collection={'people'}
               entity='person'
               delta='ProjectsComposePeople'
-              foundry='EntityCard'
+              foundry='EntityCardDashboard'
               path='/dashboard/:entity/:eid/people'
               references={contributorsRef} 
             />
@@ -52,20 +53,36 @@ export default props => {
           <Route exact path="/dashboard/project/:eid/activity" component={EntityStatusUpdates} collection='projects' data={props.data}/>
           
           {/*--- Edit::Project ---*/}
-          {!props.data ? null : <Route exact path="/dashboard/project/:eid/edit" component={FormProjectEdit} data={props.data} /> }
+          {!props.data ? null : <Route exact path="/dashboard/project/:eid/settings" component={FormProjectEdit} data={props.data} /> }
 
           {/*--- Project ---*/}
-          <Route exact path="/dashboard/:entity/:eid"
-          component={EntityProfileGallery} collection='projects' data={props.data} />
-
-          {!idx(props.data, _ => _.biography) ? null :
-          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileInterfaceBiography} data={props.data} w={1} />}
+          <Box p={20} bg='grayLight' bs={1} mb={20}>
+            <Heading level={[3]} f={[4,5]} color='blue' >
+              Gallery
+            </Heading>
+            <Route exact path="/dashboard/:entity/:eid"
+              component={EntityProfileGallery}
+              collection='projects'
+              data={props.data} 
+              />
+          </Box>
+          {/*--- Edit::Article ---*/}
+          {!props.data ? null : 
+          <Route exact path="/dashboard/:entity/:eid" component={MarkdownEditor} collection='projects' delta={props.id}  markdownDefault={idx(props.data, _ => _.content.contentBody)}/>}
 
         </Box>
       </PerfectScrollbar>
     </Absolute>
     <Absolute top right gradient='gray' pos={['relative !important', 'relative !important', 'absolute !important']} bs={[3]} h={[1]} w={[1,1, 0.23]} z={15}>
       <PerfectScrollbar>
+        {!props.data ? null : 
+          <Route exact path="/dashboard/project/:eid/edit"
+            component={FormContentBasics}
+            collection='projects'
+            delta={props.id}
+            data={props.data} 
+            />
+          }
         <EntityProfileInterfaceIdentity {...props} w={1} />
         <ProjectProfileMenu {...props} />
         {/*--- Project ---*/}

@@ -15,6 +15,8 @@ import {
   FormAddContributorPerson,
   FormStatusUpdate,
   EntityStatusUpdates,
+  MarkdownEditor,
+  FormContentBasics,
 } from 'foundry'
 import {
   FormArticleEdit,
@@ -50,20 +52,30 @@ export default props => {
           <Route exact path="/dashboard/article/:eid/activity" component={EntityStatusUpdates} collection='articles' data={props.data}/>
           
           {/*--- Edit::Article ---*/}
-          {!props.data ? null : <Route exact path="/dashboard/article/:eid/edit" component={FormArticleEdit} data={props.data} /> }
+          {!props.data ? null : 
+          <Route exact path="/dashboard/article/:eid/edit" component={MarkdownEditor} collection='articles' delta={props.id}  markdownDefault={idx(props.data, _ => _.content.contentBody)}/>}
+
 
           {/*--- Article ---*/}
           <Route exact path="/dashboard/:entity/:eid"
           component={EntityProfileGallery} collection='articles' data={props.data} />
 
-          {!idx(props.data, _ => _.biography) ? null :
-          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileInterfaceBiography} data={props.data} w={1} />}
 
+
+      
         </Box>
       </PerfectScrollbar>
     </Absolute>
     <Absolute top right gradient='gray' pos={['relative !important', 'relative !important', 'absolute !important']} bs={[3]} h={[1]} w={[1,1, 0.23]} z={15}>
       <PerfectScrollbar>
+        {!props.data ? null : 
+          <Route exact path="/dashboard/article/:eid/edit"
+            component={FormContentBasics}
+            collection='articles'
+            delta={props.id}
+            data={props.data} 
+            />
+          }
         <EntityProfileInterfaceIdentity {...props} w={1} />
         <ArticleProfileMenu {...props} />
         {/*--- Article ---*/}

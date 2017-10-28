@@ -4,18 +4,27 @@ const drawerMenuItems = [
     title: 'Project Profile',
     branch: 'dashboard/project',
     destination: '',
-    svg: assets.svg.dna,
+    svg: assets.svg.laptop,
     icon: {
-      svgColor: 'blue'
+      svgColor: 'green'
     }
   },
   {
-    title: 'Edit Profile',
+    title: 'Edit Project',
     branch: 'dashboard/project',
     destination: 'edit',
-    svg: assets.svg.cog,
+    svg: assets.svg.flowChart,
     icon: {
-      svgColor: 'blue'
+      svgColor: 'green'
+    }
+  },
+  {
+    title: 'Settings',
+    branch: 'dashboard/project',
+    destination: 'settings',
+    svg: assets.svg.folderLinked,
+    icon: {
+      svgColor: 'green'
     }
   },
   {
@@ -24,7 +33,7 @@ const drawerMenuItems = [
     destination: 'activity',
     svg: assets.svg.dataAnalytics,
     icon: {
-      svgColor: 'blue'
+      svgColor: 'red'
     }
   },
   {
@@ -33,7 +42,7 @@ const drawerMenuItems = [
     destination: 'activity',
     svg: assets.svg.mobileSend,
     icon: {
-      svgColor: 'blue'
+      svgColor: 'red'
     }
   },
   {
@@ -42,7 +51,7 @@ const drawerMenuItems = [
     destination: 'people',
     svg: assets.svg.girl,
     icon: {
-      svgColor: 'blue'
+      svgColor: 'red'
     }
   },
   {

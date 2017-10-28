@@ -43,7 +43,7 @@ const Body = props => <Box w={[1,1,675]} bs={4} br={10} >
               <PopoverClose delta='MenuResource' >
                 <FirestoreList
                   delta='ResourceSearch'
-                  foundry='EntityCard'
+                  foundry='EntityCardDashboard'
                   styled={{
                     w: [1],
                   }}

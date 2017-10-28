@@ -13,7 +13,7 @@ export default ({ ...props }) => (<div>
       collection='articles'
       delta='ArticleSearch'
       entity='article'
-      foundry='NewsCardLarge'
+      foundry='EntityCardLarge'
       styled={{
         w: [1],
       }}

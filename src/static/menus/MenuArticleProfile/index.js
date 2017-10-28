@@ -4,34 +4,16 @@ const drawerMenuItems = [
     title: 'Article Preview',
     branch: 'dashboard/article',
     destination: '',
-    svg: assets.svg.dna,
+    svg: assets.svg.laptop,
     icon: {
-      svgColor: 'blue'
+      svgColor: 'red'
     }
   },
   {
-    title: 'Edit Profile',
+    title: 'Edit Article',
     branch: 'dashboard/article',
     destination: 'edit',
     svg: assets.svg.cog,
-    icon: {
-      svgColor: 'blue'
-    }
-  },
-  {
-    title: 'Recent Activity',
-    branch: 'dashboard/article',
-    destination: 'activity',
-    svg: assets.svg.dataAnalytics,
-    icon: {
-      svgColor: 'blue'
-    }
-  },
-  {
-    title: 'Status Updates',
-    branch: 'dashboard/article',
-    destination: 'activity',
-    svg: assets.svg.mobileSend,
     icon: {
       svgColor: 'blue'
     }
