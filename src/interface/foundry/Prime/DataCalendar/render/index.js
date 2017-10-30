@@ -6,7 +6,8 @@ import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import Globalize from 'globalize';
 import { Absolute } from 'particles'
-import {Box } from 'atomic'
+import { Box } from 'atomic'
+import { CalendarItem } from 'logic/interface/DataScaffold'
 BigCalendar.setLocalizer(
   BigCalendar.globalizeLocalizer(Globalize)
 );
@@ -14,37 +15,20 @@ BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
 let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
 /* ------------------------------- Component -------------------------------- */
 export default ({
-  data, dataFeed, culture, cultures, cultureChange, styledContainer, ...props
+  data, dataFeed, culture, cultures, cultureChange, styledContainer, styledCalendar, ...props
 }) =>{
-console.log(dataFeed)
-dataFeed = _.map(dataFeed, item=>({
-  title: idx(item.data, _=> _.name.nameDisplay),
-  start: idx(item.data, _=> _.date.dateStart)? moment(item.data.date.dateStart).format(): null,
-  end: idx(item.data, _=> _.date.dateEnd)? moment(item.data.date.dateEnd).format(): null,
+if(!dataFeed) return null
+const dataFeedNew = _.map(dataFeed, item=>({
+  title: idx(item, _=> _.name.nameDisplay),
+  start: idx(item, _=> _.date.dateStart)? moment(idx(item, _=> _.date.dateStart)).format(): null,
+  end: idx(item, _=> _.date.dateEnd)? moment(idx(item, _=> _.date.dateEnd)).format(): null,
 }))
+const t = CalendarItem(dataFeed)
 return <Box {...styledContainer} >
-  <Box h={100}>
-    <h3 className="callout">
-      <label>Select a Culture</label>
-      <select
-        className='form-control'
-        style={{ width: 200, display: 'inline-block'}}
-        defaultValue={'fr'}
-        onChange={cultureChange}
-      >
-      {
-        cultures.map((c, idx) =>
-          <option key={idx} value={c}>{c}</option>
-        )
-      }
-      </select>
-    </h3>
-  </Box>
-  <Absolute top bottom left right mt={100} >
-    {console.log(dataFeed)}
+  <Absolute top bottom left right bg='white' color='charcoal' {...styledCalendar} >
     <BigCalendar
       culture={'es'}
-      events={dataFeed ? dataFeed : []}
+      events={dataFeedNew ? dataFeedNew : []}
       views={allViews}
       step={60}
     />

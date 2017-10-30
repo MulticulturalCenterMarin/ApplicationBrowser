@@ -3,6 +3,7 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import {Route} from 'atomic'
 /* ------------------------- Internal Dependencies -------------------------- */
+import { FirestoreList, FirestoreDocument, FirestoreTable, FirestoreFeed } from 'containers'
 import {
   ArticleAdd,
   ArticleAddFullDescription,
@@ -33,6 +34,70 @@ import {
 /* ------------------------------- Component -------------------------------- */
 export default () => 
 <div>
+
+  <Route 
+    exact 
+    path="/dashboard/communications/hotline"
+    component={FirestoreFeed} 
+    delta='HotlineAllSearch'
+    collection='hotline' 
+    foundry='DataCalendar'
+    styledContainer={{
+      gradient: 'cherry',
+      w: 700
+    }}
+    styledCalendar={{
+      bg:'white',
+      p: 10,
+      m:20
+    }}
+  />
+
+  <Route 
+    exact 
+    path="/dashboard/communications/hotline/immigration"
+    component={FirestoreFeed} 
+    delta='HotlineCalendar'
+    collection='hotline' 
+    filters={{
+      where: [
+        ['hotline.hotlineSelection', '==', 'rapidResponse']
+      ]
+    }}
+    foundry='DataCalendar'
+    styledContainer={{
+      gradient: 'cherry',
+      w: 700
+    }}
+    styledCalendar={{
+      bg:'white',
+      p: 10,
+      m:20
+    }}
+  />
+  <Route 
+    exact 
+    path="/dashboard/communications/hotline/general"
+    component={FirestoreFeed} 
+    delta='HotlineGeneralSearch'
+    collection='hotline' 
+    filters={{
+      where: [
+        ['hotline.hotlineSelection', '==', 'generalInformation']
+      ]
+    }}
+    foundry='DataCalendar'
+    styledContainer={{
+      gradient: 'cherry',
+      w: 700
+    }}
+    styledCalendar={{
+      bg:'white',
+      p: 10,
+      m:20
+    }}
+  />
+
    {/* Events */}
   <Route exact path="/dashboard/events/manage" component={EventSearch} />
   <Route exact path="/dashboard/events" component={EventAdd} />

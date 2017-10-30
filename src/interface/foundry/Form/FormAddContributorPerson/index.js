@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import { 
   compose,
   lifecycle,
-  withProps,
-  withState,
-  renderComponent
 } from 'recompose'
 import { 
   reduxForm,

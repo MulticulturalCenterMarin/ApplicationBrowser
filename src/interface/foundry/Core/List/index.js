@@ -9,6 +9,8 @@ import StyleCompose from 'logic/interface/StyleCompose'
 
 /* ------------------------------- Component -------------------------------- */
 export default ({data, foundry, styled, styledContainer, ...props}) => {
+  console.log(data)
+  console.log(props)
   if(!foundry || !data) return null
   const Items = data ? _.map(data, StyleCompose(styled)) : null;
   const ItemsPropped = _.map(Items, item=> ({...item, ...props}))

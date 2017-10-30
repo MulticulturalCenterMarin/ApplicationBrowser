@@ -39,7 +39,6 @@ const queryLifecycle = lifecycle({
 /* -------------------------- Form Configuration ---------------------------- */
 /*--- Event Handlers ---*/
 const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
-  console.log(props)
   /*--- Extraction ---*/
   const submission = {}
   if(data.contentTitle) submission['content.contentTitle'] = data.contentTitle 
@@ -80,7 +79,6 @@ const mapStateToProps = (state, props) => {
   const data = fromFirestore.getQueryData(state, delta).data
   let initialValues = {};
   Object.keys(data).map(key=> ({...data[key]})).forEach(i=> initialValues = {...initialValues, ...i})
-  console.log(initialValues)
   if(data) return {delta, initialValues:{...initialValues}}
 }
 

@@ -22,9 +22,9 @@ const imageLayout = {
 }
 
 export default (props) => {
-  const mission = idx(props.data, _ => _.biography.biographyMission)
-  const objective = idx(props.data, _ => _.biography.biographyObjective)
-  const summary = idx(props.data, _ => _.biography.biographySummary)
+  const mission = idx(props, _ => _.biography.biographyMission)
+  const objective = idx(props, _ => _.biography.biographyObjective)
+  const summary = idx(props, _ => _.biography.biographySummary)
 return <Flex direction={['column']} w={[1]} {...props} >
     <Box w={[1]} mt={[15,25]} bs={[0]} p={[10,15,25]}>
     { !mission?null:

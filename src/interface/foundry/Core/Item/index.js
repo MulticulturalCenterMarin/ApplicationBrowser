@@ -3,7 +3,7 @@ import React from 'react'
 import Foundry from 'foundry'
 /* ---------------------------- Module Package ------------------------------ */
 export default ({data, foundry, styled, ...props}) => !foundry 
-? <div>empyu</div> 
+? null
 : !Foundry[foundry]
-  ? <div>empyu</div>
+  ? null
   : React.createElement(Foundry[foundry], {...props, ...data, ...styled}) 

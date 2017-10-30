@@ -32,7 +32,7 @@ exports.api = functions.https.onRequest(graphQLServer)
 /*---*---------------              ---------------*---*/
 exports.authenticationComplete = functions.auth.user().onCreate(event => {
   const person = {
-    uid: event.data.uid,
+    eid: event.data.uid,
     images: {
       imageProfile: event.data.photoURL
     },

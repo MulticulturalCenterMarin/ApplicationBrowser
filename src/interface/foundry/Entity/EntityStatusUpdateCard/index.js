@@ -25,8 +25,8 @@ export default (props) => {
   const{ data, styled } = props
   /*--- Extraction ---*/
   const id = idx(props, _ => _.id)
-  const update = idx(props.data, _ => _.update.updateBody)
-  if (!data) return null
+  const update = idx(props, _ => _.update.updateBody)
+  if (!props.id) return null
   /*--- Component ---*/
   return <Flex direction={['row']} align='stretch' justify='center' p={[10]} {...props} key={id} >
       <Box>

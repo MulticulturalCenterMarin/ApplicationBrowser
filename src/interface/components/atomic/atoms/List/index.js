@@ -23,7 +23,7 @@ const Ol = styled.ol`${styles}`
 const Ul = styled.ul`${styles}`
 
 const List = ({ ordered, children, ...props }) => {
-  return React.createElement(ordered ? Ol : Ul, props, children)
+  return React.createElement(ordered ? Ol : Ul, props, children.map(child=><li>{child}</li>))
 }
 
 List.propTypes = {

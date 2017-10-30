@@ -29,14 +29,14 @@ const mainLayout = {
 }
 
 export default (props) => {
-  const name = idx(props.data, _ => _.name.nameDisplay)
-  const nameAlias = idx(props.data, _ => _.name.nameAlias)
-  const phone = idx(props.data, _ => _.contact.contactPhone)
-  const email = idx(props.data, _ => _.contact.contactEmail)
-  const url = idx(props.data, _ => _.contact.contactURL)
-  const street = idx(props.data, _ => _.address.addressStreet)
-  const city = idx(props.data, _ => _.address.addressCity)
-  const zip = idx(props.data, _ => _.address.addressZip)
+  const name = idx(props, _ => _.name.nameDisplay)
+  const nameAlias = idx(props, _ => _.name.nameAlias)
+  const phone = idx(props, _ => _.contact.contactPhone)
+  const email = idx(props, _ => _.contact.contactEmail)
+  const url = idx(props, _ => _.contact.contactURL)
+  const street = idx(props, _ => _.address.addressStreet)
+  const city = idx(props, _ => _.address.addressCity)
+  const zip = idx(props, _ => _.address.addressZip)
 
 return <Flex direction={['row']} align='stretch' justify='center' w={[1]} {...props} >
   <Flex {...imageLayout } >

@@ -5,7 +5,7 @@ const drawerMenuItems = [
     to: '/dashboard/news',
     svg: assets.svg.idea,
     gradient: 'redOrange',
-    
+    gradientDir:'180deg',
     childrenItems: [
       {
         title: 'Latest Articles',
@@ -51,46 +51,19 @@ const drawerMenuItems = [
       },
     ]
   },
-  {
-    title: 'Events',
-    to: '/dashboard/events',
-    svg: assets.svg.bookmark,
-    gradient: 'redOrange',
+
+   {
+    title: 'Communications',
+    to: '/dashboard/communications',
+    svg: assets.svg.chatHeads,
+    gradient: 'cherry',
     
     childrenItems: [
       {
-        title: 'Latest Articles',
-        to: '/dashboard/events/latest',
-        svg: assets.svg.lightening,
-        gradient: 'redOrange',
-        titleWrap: {
-          bg:'white',
-          px: [10,15],
-        },
-         wrapper: {
-          display: 'flex',
-          align: 'center',
-        },
-      },
-      {
-        title: 'Upcoming Schedule',
-        to: '/dashboard/events/schedule',
-        svg: assets.svg.flowChart,
-        gradient: 'redOrange',
-        titleWrap: {
-          bg:'white',
-          px: [10,15],
-        },
-         wrapper: {
-          display: 'flex',
-          align: 'center',
-        },
-      },
-      {
-        title: 'Recent Reports',
-        to: '/dashboard/events/reporting',
-        svg: assets.svg.graphVisualization,
-        gradient: 'redOrange',
+        title: 'Create Schedule',
+        to: '/dashboard/communications/hotline/',
+        svg: assets.svg.flowChartShapes,
+        gradient: 'cherry',
         titleWrap: {
           bg:'white',
           px: [10,15],
@@ -99,16 +72,37 @@ const drawerMenuItems = [
           display: 'flex',
           align: 'center',
         },
+        childrenItems: [
+          {
+            title: 'Call Logs',
+            to: '/dashboard/communications/hotlines/calls/log',
+            svg: assets.svg.chat,
+            gradient: 'cherry',
+            titleWrap: {
+              bg:'white',
+              px: [10,15],
+            },
+            wrapper: {
+              display: 'flex',
+              align: 'center',
+            },
+          },
+          {
+            title: 'Messages',
+            to: '/dashboard/communications/hotlines/messages',
+            svg: assets.svg.chatHeads,
+            gradient: 'cherry',
+            titleWrap: {
+              bg:'white',
+              px: [10,15],
+            },
+            wrapper: {
+              display: 'flex',
+              align: 'center',
+            },
+          },
+        ],
       },
-    ]
-  },
-  {
-    title: 'Communications',
-    to: '/dashboard/communications',
-    svg: assets.svg.chatHeads,
-    gradient: 'cherry',
-    
-    childrenItems: [
       {
         title: 'Rapid Response',
         to: '/dashboard/communications/hotline/immigration',
@@ -154,7 +148,7 @@ const drawerMenuItems = [
         ],
       },
       {
-        title: 'Information',
+        title: 'General Information',
         to: '/dashboard/communications/hotline/general',
         svg: assets.svg.flowChart,
         gradient: 'cherry',
@@ -197,11 +191,48 @@ const drawerMenuItems = [
           },
         ],
       },
+    ]
+  },
+
+  {
+    title: 'Events',
+    to: '/dashboard/events',
+    svg: assets.svg.bookmark,
+    gradient: 'crimson',
+    childrenItems: [
       {
-        title: 'Reporting',
-        to: '/dashboard/volunteer/hotline/rapid-response/reporting',
-        svg: assets.svg.flowChartShapes,
-        gradient: 'cherry',
+        title: 'Latest Articles',
+        to: '/dashboard/events/latest',
+        svg: assets.svg.lightening,
+        gradient: 'redOrange',
+        titleWrap: {
+          bg:'white',
+          px: [10,15],
+        },
+         wrapper: {
+          display: 'flex',
+          align: 'center',
+        },
+      },
+      {
+        title: 'Upcoming Schedule',
+        to: '/dashboard/events/schedule',
+        svg: assets.svg.flowChart,
+        gradient: 'redOrange',
+        titleWrap: {
+          bg:'white',
+          px: [10,15],
+        },
+         wrapper: {
+          display: 'flex',
+          align: 'center',
+        },
+      },
+      {
+        title: 'Recent Reports',
+        to: '/dashboard/events/reporting',
+        svg: assets.svg.graphVisualization,
+        gradient: 'redOrange',
         titleWrap: {
           bg:'white',
           px: [10,15],
@@ -213,12 +244,14 @@ const drawerMenuItems = [
       },
     ]
   },
+ 
   
   {
     title: 'People',
     to: '/dashboard/people',
     svg: assets.svg.dna,
-    gradient: 'crimson',
+    gradient: 'purple',
+    gradientDir:'180deg',
     childrenItems: [
       {
         title: 'Activity',

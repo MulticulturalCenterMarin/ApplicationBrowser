@@ -4,10 +4,14 @@ import React from 'react'
 import { Switch } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 /* ------------------------- Internal Dependencies -------------------------- */
-import Invert from 'logic/interface/FlowInvert'
 import assets from 'assets'
 import { Absolute } from 'particles'
 import { Flex, Box, Route }from 'atomic'
+import { 
+  DataFormEntityEdit,
+  DataEntityHero
+} from 'logic/interface/DataScaffold'
+import { PhoneUnformatted, ContributorsList } from 'logic/interface/FlowInvert'
 import {
   FirestoreFeed,
   FirestoreListCompose
@@ -29,17 +33,19 @@ import {
 } from 'entity'
 /* ------------------------------- Component -------------------------------- */
 export default props => { 
-  let contributors = idx(props.data, _ => _.contributors.contributorPeople), contributorsRef
-  let phone = idx(props.data, _ => _.contact.contactPhone)
-  if(contributors) contributorsRef = contributors.map(i=> i.eid)
-  console.log(phone)
-  if(phone) console.log(Invert.phoneUnformatted(phone))
+  let contributors = idx(props, _ => _.contributors.contributorPeople), contributorsRef
+  let phone = idx(props, _ => _.contact.contactPhone)
+  if(contributors) contributorsRef = ContributorsList(contributors)
   return <div>
-    <Absolute top bottom left bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} of='hidden' w={[1,1, 0.77]}>
+    <Absolute top bottom right bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} of='hidden' w={[1,1, 0.77]}>
         <PerfectScrollbar>
-          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileHero} collection='people' data={props.data} />
+          <Route exact path="/dashboard/:entity/:eid"
+            component={EntityProfileHero}
+            images={props.images}
+            name={props.name}
+            metadata={props.metadata}
+          />
         <Box p={[20,35]}>
-          
           {/*--- People::Person ---*/}
           {!contributorsRef ? null :
             <Route exact 
@@ -48,19 +54,25 @@ export default props => {
               delta='PersonsComposePeople'
               foundry='PersonCard'
               path='/dashboard/:entity/:eid/people'
-              references={contributorsRef} 
+              references={contributorsRef}
             />
           }
-          {/*--- Activity::Person ---*/}
-          <Route exact path="/dashboard/person/:eid/activity" component={EntityStatusUpdates} collection='people' data={props.data}/>
+            {/*--- Activity::Person ---*/}
+            <Route 
+            exact 
+            path="/dashboard/person/:eid/activity" 
+            component={EntityStatusUpdates}
+            collection='people' 
+          />
           
           {/*--- Edit::Person ---*/}
-          {!props.data ? null : <Route exact path="/dashboard/person/:eid/edit" component={FormPersonEdit} data={props.data} /> }
+          {!props.name ? null : 
+          <Route exact path="/dashboard/person/:eid/edit" component={FormPersonEdit}/>}
 
 
           {!phone ? null :
           <Route exact path="/dashboard/person/:eid/sms"
-            phoneTo={Invert.phoneUnformatted(phone)}
+            phoneTo={PhoneUnformatted(phone)}
             component={FormProfileSmsSend} 
           />
           }
@@ -71,7 +83,7 @@ export default props => {
               foundry='DataTable'
               filters={{
                 where: [
-                  ['to', '==', Invert.phoneUnformatted(phone)]
+                  ['to', '==', PhoneUnformatted(phone)]
                 ]
               }}
               tableHeader={'Text Message (SMS) Records'}
@@ -106,7 +118,7 @@ export default props => {
               foundry='DataTable'
               filters={{
                 where: [
-                  ['to', '==', Invert.phoneUnformatted(phone)]
+                  ['to', '==', PhoneUnformatted(phone)]
                 ]
               }}
               tableHeader={'Call Records'}
@@ -139,15 +151,17 @@ export default props => {
 
           {/*--- Person ---*/}
           <Route exact path="/dashboard/:entity/:eid"
-          component={EntityProfileGallery} collection='people' data={props.data} />
+          component={EntityProfileGallery} collection='people'
+          images={props.images}
+          />
 
-          {!idx(props.data, _ => _.biography) ? null :
+          {!idx(props, _ => _.biography) ? null :
           <Route exact path="/dashboard/:entity/:eid" component={EntityProfileInterfaceBiography} data={props.data} w={1} />}
 
         </Box>
       </PerfectScrollbar>
     </Absolute>
-    <Absolute top right gradient='gray' pos={['relative !important', 'relative !important', 'absolute !important']} bs={[3]} h={[1]} w={[1,1, 0.23]} z={15}>
+    <Absolute top left gradient='gray' pos={['relative !important', 'relative !important', 'absolute !important']} bs={[3]} h={[1]} w={[1,1, 0.23]} z={15}>
       <PerfectScrollbar>
         <EntityProfileInterfaceIdentity {...props} w={1} />
         <PersonProfileMenu {...props} />

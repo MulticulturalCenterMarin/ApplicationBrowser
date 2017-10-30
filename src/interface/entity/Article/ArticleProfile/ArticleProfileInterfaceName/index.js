@@ -29,8 +29,8 @@ const mainLayout = {
 }
 
 export default (props) => {
-  const name = idx(props.data, _ => _.name.nameArticle)
-  const nameAlias = idx(props.data, _ => _.name.nameArticleAlias)
+  const name = idx(props, _ => _.name.nameArticle)
+  const nameAlias = idx(props, _ => _.name.nameArticleAlias)
 
 return 
   <Box {...mainLayout}>

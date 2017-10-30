@@ -28,13 +28,17 @@ import {
 } from 'entity'
 /* ------------------------------- Component -------------------------------- */
 export default props => { 
-  let contributors = idx(props.data, _ => _.contributors.contributorPeople), contributorsRef
+  let contributors = idx(props, _ => _.contributors.contributorPeople), contributorsRef
   if(contributors) contributorsRef = contributors.map(i=> i.eid)
-
   return <div>
     <Absolute top bottom left bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} of='hidden' w={[1,1, 0.77]}>
         <PerfectScrollbar>
-          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileHero} collection='projects' data={props.data} />
+          <Route exact path="/dashboard/:entity/:eid"
+            component={EntityProfileHero}
+            images={props.images}
+            name={props.name}
+            metadata={props.metadata}
+          />
         <Box p={[20,35]}>
           
           {/*--- People::Project ---*/}
@@ -56,19 +60,13 @@ export default props => {
           {!props.data ? null : <Route exact path="/dashboard/project/:eid/settings" component={FormProjectEdit} data={props.data} /> }
 
           {/*--- Project ---*/}
-          <Box p={20} bg='grayLight' bs={1} mb={20}>
-            <Heading level={[3]} f={[4,5]} color='blue' >
-              Gallery
-            </Heading>
             <Route exact path="/dashboard/:entity/:eid"
-              component={EntityProfileGallery}
-              collection='projects'
-              data={props.data} 
-              />
-          </Box>
+              component={EntityProfileGallery} collection='people'
+              images={props.images}
+            />
           {/*--- Edit::Article ---*/}
           {!props.data ? null : 
-          <Route exact path="/dashboard/:entity/:eid" component={MarkdownEditor} collection='projects' delta={props.id}  markdownDefault={idx(props.data, _ => _.content.contentBody)}/>}
+          <Route exact path="/dashboard/:entity/:eid" component={MarkdownEditor} collection='projects' delta={props.id}  markdownDefault={idx(props, _ => _.content.contentBody)}/>}
 
         </Box>
       </PerfectScrollbar>
@@ -87,17 +85,17 @@ export default props => {
         <ProjectProfileMenu {...props} />
         {/*--- Project ---*/}
         <Box p={[10]} >
-          {!props.data ? null : 
-          <Route path="/dashboard/:entity/:eid" 
-            component={FormStatusUpdate} 
-            collection="projects" 
-          /> }
-          {!props.data ? null : 
+          {!contributorsRef ? null : 
           <Route path="/dashboard/:entity/:eid"
             component={FormAddContributorPerson}
             valueDefault={contributors} 
             collection="projects"
             delta="ProjectPeopleSearch"
+          /> }
+          {!props.name ? null : 
+          <Route path="/dashboard/:entity/:eid" 
+            component={FormStatusUpdate} 
+            collection="projects" 
           /> }
         </Box>
       </PerfectScrollbar>

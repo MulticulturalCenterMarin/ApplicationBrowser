@@ -49,13 +49,13 @@ const RenderChip = ({input, hintText, floatingLabelText, dataSource, dataSourceC
 Block.defaultProps = {is: 'form'}
 export default ({ data, handleSubmit, isSubmitting, styled, valueDefault}, props) => {
   if(!data) return null
-  const AutoCompleteList = data.map(v=>({eid:idx(v.data, _=> _.uid), nameDisplay: idx(v.data, _=> _.name.nameDisplay)} ))
+  const AutoCompleteList = data.map(v=>({eid:idx(v, _=> _.uid), nameDisplay: idx(v, _=> _.name.nameDisplay)} ))
   return(<Block {...styled}>
     <Box>
       <Field
         name="contributorPeople"
         valueDefault={valueDefault || []}
-        floatingLabelText="Add People Contributors"
+        floatingLabelText="Add Contributors"
         dataSource={AutoCompleteList}
         component={RenderChip}
         dataSourceConfig={{ text: 'nameDisplay', value: 'eid' }}

@@ -28,7 +28,7 @@ import {
 } from 'entity'
 /* ------------------------------- Component -------------------------------- */
 export default props => { 
-  let contributors = idx(props.data, _ => _.contributors.contributorPeople), contributorsRef
+  let contributors = idx(props, _ => _.contributors.contributorPeople), contributorsRef
   if(contributors) contributorsRef = contributors.map(i=> i.eid)
 
   return <div>
@@ -53,7 +53,7 @@ export default props => {
           
           {/*--- Edit::Article ---*/}
           {!props.data ? null : 
-          <Route exact path="/dashboard/article/:eid/edit" component={MarkdownEditor} collection='articles' delta={props.id}  markdownDefault={idx(props.data, _ => _.content.contentBody)}/>}
+          <Route exact path="/dashboard/article/:eid/edit" component={MarkdownEditor} collection='articles' delta={props.id}  markdownDefault={idx(props, _ => _.content.contentBody)}/>}
 
 
           {/*--- Article ---*/}

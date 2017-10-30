@@ -12,7 +12,6 @@ const queryLifecycle = lifecycle(
   {
     if(this.props.collection && this.props.delta)
     {
-      console.log(this.props)
       this.props.firestoreDocumentFilterGetRequest({
         metadata:{
           branch: [this.props.collection],
@@ -27,7 +26,6 @@ const queryLifecycle = lifecycle(
 const mapStateToProps = (state, props) => {
   const data = fromFirestore.getQueryData(state, props.delta)
   if (!data) return null
-  console.log(data)
   return {
     dataFeed: data
   }

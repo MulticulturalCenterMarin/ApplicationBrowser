@@ -11,7 +11,6 @@ import StyleFormDefault from 'static/style/StyleFormDefault'
 /* ---------------------------- Form Component ------------------------------ */
 Block.defaultProps = {is: 'form'}
 export default ({ handleSubmit, isSubmitting, styled, ...props}) => {
-  console.log(props)
 return <FormBase {...props} bg='white' p={10} >
   <Box>
     <Field name="contentTitle" placeholder="Title" component={ReduxField} type="text"  styledInput={{br:7, bs:0}} />

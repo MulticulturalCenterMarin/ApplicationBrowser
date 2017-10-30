@@ -30,21 +30,22 @@ export default (props) => {
   const{ data } = props
   /*--- Extraction ---*/
   const id = idx(props, _ => _.id)
-  const contentTitle = idx(props.data, _ => _.content.contentTitle)
-  const contentTagline = idx(props.data, _ => _.content.contentTagline)
-  const mission = idx(props.data, _ => _.biography.biographyMission)
-  const objective = idx(props.data, _ => _.biography.biographyObjective)
-  const summary = idx(props.data, _ => _.biography.biographySummary)
-  const imageBanner = idx(props.data, _ => _.images.imageBanner)
+  const contentTitle = idx(props, _ => _.content.contentTitle)
+  const contentTagline = idx(props, _ => _.content.contentTagline)
+  const mission = idx(props, _ => _.biography.biographyMission)
+  const objective = idx(props, _ => _.biography.biographyObjective)
+  const summary = idx(props, _ => _.biography.biographySummary)
+  const imageBanner = idx(props, _ => _.images.imageBanner)
   
-  const contentBody = idx(props.data, _ => _.content.contentBody)
-  if (!data) return null
+  const contentBody = idx(props, _ => _.content.contentBody)
+  if (!props.id) return null
   /*--- Component ---*/
   return <Flex direction={['row']} align='stretch' justify='center' p={[10]} {...props} key={id} >
       <Box {...mainLayout}>
         {!imageBanner ? null : 
           <Box
             py={[40,80,220]}
+            position='relative'
             of='hidden'
           >
             <BackgroundGradient gradient='ibize'/>
@@ -78,7 +79,7 @@ export default (props) => {
             <Markdown source={contentBody}/> 
           </Box>
           <Box py={[20,40]} >
-            <ImageList data={idx(props.data, _ => _.images.imageGallery)} />
+            <ImageList data={idx(props, _ => _.images.imageGallery)} />
           </Box>
         </Container>
       </Box>

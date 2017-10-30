@@ -26,7 +26,7 @@ import {
 } from 'entity'
 /* ------------------------------- Component -------------------------------- */
 export default props => { 
-  let contributors = idx(props.data, _ => _.contributors.contributorPeople), contributorsRef
+  let contributors = idx(props, _ => _.contributors.contributorPeople), contributorsRef
   if(contributors) contributorsRef = contributors.map(i=> i.eid)
 
   return <div>
@@ -56,7 +56,7 @@ export default props => {
           <Route exact path="/dashboard/:entity/:eid"
           component={EntityProfileGallery} collection='resources' data={props.data} />
 
-          {!idx(props.data, _ => _.biography) ? null :
+          {!idx(props, _ => _.biography) ? null :
           <Route exact path="/dashboard/:entity/:eid" component={EntityProfileInterfaceBiography} data={props.data} w={1} />}
 
         </Box>

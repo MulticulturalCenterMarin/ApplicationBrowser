@@ -3,7 +3,7 @@ const drawerMenuItems = [
   {
     title: 'Profile',
     branch: 'dashboard/person',
-    destination: 'activity',
+    destination: '',
     svg: assets.svg.dna,
     icon: {
       svgColor: 'green'

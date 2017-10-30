@@ -22,21 +22,19 @@ const mainLayout = {
 
 export default (props) => {
   /*--- Extraction ---*/
-  const{ data } = props
-  /*--- Extraction ---*/
   const id = idx(props, _ => _.id)
-  const nameDisplay = idx(props.data, _ => _.name.nameDisplay)
-  const nameAlias = idx(props.data, _ => _.name.nameAlias)
-  const phone = idx(props.data, _ => _.contact.contactPhone)
-  const email = idx(props.data, _ => _.contact.contactEmail)
-  const website = idx(props.data, _ => _.metadata.metadataWebsite)
-  const imageBanner = idx(props.data, _ => _.images.imageBanner)
+  const nameDisplay = idx(props, _ => _.name.nameDisplay)
+  const nameAlias = idx(props, _ => _.name.nameAlias)
+  const phone = idx(props, _ => _.contact.contactPhone)
+  const email = idx(props, _ => _.contact.contactEmail)
+  const website = idx(props, _ => _.metadata.metadataWebsite)
+  const imageBanner = idx(props, _ => _.images.imageBanner)
 
-  const street = idx(props.data, _ => _.address.addressStreet)
-  const city = idx(props.data, _ => _.address.addressCity)
-  const zip = idx(props.data, _ => _.address.addressZip)
+  const street = idx(props, _ => _.address.addressStreet)
+  const city = idx(props, _ => _.address.addressCity)
+  const zip = idx(props, _ => _.address.addressZip)
 
-  if (!data) return null
+  if (!props.id) return null
   /*--- Component ---*/
   return <Flex direction={['row']} align='stretch' justify='center' p={[10]} {...props} key={id} >
       <Box {...mainLayout}>

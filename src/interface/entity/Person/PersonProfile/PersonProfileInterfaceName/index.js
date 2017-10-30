@@ -29,8 +29,8 @@ const mainLayout = {
 }
 
 export default (props) => {
-  const name = idx(props.data, _ => _.name.namePerson)
-  const nameAlias = idx(props.data, _ => _.name.namePersonAlias)
+  const name = idx(props, _ => _.name.namePerson)
+  const nameAlias = idx(props, _ => _.name.namePersonAlias)
 
 return <Box {...mainLayout}>
     <Heading f={[4]} level={3} display='inline-block' children={name|| null} />
