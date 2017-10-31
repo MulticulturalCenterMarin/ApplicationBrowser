@@ -1,14 +1,14 @@
 export default {
     styledFieldOuter: {
       align:'center',
-      p:10,
     },
     styledField:{
       br: 5,
+      mb: 5
     },
     styledInput:{
-      bs: 1,
-      br: 5,
+      bs: 0,
+      br: 3,
     },
     styledWrapper:{
       w:1,

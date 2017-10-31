@@ -22,17 +22,16 @@ export default props => (
         {...props}
       />
     </Flex>
-    <Flex {...props.styledFieldOuter} >
-      <Field
-        name="nameAlias"
-        placeholder="Alias (Codename)"
-        component={ReduxField}
-        type="text"
-        color='gray' 
-        mh={30}
-        f={[1]}
-        {...props}
-      />
-    </Flex>
+    <Field
+      name="nameAlias"
+      placeholder="Alias"
+      component={ReduxField}
+      type="hidden"
+      color='gray' 
+      f={[1]}
+      hidden
+      disabled
+      {...props}
+    />
   </Flex>
 )

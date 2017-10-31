@@ -43,13 +43,14 @@ export default props => {
           
           {/*--- People::Project ---*/}
           {!contributorsRef ? null :
-            <Route exact 
+            <Route 
+              exact 
+              path='/dashboard/:entity/:eid/people'
               component={FirestoreListCompose}
               collection={'people'}
               entity='person'
               delta='ProjectsComposePeople'
               foundry='EntityCardDashboard'
-              path='/dashboard/:entity/:eid/people'
               references={contributorsRef} 
             />
           }
@@ -60,10 +61,10 @@ export default props => {
           {!props ? null : <Route exact path="/dashboard/project/:eid/settings" component={FormProjectEdit} data={props.data} /> }
 
           {/*--- Project ---*/}
-            <Route exact path="/dashboard/:entity/:eid"
-              component={EntityProfileGallery} collection='people'
-              images={props.images}
-            />
+          <Route exact path="/dashboard/:entity/:eid"
+            component={EntityProfileGallery}
+            images={props.images}
+          />
           {/*--- Edit::Article ---*/}
           {!props ? null : 
           <Route exact path="/dashboard/:entity/:eid" component={MarkdownEditor} collection='projects' delta={props.id}  markdownDefault={idx(props, _ => _.content.contentBody)}/>}
@@ -73,12 +74,11 @@ export default props => {
     </Absolute>
     <Absolute top right gradient='gray' pos={['relative !important', 'relative !important', 'absolute !important']} bs={[3]} h={[1]} w={[1,1, 0.23]} z={15}>
       <PerfectScrollbar>
-        {!props ? null : 
+        {!props.content ? null : 
           <Route exact path="/dashboard/project/:eid/edit"
             component={FormContentBasics}
             collection='projects'
-            delta={props.id}
-            data={props.data} 
+            content={props.content}
             />
           }
         <EntityProfileInterfaceIdentity {...props} w={1} />

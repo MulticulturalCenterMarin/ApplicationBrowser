@@ -6,7 +6,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar'
 /* ------------------------- Internal Dependencies -------------------------- */
 import assets from 'assets'
 import { Absolute } from 'particles'
-import { Flex, Box, Route }from 'atomic'
+import { Flex, Box, Route, Markdown }from 'atomic'
 import {
   FirestoreListCompose
 } from 'containers'
@@ -15,8 +15,10 @@ import {
   FormAddContributorPerson,
   FormStatusUpdate,
   EntityStatusUpdates,
+  EntityTasks,
   MarkdownEditor,
   FormContentBasics,
+  FormTaskAdd,
 } from 'foundry'
 import {
   FormArticleEdit,
@@ -30,6 +32,8 @@ import {
 export default props => { 
   let contributors = idx(props, _ => _.contributors.contributorPeople), contributorsRef
   if(contributors) contributorsRef = contributors.map(i=> i.eid)
+
+  const contentBody = idx(props, _ => _.content.contentBody)
 
   return <div>
     <Absolute top bottom left bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} of='hidden' w={[1,1, 0.77]}>
@@ -46,23 +50,38 @@ export default props => {
           {!contributorsRef ? null :
             <Route 
               exact 
-              path='/dashboard/:entity/:eid/article'
+              path='/dashboard/:entity/:eid/people'
               component={FirestoreListCompose}
-              collection={'articles'}
-              delta='ArticlesComposePeople'
-              foundry='PersonCard'
+              collection={'people'}
+              entity='person'
+              delta={`${props.id}|ComposePeople`}
+              foundry='EntityCardDashboard'
               references={contributorsRef} 
             />
           }
           {/*--- Activity::Person ---*/}
           <Route 
             exact 
-            path="/dashboard/person/:eid/activity" 
+            path="/dashboard/article/:eid/activity" 
             component={EntityStatusUpdates}
-            collection='people' 
+            collection='articles'
           />
           
-          {/*--- Edit::Article ---*/}
+          {/*--- 
+          
+          Edit::Article 
+          
+          ---*/}
+         {!props.id ? null : 
+          <Route 
+            exact 
+            path="/dashboard/article/:eid/edit/settings"
+            component={FormContentBasics}
+            collection='articles'
+            delta={props.id}
+            />
+          }
+
           {!props.content ? null : 
           <Route 
             exact 
@@ -74,16 +93,54 @@ export default props => {
             />}
 
 
-          {/*--- Article ---*/}
+          {/*--- 
+          
+          Article Profile 
+          
+          ---*/}
+
+          {!contentBody ? null :
+          <Route
+            exact
+            path="/dashboard/:entity/:eid"
+            component={Markdown}
+            source={contentBody}
+            bg='white'
+            br={10}
+            bs={2}
+            mb={20}
+            p={[20,30]}
+          />}
           {!props ? null :
           <Route 
             exact 
             path="/dashboard/:entity/:eid"
             component={EntityProfileGallery} 
             collection='articles'
-            />}
+            images={props.images}
+          />}
 
 
+          {/*--- 
+          
+            Article Tasks 
+          
+          ---*/}
+
+          <Route 
+            exact 
+            path="/dashboard/:entity/:eid/tasks"
+            component={FormTaskAdd} 
+            collection='articles'
+            mb={[15,30]}
+          />
+
+          <Route 
+            exact 
+            path="/dashboard/article/:eid/tasks" 
+            component={EntityTasks}
+            collection='articles'
+          />
 
       
         </Box>
@@ -91,17 +148,20 @@ export default props => {
     </Absolute>
     <Absolute top right gradient='gray' pos={['relative !important', 'relative !important', 'absolute !important']} bs={[3]} h={[1]} w={[1,1, 0.23]} z={15}>
       <PerfectScrollbar>
-
-        <EntityProfileInterfaceIdentity {...props} w={1} />
+        <EntityProfileInterfaceIdentity
+        name={props.name}
+        contact={props.contact}
+        images={props.images}
+        w={1} />
         <ArticleProfileMenu {...props} />
         {/*--- Article ---*/}
         <Box p={[10]} >
-          {!props ? null : 
+          {!props.id ? null : 
           <Route path="/dashboard/:entity/:eid" 
             component={FormStatusUpdate} 
-            collection="articles" 
+            collection="articles"
           /> }
-          {!props ? null : 
+          {!props.id ? null : 
           <Route path="/dashboard/:entity/:eid"
             component={FormAddContributorPerson}
             valueDefault={contributors} 

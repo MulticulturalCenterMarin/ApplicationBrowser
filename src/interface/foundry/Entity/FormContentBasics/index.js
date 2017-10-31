@@ -1,5 +1,6 @@
 /* ------------------------- External Dependencies -------------------------- */
 import _ from 'lodash'
+import idx from './idx'
 import { connect } from 'react-redux'
 import { 
   compose,
@@ -77,9 +78,15 @@ const config = {
 const mapStateToProps = (state, props) => {
   const delta = props.match.params.eid
   const data = fromFirestore.getQueryData(state, delta)
-  let initialValues = {};
-  Object.keys(data).map(key=> ({...data[key]})).forEach(i=> initialValues = {...initialValues, ...i})
-  if(data) return {delta, initialValues:{...initialValues}}
+  console.log(data)
+  if(data.content) return {
+    delta, 
+    initialValues:{
+      contentTitle: idx(data, _=>_.content.contentTitle),
+      contentTagline: idx(data, _=>_.content.contentTagline),
+      contentSummary: idx(data, _=>_.content.contentSummary),
+    }
+  }
 }
 
 /* ---------------------------- Form Handlers ------------------------------- */

@@ -8,7 +8,6 @@ import { color, boxShadow, fontSize, space, width, height, minHeight, borderRadi
 
 const styles = css`
   background-color: ${palette('grayscale', 0, true)};
-  border: 1px solid ${ifProp('invalid', palette('danger', 2), palette('grayscale', 3))};
   border-radius: 2px;
   ${borderRadius}
   ${boxShadow}
@@ -22,6 +21,7 @@ const styles = css`
   outline:  none;
   padding: ${ifProp({ type: 'textarea' }, '0.4444444444em', '0 0.4444444444em')};
   position: relative;
+  ${space}
   ${width}
 
 

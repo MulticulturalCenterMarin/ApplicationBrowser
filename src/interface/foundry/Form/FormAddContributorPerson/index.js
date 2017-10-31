@@ -62,7 +62,7 @@ const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
     payload: submission, 
     metadata: {
     branch: [
-      'projects',
+      props.collection,
       props.match.params.eid,
     ],
     delta: `${props.match.params.eid}|UpdateContributors`,
