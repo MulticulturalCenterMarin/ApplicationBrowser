@@ -52,7 +52,7 @@ export default props => {
           <Route exact path="/dashboard/event/:eid/activity" component={EntityStatusUpdates} collection='event' data={props.data}/>
           
           {/*--- Edit::Event ---*/}
-          {!props.data ? null : 
+          {!props ? null : 
           <Route exact path="/dashboard/event/:eid/edit" component={MarkdownEditor} collection='event' delta={props.id}  markdownDefault={idx(props, _ => _.content.contentBody)}/>}
 
 
@@ -68,7 +68,7 @@ export default props => {
     </Absolute>
     <Absolute top right gradient='gray' pos={['relative !important', 'relative !important', 'absolute !important']} bs={[3]} h={[1]} w={[1,1, 0.23]} z={15}>
       <PerfectScrollbar>
-        {!props.data ? null : 
+        {!props ? null : 
           <Route exact path="/dashboard/event/:eid/edit"
             component={FormContentBasics}
             collection='event'
@@ -80,12 +80,12 @@ export default props => {
         <EventProfileMenu {...props} />
         {/*--- Event ---*/}
         <Box p={[10]} >
-          {!props.data ? null : 
+          {!props ? null : 
           <Route path="/dashboard/:entity/:eid" 
             component={FormStatusUpdate} 
             collection="event" 
           /> }
-          {!props.data ? null : 
+          {!props ? null : 
           <Route path="/dashboard/:entity/:eid"
             component={FormAddContributorPerson}
             valueDefault={contributors} 

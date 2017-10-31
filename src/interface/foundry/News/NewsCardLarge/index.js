@@ -46,11 +46,13 @@ export default (props) => {
           <Box
             py={[40,80,220]}
             of='hidden'
+            position='relative'
           >
             <BackgroundImage src={imageBanner}/>
             <BackgroundGradient gradient='ibize' o={0.45} />
               <Container
                 color='white'
+                
                 w={[500]} >
                 <Link to={`/${props.entity}/${id}`} color='blue' >
                   <Heading 
@@ -69,8 +71,8 @@ export default (props) => {
               </Container>
           </Box>
         }
-        <Container p={[10]} w={600}  >
-          <Box w={[1]} mt={[null,null, '-70px']} bg='white' br={10} bs={2} p={[10,15,25]}>
+        <Container p={[10]} w={600} position='relative'>
+          <Box w={[1]} mt={[null,null, '-70px']} bg='white'br={10} bs={2} p={[10,15,25]}>
             <Markdown source={contentBody}/> 
           </Box>
           <Box py={[20,40]} >

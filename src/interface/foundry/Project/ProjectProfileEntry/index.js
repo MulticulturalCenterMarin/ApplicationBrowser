@@ -57,7 +57,7 @@ export default props => {
           <Route exact path="/dashboard/project/:eid/activity" component={EntityStatusUpdates} collection='projects' data={props.data}/>
           
           {/*--- Edit::Project ---*/}
-          {!props.data ? null : <Route exact path="/dashboard/project/:eid/settings" component={FormProjectEdit} data={props.data} /> }
+          {!props ? null : <Route exact path="/dashboard/project/:eid/settings" component={FormProjectEdit} data={props.data} /> }
 
           {/*--- Project ---*/}
             <Route exact path="/dashboard/:entity/:eid"
@@ -65,7 +65,7 @@ export default props => {
               images={props.images}
             />
           {/*--- Edit::Article ---*/}
-          {!props.data ? null : 
+          {!props ? null : 
           <Route exact path="/dashboard/:entity/:eid" component={MarkdownEditor} collection='projects' delta={props.id}  markdownDefault={idx(props, _ => _.content.contentBody)}/>}
 
         </Box>
@@ -73,7 +73,7 @@ export default props => {
     </Absolute>
     <Absolute top right gradient='gray' pos={['relative !important', 'relative !important', 'absolute !important']} bs={[3]} h={[1]} w={[1,1, 0.23]} z={15}>
       <PerfectScrollbar>
-        {!props.data ? null : 
+        {!props ? null : 
           <Route exact path="/dashboard/project/:eid/edit"
             component={FormContentBasics}
             collection='projects'

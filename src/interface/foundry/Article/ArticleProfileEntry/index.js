@@ -34,31 +34,54 @@ export default props => {
   return <div>
     <Absolute top bottom left bg='white' pos={['relative !important', 'relative !important', 'absolute !important']} h={[1]} of='hidden' w={[1,1, 0.77]}>
         <PerfectScrollbar>
-          <Route exact path="/dashboard/:entity/:eid" component={EntityProfileHero} collection='articles' data={props.data} />
+          <Route exact path="/dashboard/:entity/:eid"
+            component={EntityProfileHero}
+            images={props.images}
+            name={props.name}
+            metadata={props.metadata}
+          />
         <Box p={[20,35]}>
           
           {/*--- People::Article ---*/}
           {!contributorsRef ? null :
-            <Route exact 
+            <Route 
+              exact 
+              path='/dashboard/:entity/:eid/article'
               component={FirestoreListCompose}
               collection={'articles'}
               delta='ArticlesComposePeople'
               foundry='PersonCard'
-              path='/dashboard/:entity/:eid/article'
               references={contributorsRef} 
             />
           }
-          {/*--- Activity::Article ---*/}
-          <Route exact path="/dashboard/article/:eid/activity" component={EntityStatusUpdates} collection='articles' data={props.data}/>
+          {/*--- Activity::Person ---*/}
+          <Route 
+            exact 
+            path="/dashboard/person/:eid/activity" 
+            component={EntityStatusUpdates}
+            collection='people' 
+          />
           
           {/*--- Edit::Article ---*/}
-          {!props.data ? null : 
-          <Route exact path="/dashboard/article/:eid/edit" component={MarkdownEditor} collection='articles' delta={props.id}  markdownDefault={idx(props, _ => _.content.contentBody)}/>}
+          {!props.content ? null : 
+          <Route 
+            exact 
+            path="/dashboard/article/:eid/edit" 
+            component={MarkdownEditor} 
+            collection='articles' 
+            delta={props.id}
+            markdownDefault={idx(props, _ => _.content.contentBody)}
+            />}
 
 
           {/*--- Article ---*/}
-          <Route exact path="/dashboard/:entity/:eid"
-          component={EntityProfileGallery} collection='articles' data={props.data} />
+          {!props ? null :
+          <Route 
+            exact 
+            path="/dashboard/:entity/:eid"
+            component={EntityProfileGallery} 
+            collection='articles'
+            />}
 
 
 
@@ -68,24 +91,17 @@ export default props => {
     </Absolute>
     <Absolute top right gradient='gray' pos={['relative !important', 'relative !important', 'absolute !important']} bs={[3]} h={[1]} w={[1,1, 0.23]} z={15}>
       <PerfectScrollbar>
-        {!props.data ? null : 
-          <Route exact path="/dashboard/article/:eid/edit"
-            component={FormContentBasics}
-            collection='articles'
-            delta={props.id}
-            data={props.data} 
-            />
-          }
+
         <EntityProfileInterfaceIdentity {...props} w={1} />
         <ArticleProfileMenu {...props} />
         {/*--- Article ---*/}
         <Box p={[10]} >
-          {!props.data ? null : 
+          {!props ? null : 
           <Route path="/dashboard/:entity/:eid" 
             component={FormStatusUpdate} 
             collection="articles" 
           /> }
-          {!props.data ? null : 
+          {!props ? null : 
           <Route path="/dashboard/:entity/:eid"
             component={FormAddContributorPerson}
             valueDefault={contributors} 

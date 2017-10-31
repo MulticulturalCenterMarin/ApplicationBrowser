@@ -50,7 +50,7 @@ export default props => {
           <Route exact path="/dashboard/organization/:eid/activity" component={EntityStatusUpdates} collection='organizations' data={props.data}/>
           
           {/*--- Edit::Organization ---*/}
-          {!props.data ? null : <Route exact path="/dashboard/organization/:eid/edit" component={FormOrganizationEdit} data={props.data} /> }
+          {!props ? null : <Route exact path="/dashboard/organization/:eid/edit" component={FormOrganizationEdit} data={props.data} /> }
 
           {/*--- Organization ---*/}
           <Route exact path="/dashboard/:entity/:eid"
@@ -68,12 +68,12 @@ export default props => {
         <OrganizationProfileMenu {...props} />
         {/*--- Organization ---*/}
         <Box p={[10]} >
-          {!props.data ? null : 
+          {!props ? null : 
           <Route path="/dashboard/:entity/:eid" 
             component={FormStatusUpdate} 
             collection="organizations" 
           /> }
-          {!props.data ? null : 
+          {!props ? null : 
           <Route path="/dashboard/:entity/:eid"
             component={FormAddContributorPerson}
             valueDefault={contributors} 

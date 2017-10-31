@@ -4,8 +4,8 @@ import React from 'react';
 import { Switch } from 'react-router-dom';
 import {Route} from 'atomic'
 /* ------------------------- External Dependencies -------------------------- */
-import headerRoutes from 'pages/header'
 import Front from 'workshop/pages/header/Front'
+import headerRoutes from 'pages/header'
 
 const PageRoutes = []
 _.forEach(headerRoutes, (parent, parentKey)=> {
@@ -17,7 +17,6 @@ _.forEach(headerRoutes, (parent, parentKey)=> {
     {RouteChildren.reverse().map(route=><Route path={route.path} component={route.component} /> )}
     <Route path={path} component={parent.Root} />
   </Switch>)
-
   PageRoutes.push(<Route path={path} component={RouteTree} />)
 })
 
@@ -25,7 +24,10 @@ export default () => (
   <div>
     <Switch>
       {PageRoutes.map(Route=>Route)}
-      <Route exact path="/" component={Front} />
+      <Route 
+      exact
+      path="/"
+      component={Front} />
     </Switch>
   </div>);
 

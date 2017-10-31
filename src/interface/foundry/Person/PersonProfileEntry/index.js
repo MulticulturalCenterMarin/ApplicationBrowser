@@ -57,8 +57,8 @@ export default props => {
               references={contributorsRef}
             />
           }
-            {/*--- Activity::Person ---*/}
-            <Route 
+          {/*--- Activity::Person ---*/}
+          <Route 
             exact 
             path="/dashboard/person/:eid/activity" 
             component={EntityStatusUpdates}
@@ -167,12 +167,12 @@ export default props => {
         <PersonProfileMenu {...props} />
         {/*--- Person ---*/}
         <Box p={[10]} >
-          {!props.data ? null : 
+          {!props ? null : 
           <Route path="/dashboard/:entity/:eid" 
             component={FormStatusUpdate} 
             collection="people" 
           /> }
-          {!props.data ? null : 
+          {!props ? null : 
           <Route path="/dashboard/:entity/:eid"
             component={FormAddContributorPerson}
             valueDefault={contributors} 

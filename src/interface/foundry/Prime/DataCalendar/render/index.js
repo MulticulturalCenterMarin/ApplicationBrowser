@@ -6,7 +6,7 @@ import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import Globalize from 'globalize';
 import { Absolute } from 'particles'
-import { Box } from 'atomic'
+import { Block } from 'atomic'
 import { CalendarItem } from 'logic/interface/DataScaffold'
 BigCalendar.setLocalizer(
   BigCalendar.globalizeLocalizer(Globalize)
@@ -24,7 +24,7 @@ const dataFeedNew = _.map(dataFeed, item=>({
   end: idx(item, _=> _.date.dateEnd)? moment(idx(item, _=> _.date.dateEnd)).format(): null,
 }))
 const t = CalendarItem(dataFeed)
-return <Box {...styledContainer} >
+return <Block {...styledContainer} >
   <Absolute top bottom left right bg='white' color='charcoal' {...styledCalendar} >
     <BigCalendar
       culture={'es'}
@@ -33,5 +33,5 @@ return <Box {...styledContainer} >
       step={60}
     />
   </Absolute>
-  </Box>
+  </Block>
 }

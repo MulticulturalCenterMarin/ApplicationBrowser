@@ -66,6 +66,7 @@ const components = [
     },
     style: props => ({
       boxSizing: 'border-box',
+      position: 'relative',
     })
   },
 

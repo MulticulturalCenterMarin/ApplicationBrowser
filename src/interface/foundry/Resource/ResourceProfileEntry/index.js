@@ -50,7 +50,7 @@ export default props => {
           <Route exact path="/dashboard/resource/:eid/activity" component={EntityStatusUpdates} collection='resources' data={props.data}/>
           
           {/*--- Edit::Resource ---*/}
-          {!props.data ? null : <Route exact path="/dashboard/resource/:eid/edit" component={FormResourceEdit} data={props.data} /> }
+          {!props ? null : <Route exact path="/dashboard/resource/:eid/edit" component={FormResourceEdit} data={props.data} /> }
 
           {/*--- Resource ---*/}
           <Route exact path="/dashboard/:entity/:eid"
@@ -68,12 +68,12 @@ export default props => {
         <ResourceProfileMenu {...props} />
         {/*--- Resource ---*/}
         <Box p={[10]} >
-          {!props.data ? null : 
+          {!props ? null : 
           <Route path="/dashboard/:entity/:eid" 
             component={FormStatusUpdate} 
             collection="resources" 
           /> }
-          {!props.data ? null : 
+          {!props ? null : 
           <Route path="/dashboard/:entity/:eid"
             component={FormAddContributorPerson}
             valueDefault={contributors} 
