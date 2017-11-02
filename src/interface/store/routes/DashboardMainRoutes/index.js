@@ -5,13 +5,13 @@ import { Route } from 'atomic'
 /* ------------------------- External Dependencies -------------------------- */
 import { FirestoreList, FirestoreDocument, FirestoreTable, FirestoreFeed } from 'containers'
 import {
-  MapAdvancedCompose,
-  UserProfileDashboard,
-  PrimeDataTable,
   DataTable,
   DataCalendar,
   FormAddContributorPerson,
   FormHotlineAddPerson,
+  MapAdvancedCompose,
+  PrimeDataTable,
+  UserProfileDashboard,
  } from 'foundry'
 
 import {

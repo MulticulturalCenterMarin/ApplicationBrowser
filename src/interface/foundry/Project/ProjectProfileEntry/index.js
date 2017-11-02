@@ -48,7 +48,6 @@ export default props => {
               path='/dashboard/:entity/:eid/people'
               component={FirestoreListCompose}
               collection={'people'}
-              entity='person'
               delta='ProjectsComposePeople'
               foundry='EntityCardDashboard'
               references={contributorsRef} 

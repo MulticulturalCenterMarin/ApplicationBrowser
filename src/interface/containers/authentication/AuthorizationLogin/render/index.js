@@ -2,6 +2,8 @@
 import React from 'react'
 /* ------------------------- Internal Dependencies -------------------------- */
 import {Button} from 'atomic'
+/* --------------------------- Styled Components ---------------------------- */
+/* ------------------------- Component Properties --------------------------- */
 /* ------------------------------- Component -------------------------------- */
 const LoginButton = ({ ...props }) => <Button onClick={props.authLogin} {...props} >{props.children}</Button>
 

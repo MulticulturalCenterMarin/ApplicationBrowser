@@ -39,7 +39,6 @@ MenuAsideItem.defaultProps = {
   align: 'center',
   direction: 'row',
   gradient: 'blueAlge',
-  mb: [10],
   to: "/",
 }
 

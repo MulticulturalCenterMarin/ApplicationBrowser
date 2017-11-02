@@ -30,7 +30,6 @@ return <Absolute left right top bottom align='stretch' h={1} is={Flex} >
   </Box>
   <Box bg='white' w={[1,1, 0.7]} p={[15, 20, 35]} >
     <Switch>
-      <Route path="/dashboard/users/:uid/rapid-response" component={()=><ResponibilityRapidResponse {...props}/>} />
       <Route path="/dashboard/users/:uid" render={()=><UserEdit {...props} points='test' />} />
     </Switch>
   </Box>

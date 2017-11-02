@@ -15,7 +15,7 @@ function mapStateToProps(state) {
 } 
 
 const mapDispatchToProps = dispatch => ({
-  authLogin: () => dispatch(authLoginWithAuthorization()),
+  authLogin: () => dispatch(authLoginWithAuthorization({})),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Render);

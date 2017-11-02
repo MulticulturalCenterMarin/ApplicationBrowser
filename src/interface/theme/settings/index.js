@@ -35,8 +35,14 @@ const theme = {
     teal:'#009688',
     turquoise: '#05b090',
     yellow:'#FFD200',
-    
     white: '#ffffff',
+
+    facebook: '#3b5999',
+    twitter: '#55acee',
+    google: '#dd4b39',
+    github: '#131418',
+
+
   },
   borderImage: {
     blue: 'linear-gradient(to right, #24335a, #31477e)',

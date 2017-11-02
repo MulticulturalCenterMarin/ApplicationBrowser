@@ -3,6 +3,7 @@ import { call, put, fork, takeEvery, take } from 'redux-saga/effects';
 
 /* ------------------------- Internal Dependencies -------------------------- */
 import firebase from 'firebase'
+
 import reduxSagaFirebase from 'services/Firebase';
 import { entityStatus, branchFeasible } from 'logic/forms/QueryValidation'
 
@@ -28,8 +29,6 @@ import {
 import {NOTIFICATION_OPEN, authSyncUser} from 'store/departments/actions'
 import notificationStaticContent from 'content/notifications'
 /* ------------------------ Initialize Dependencies ------------------------- */
-const authProvider = new firebase.auth.GoogleAuthProvider();
-
 /* ------------------------------ Saga Stories ------------------------------ */
 /*--- Login ---*/
 function* authLogin() {
@@ -48,10 +47,19 @@ function* authLogout() {
 }
 
 /*--- Login With Authorization ---*/
-function* loginWithAuthorization() {
+function* loginWithAuthorization({payload, metadata}) {
   try {
-    const creds = yield call(reduxSagaFirebase.auth.signInWithPopup, authProvider);
-    const data = yield call(reduxSagaFirebase.auth.signInWithCredential, creds );
+    const { providerSelection } = metadata
+
+    const authorizationProvider = {
+      google: new firebase.auth.GoogleAuthProvider(),
+      twitter: new firebase.auth.TwitterAuthProvider(),
+      facebook: new firebase.auth.FacebookAuthProvider(),
+      github: new firebase.auth.GithubAuthProvider(),
+    }[providerSelection]
+
+    const credentials = yield call(reduxSagaFirebase.auth.signInWithPopup, authorizationProvider);
+    const data = yield call(reduxSagaFirebase.auth.signInWithCredential, credentials);
     yield put({type: AUTH_LOGIN_WITH_AUTHORIZATION_SUCCESS, payload: data })
     yield put({type: AUTH_LOGIN_SUCCESS, payload: data })
     yield put({
@@ -83,9 +91,9 @@ function* loginWithAuthorization() {
 /*--- Login With Email/Password ---*/
 function* loginWithEmailPassword({payload, metadata}) {
   try {
-    const data = yield call(reduxSagaFirebase.signInWithPopup, authProvider);
-    yield put({type: AUTH_LOGIN_WITH_EMAIL_PASSWORD_SUCCESS, payload: data })
-    yield put({type: AUTH_LOGIN_SUCCESS, payload: data })
+
+    yield put({type: AUTH_LOGIN_WITH_EMAIL_PASSWORD_SUCCESS})
+    yield put({type: AUTH_LOGIN_SUCCESS})
   } catch(e) {
     yield put({type: AUTH_LOGIN_WITH_EMAIL_PASSWORD_FAILURE, payload: e.message })
     yield put({type: AUTH_LOGIN_FAILURE, payload: e.message })
@@ -94,14 +102,17 @@ function* loginWithEmailPassword({payload, metadata}) {
 
 /*--- Login With Phone ---*/
 function* loginWithPhone({payload, metadata}) {
-  const { } = metadata
+  const { phoneNumber } = payload
   try {
-    const data = yield call(reduxSagaFirebase.signInWithPopup, authProvider);
-    yield put({type: AUTH_LOGIN_WITH_PHONE_SUCCESS, message: data })
-    yield put({type: AUTH_LOGIN_SUCCESS, payload: data })
+    const applicationVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+    const confirmationResult = yield call(reduxSagaFirebase.auth.signInWithPhoneNumber, phoneNumber, applicationVerifier);
+    console.log(confirmationResult)
+    const verificationCode = '123'
+    const credentials = yield call(confirmationResult.confirm, verificationCode);
+    yield put({type: AUTH_LOGIN_WITH_PHONE_SUCCESS })
+    yield put({type: AUTH_LOGIN_SUCCESS})
   } catch(e) {
-    yield put({type: AUTH_LOGIN_WITH_PHONE_FAILURE, payload: e.message })
-    yield put({type: AUTH_LOGIN_FAILURE, payload: e.message })
+    console.log(e)
   }
 }
 

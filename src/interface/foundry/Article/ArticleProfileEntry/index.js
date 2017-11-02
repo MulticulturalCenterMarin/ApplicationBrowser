@@ -30,9 +30,9 @@ import {
 } from 'entity'
 /* ------------------------------- Component -------------------------------- */
 export default props => { 
-  let contributors = idx(props, _ => _.contributors.contributorPeople), contributorsRef
+  let contributors = idx(props, _ => _.contributors.formatted), contributorsRef
   if(contributors) contributorsRef = contributors.map(i=> i.eid)
-
+  console.log(contributorsRef)
   const contentBody = idx(props, _ => _.content.contentBody)
 
   return <div>
@@ -53,8 +53,7 @@ export default props => {
               path='/dashboard/:entity/:eid/people'
               component={FirestoreListCompose}
               collection={'people'}
-              entity='person'
-              delta={`${props.id}|ComposePeople`}
+              delta={`ArticleComposePeople`}
               foundry='EntityCardDashboard'
               references={contributorsRef} 
             />
@@ -82,7 +81,7 @@ export default props => {
             />
           }
 
-          {!props.content ? null : 
+          {!props ? null : 
           <Route 
             exact 
             path="/dashboard/article/:eid/edit" 

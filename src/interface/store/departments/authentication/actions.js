@@ -46,19 +46,21 @@ export const AUTH_SYNC_USER = 'AUTH_SYNC_USER'
 /* ---------------------------- Define Actions ------------------------------ */
 
 /*--- Login with OAuth ---*/
-export const authLoginWithAuthorization = () => ({
-  type: AUTH_LOGIN_WITH_AUTHORIZATION_REQUEST
+export const authLoginWithAuthorization = ({payload = {}, metadata = {}}) => ({
+  type: AUTH_LOGIN_WITH_AUTHORIZATION_REQUEST,
+  payload,
+  metadata
 })
 
 /*--- Login with Phone ---*/
-export const authLoginWithPhone = ({payload, metadata}) => ({
-  type: AUTH_LOGIN_WITH_EMAIL_PASSWORD_REQUEST,
+export const authLoginWithPhone = ({payload = {}, metadata = {}}) => ({
+  type: AUTH_LOGIN_WITH_PHONE_REQUEST,
   payload,
   metadata
 })
 
 /*--- Login with Email/Password ---*/
-export const authLoginWithEmailPassword = ({payload, metadata}) => ({
+export const authLoginWithEmailPassword = ({payload = {}, metadata = {}}) => ({
   type: AUTH_LOGIN_WITH_EMAIL_PASSWORD_REQUEST,
   payload,
   metadata
@@ -70,14 +72,14 @@ export const authLogout = () => ({
 })
 
 /*--- Channel Start ---*/
-export const authChannelStart = ({payload, metadata}) => ({
+export const authChannelStart = ({payload = {}, metadata = {}}) => ({
   type: AUTH_CHANNEL_START_REQUEST,
   payload,
   metadata
 })
 
 /*--- Channel Stop ---*/
-export const authChannelStop = ({payload, metadata}) => ({
+export const authChannelStop = ({payload = {}, metadata = {}}) => ({
   type: AUTH_CHANNEL_STOP_REQUEST,
   payload,
   metadata

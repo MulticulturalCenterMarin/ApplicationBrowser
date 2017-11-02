@@ -56,7 +56,13 @@ const mapDispatchToProps = (dispatch, props) => ({
 /* -------------------------- Form Configuration ---------------------------- */
 /*--- Event Handlers ---*/
 const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
-  const submission = {'contributors':data}
+  const rawList = {}
+  if(!data.contributors) return null
+  data.contributors.forEach(item=> rawList[item.eid] = true)
+  const submission = {
+      contributorsRaw: rawList,
+      contributorsFormatted: data.contributors
+  }
   /*--- Metadata/Configuration ---*/
   dispatch(entityProjectEditRequest({
     payload: submission, 

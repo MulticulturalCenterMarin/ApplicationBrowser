@@ -3174,9 +3174,9 @@ firebase-admin@^5.4.0:
     jsonwebtoken "7.4.3"
     node-forge "0.7.1"
 
-firebase-functions@^0.6.3:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/firebase-functions/-/firebase-functions-0.6.3.tgz#2b8d37b6383395f591974baf96cd692ec429bd85"
+firebase-functions@0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/firebase-functions/-/firebase-functions-0.7.2.tgz#f65b71f308a6827a878e5e12aad4be086ebc8efb"
   dependencies:
     "@types/express" "^4.0.33"
     "@types/jsonwebtoken" "^7.1.32"
@@ -4436,7 +4436,7 @@ jsonschema@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/jsonschema/-/jsonschema-1.2.0.tgz#d6ebaf70798db7b3a20c544f6c9ef9319b077de2"
 
-jsonwebtoken@7.4.3, jsonwebtoken@^7.4.1:
+jsonwebtoken@7.4.3, jsonwebtoken@^7.1.9, jsonwebtoken@^7.4.1:
   version "7.4.3"
   resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-7.4.3.tgz#77f5021de058b605a1783fa1283e99812e645638"
   dependencies:
@@ -4444,16 +4444,6 @@ jsonwebtoken@7.4.3, jsonwebtoken@^7.4.1:
     jws "^3.1.4"
     lodash.once "^4.0.0"
     ms "^2.0.0"
-    xtend "^4.0.1"
-
-jsonwebtoken@^7.1.9:
-  version "7.1.9"
-  resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-7.1.9.tgz#847804e5258bec5a9499a8dc4a5e7a3bae08d58a"
-  dependencies:
-    joi "^6.10.1"
-    jws "^3.1.3"
-    lodash.once "^4.0.0"
-    ms "^0.7.1"
     xtend "^4.0.1"
 
 jsprim@^1.2.2:
@@ -4474,7 +4464,7 @@ jwa@^1.1.4:
     ecdsa-sig-formatter "1.0.9"
     safe-buffer "^5.0.1"
 
-jws@^3.0.0, jws@^3.1.3, jws@^3.1.4:
+jws@^3.0.0, jws@^3.1.4:
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/jws/-/jws-3.1.4.tgz#f9e8b9338e8a847277d6444b1464f61880e050a2"
   dependencies:
@@ -5148,10 +5138,6 @@ ms@0.7.2:
 ms@2.0.0, ms@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
-
-ms@^0.7.1:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.3.tgz#708155a5e44e33f5fd0fc53e81d0d40a91be1fff"
 
 multi-glob@^1.0.1:
   version "1.0.1"
@@ -6170,7 +6156,7 @@ request-capture-har@^1.1.4:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/request-capture-har/-/request-capture-har-1.2.2.tgz#cd692cfb2cc744fd84a3358aac6ee51528cf720d"
 
-request@2, request@^2.53.0, request@^2.72.0, request@^2.74.0, request@^2.81.0, request@^2.83.0:
+request@2, request@^2.53.0, request@^2.72.0, request@^2.81.0, request@^2.83.0:
   version "2.83.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.83.0.tgz#ca0b65da02ed62935887808e6f510381034e3356"
   dependencies:
@@ -6223,7 +6209,7 @@ request@2.74.0, request@~2.74.0:
     tough-cookie "~2.3.0"
     tunnel-agent "~0.4.1"
 
-request@2.81.0, request@2.81.x, request@>=2.42.0, request@^2.75.0, request@^2.79.0:
+request@2.81.0, request@2.81.x, request@>=2.42.0, request@^2.74.0, request@^2.75.0, request@^2.79.0:
   version "2.81.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
   dependencies:

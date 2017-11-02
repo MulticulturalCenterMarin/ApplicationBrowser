@@ -15,6 +15,7 @@ import filterKeys from 'filter-keys'
 /* ------------------------- Internal Dependencies -------------------------- */
 import { createValidator, required } from 'logic/forms/validation'
 
+import {  fromAuthentication } from 'store/departments/selectors'
 /*--- Redux Store ---*/
 import {entityAddRequest} from 'store/departments/actions'
 
@@ -24,11 +25,15 @@ import FormRender from './render'
 /* --------------------------- Component Entry ------------------------------ */
 /*-- Event Handlers ---*/
 const onSubmit = (data, dispatch, props) => new Promise((resolve, reject) => {
+  console.log(data)
+  console.log(props)
   /*--- Extraction ---*/
   const submission = {}
   submission.name = _.pickBy(data, (value, key)=> key.startsWith("name"));
   submission.contact =  _.pickBy(data, (value, key)=> key.startsWith("contact"));
   submission.metadata =  _.pickBy(data, (value, key)=> key.startsWith("meta"));
+  submission.createdBy = data.userId
+  
   /*--- Metadata/Configuration ---*/
   dispatch(entityAddRequest({
     payload: submission, 
@@ -74,11 +79,19 @@ const config = {
   validate
 }
 
+const mapStateToProps = (state, props) => { 
+  return {
+    initialValues: {
+      userId: fromAuthentication.getUserId(state)
+    }
+  }
+}
+
 const FormRedux = props => <FormRender { ...props} />
 const formRedux = reduxForm(config)
 
 export default compose(
+  connect(mapStateToProps),
   formRedux,
-  connect(),
   queryLifecycle,
 )(FormRedux);

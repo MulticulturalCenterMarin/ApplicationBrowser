@@ -1,24 +1,51 @@
-# Synapsis
-### Full Speed Ahead for Internet 3.0 and Blockchain Interopability.
+# Multicultural Center of Marin
+### Open Source Grassroots Organizing Platform
 
 ```
-git clone git@github.com:KamesCG/multicultural.git
+git clone https://github.com/MulticulturalCenterMarin/ApplicationBrowser
 
-yarn
+cd ApplicationBrowser
+
+npm install || yarn
+
+npm run start || yarn start
+npm run build || yarn build
 
 ```
 
-The Synapsis Application Family is an Open Source **Distributed Autonomous Organization Management System**.
+The Multicultural Center of Marin Grassroots Organizing Platform is an Open Source"ish" Dashboard.
 
-The Application aims to solve the challenge of organizing, managing and facilitating a large distributed network of people. As we face continue to face local/global challenges, the pressure to build robust community solutions will become greater. However, managing people, especially a dectranlized distributed autonmous organization, is not a simple task.
+![Resources](src/assets/screenrecording/demo.gif)
+
+Built with React and Firebase, it's Open Source code (for the most part).
+
+The primary intention is to help teams quickly launch a modern Online Application, without having to worry to much about the infrastructure.
+
+In other words, the interface design, business logic and other technical solutions are launched under the formal G.T.D (Get Things Done) License, which requires you to get things done. The application (hopefully), with the right love, attention and nourishment will blossom into a beautiful, easy-to-use Online Application for Grassroots Organizing and Distributed Autonomous Organizations to launch exciting solutions, for the future, related to Blockchain technology, more specifically Ethereum.
+
+### The What 
+The project is currently in the "seedling" phase. Containing the essentials for launching a modern React (component based frontend) with an easy to manage authentication, database, storage and serverless functions infrastructure. It should be noted, the Synapsis project aims to reach full Open Source and potentially decentralized infrastructure. That being said, at the moment "rapid" prototyping and ease of use are the primary objective.
+
+![Hotline Scheduling](src/assets/screenshots/dashboardHotlineSchedule.jpg)
+
+### The Why
+The Application aims to solve the challenge of organizing, managing and facilitating a large distributed network of people. As we continue to face local/global challenges, the pressure to build robust community solutions will become even larger. However, managing people, especially a dectranlized distributed autonmous organization, is not a simple task.
 
 *Organizing people at scale, requires understanding/observing the world at scale.*
 
-Hence, the primary of objective of Synapsis is too relay the "state of the world (who, what, when, where and how)" as quickly as possible, to as many people as possible, using leading design techniques, vanguard code and shared cultural responsibility.
+Hence, the primary of objective of Multicultural Center of Marin is too relay the "state of the world (who, what, when, where and how)" as quickly as possible, to as many people as possible, using leading design techniques, vanguard code and shared cultural responsibility.
+
+![Resources](src/assets/screenshots/dashboardResources.jpg)
+
+### The Who
+The Multicultural Center of Marin (currently Canal Welcome Center) is birthing the Synapsis project to help empower a network of grassroots organizers, both locally and globally. Relationships are the foundation of life. The Marin CultureCenter is on a steadfast mission to connect the diverse communities, for sustained community well-being and happiness for everyone.
+
+##### For The People. By The People.
+Life, liberty and the pursuit of happiness. Granted to those who seek to unite and overcome today and tomorrow's growing challenges collectively. We have the power to solve challenges, both large and small, but first we have to unite communities, build relationships and create new models of self-empowerment.
 
 **The project will be completed in stages. It's not currently anywehere near final form - level 9000**
 
-In the future, the Synapsis repository will branch into a agnostic (as opposed to organization specific) boilerplate, so people and organizations can use the code without first having to delete the default content.
+In the future, the Multicultural Center of Marin repository will branch into a agnostic (as opposed to organization specific) boilerplate, so people and organizations can use the code without first having to delete the default content.
 
 As of right now (stage 1), the primary objective is to refine the user experience, quickly prototype features via commercial platforms and discover the implementation patterns for emerging models provided by a decentralized technical infraustructure. Simply put, the power of blockchain, more specifically Ethereum, will be woven into the underyling technical fabric of user interaction.
 
@@ -54,6 +81,8 @@ The Primary Objectives for Stage 1 - The State of The World
 The Frontend is primary built with React, Redux and Redux Saga.
 
 The Backend is primary built with Firebase (OAuth, NoSQL, JSON Data Structure, Serverless Functions)
+
+![Resources](src/assets/screenrecording/demo.gif)
 
 ## The Design System
 Multiple design and developments philosphies/ideas are experimented and implemented within the Application, to achieve the mission  rapid, scalable user experience/interface prototyping for distrubted autonomous organizations functionality. The boilerplate is meant to be adaptaive, so overtime solutions will be added/pruned accomodate more cross-application composability.

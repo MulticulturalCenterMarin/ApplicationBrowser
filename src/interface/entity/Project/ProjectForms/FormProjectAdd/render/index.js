@@ -16,6 +16,12 @@ import StyleFormDefault from 'static/style/StyleFormDefault'
 /* --------------------------- Styled Components ---------------------------- */
 export default ({handleSubmit, isSubmitting, match, ...props}) => (
 <FormBase {...props} bg='white' p={10} >
+  <Field 
+    name="userId"
+    placeholder="Name"
+    component={ReduxField}
+    type="text"
+  />
   <FieldsEntityName {...StyleFormDefault}/>
   <Heading level={[3]} f={[3]}>Project Metadata</Heading>
   <FieldsMetadata {...StyleFormDefault}/>
