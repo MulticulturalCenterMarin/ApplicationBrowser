@@ -51,6 +51,17 @@ export const DayDirectory = index => ({
   daySunday: 'Sunday',
 }[index])
 
+
+export const ScaffoldCommercePaymentSourceCard = props => ({
+  brand:  idx(props, _=> _.token.card.brand),
+  created:  idx(props, _=> _.token.created),
+  exp_month:  idx(props, _=> _.token.card.exp_month),
+  exp_year:  idx(props, _=> _.token.card.exp_year),
+  funding:  idx(props, _=> _.token.card.funding),
+  last4:  idx(props, _=> _.token.card.last4),
+  object: idx(props, _=> _.token.card.object),
+  name: idx(props, _=> _.token.card.name),
+})
 export default {
   CalendarItem,
   DataFormEntityEdit,

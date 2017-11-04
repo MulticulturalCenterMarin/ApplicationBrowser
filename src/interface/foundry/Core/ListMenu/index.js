@@ -8,13 +8,18 @@ import Foundry from 'foundry'
 import StyleCompose from 'logic/interface/StyleCompose'
 
 /* ------------------------------- Component -------------------------------- */
-export default ({data, foundry, styled, styledContainer, ...props}) => {
-  if(!foundry || !data) return null
-  const Items = data ? _.map(data, StyleCompose(styled)) : null;
+export default ({data, eid, foundry, styled, styledFlex, ...props}) => {
+  console.log(eid)
+  const menu = props.branches(eid)
+  console.log(menu)
+  console.log(styled)
+  if(!foundry || !eid) return null
+  const Items = menu ? _.map(menu, StyleCompose(styled)) : null;
   const ItemsPropped = _.map(Items, item=> ({...item, ...props}))
   const List = Items ? _.map(ItemsPropped, Foundry[foundry]) : null
+  console.log(List)
   return (
-    <Flex direction={['row']} wrap='wrap' {...styledContainer}  > 
+    <Flex direction={['column']} wrap='wrap' {...styledFlex}  > 
       {List}
     </Flex>
   )

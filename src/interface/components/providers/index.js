@@ -7,6 +7,7 @@ import { ConnectedRouter } from 'react-router-redux'
 import { ThemeProvider} from 'styled-components'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import {StripeProvider} from 'react-stripe-elements';
 /* ------------------------- Internal Dependencies -------------------------- */
 import themeSettings from 'theme/settings'
 import { ScrollToTop } from 'fusion'

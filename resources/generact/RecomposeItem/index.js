@@ -2,7 +2,7 @@
 import { connect } from 'react-redux'
 import { compose, lifecycle, withProps, withState, renderComponent } from 'recompose'
 /* ------------------------- Internal Dependencies -------------------------- */
-import { Item } from 'foundry'
+import { List } from 'foundry'
 /* ------------------------ Initialize Dependencies ------------------------- */
 
 /* ---------------------------- Module Package ------------------------------ */
@@ -50,4 +50,4 @@ export default compose(
   queryLifecycle,
   defaultState,
   defaultProps,
-)(Item);
+)(List);

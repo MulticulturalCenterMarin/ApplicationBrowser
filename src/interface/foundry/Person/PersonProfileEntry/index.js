@@ -14,7 +14,9 @@ import {
 import { PhoneUnformatted, ContributorsList } from 'logic/interface/FlowInvert'
 import {
   FirestoreFeed,
-  FirestoreListCompose
+  FirestoreList,
+  FirestoreListCompose,
+  StripeContainer
 } from 'containers'
 import {
   ImageList,
@@ -22,6 +24,7 @@ import {
   FormProfileSmsSend,
   FormStatusUpdate,
   EntityStatusUpdates,
+  FormPaymentCreditCard
 } from 'foundry'
 import {
   FormPersonEdit,
@@ -63,6 +66,28 @@ export default props => {
             path="/dashboard/person/:eid/activity" 
             component={EntityStatusUpdates}
             collection='people' 
+          />
+          <Route 
+            exact 
+            path="/dashboard/person/:eid/account" 
+            component={StripeContainer}
+            collection='people' 
+          />
+
+          <Route exact 
+            path="/dashboard/person/:eid/account" 
+            component={FirestoreList} 
+            collection='commerceTokens'
+            delta='CommercePaymentSouceCard'
+            filters={{
+              where: [
+                ['createdBy', '==', 'xQTed4klkYQSap5ClNsF35GCSFv2']
+              ]
+            }}
+            foundry='CommercePaymentSouceCard'
+            styled={{
+              w: [1, 1, 0.5],
+            }}
           />
           
           {/*--- Edit::Person ---*/}

@@ -10,6 +10,7 @@ import UserProfile from 'containers/user/UserProfile'
 
 import {MagicBlue} from 'theme/stylesheet/background/BackgroundGradient'
 
+
 /* --------------------------- Styled Components ---------------------------- */
 const Flexy = styled(Flex)`
   overflow: hidden;

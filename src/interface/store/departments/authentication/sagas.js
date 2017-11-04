@@ -1,10 +1,10 @@
 /* ------------------------- External Dependencies -------------------------- */
 import { call, put, fork, takeEvery, take } from 'redux-saga/effects';
 
-/* ------------------------- Internal Dependencies -------------------------- */
 import firebase from 'firebase'
-
+/* ------------------------- Internal Dependencies -------------------------- */
 import reduxSagaFirebase from 'services/Firebase';
+import notificationStaticContent from 'content/notifications'
 import { entityStatus, branchFeasible } from 'logic/forms/QueryValidation'
 
 /*--- Redux Actions ---*/ 
@@ -26,8 +26,16 @@ import {
   AUTH_LOGIN_WITH_EMAIL_PASSWORD_FAILURE,
 } from './actions'
 
-import {NOTIFICATION_OPEN, authSyncUser} from 'store/departments/actions'
-import notificationStaticContent from 'content/notifications'
+import {
+  authLoginSuccess
+} from './actions'
+
+import {
+  NOTIFICATION_OPEN,
+  authSyncUser,
+  firestoreDocumentFilterGetRequest
+} from 'store/departments/actions'
+
 /* ------------------------ Initialize Dependencies ------------------------- */
 /* ------------------------------ Saga Stories ------------------------------ */
 /*--- Login ---*/
@@ -61,7 +69,8 @@ function* loginWithAuthorization({payload, metadata}) {
     const credentials = yield call(reduxSagaFirebase.auth.signInWithPopup, authorizationProvider);
     const data = yield call(reduxSagaFirebase.auth.signInWithCredential, credentials);
     yield put({type: AUTH_LOGIN_WITH_AUTHORIZATION_SUCCESS, payload: data })
-    yield put({type: AUTH_LOGIN_SUCCESS, payload: data })
+    yield put(authLoginSuccess({payload: data }))
+
     yield put({
       type: NOTIFICATION_OPEN, 
       payload:{
@@ -106,9 +115,6 @@ function* loginWithPhone({payload, metadata}) {
   try {
     const applicationVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
     const confirmationResult = yield call(reduxSagaFirebase.auth.signInWithPhoneNumber, phoneNumber, applicationVerifier);
-    console.log(confirmationResult)
-    const verificationCode = '123'
-    const credentials = yield call(confirmationResult.confirm, verificationCode);
     yield put({type: AUTH_LOGIN_WITH_PHONE_SUCCESS })
     yield put({type: AUTH_LOGIN_SUCCESS})
   } catch(e) {
@@ -120,7 +126,23 @@ function* syncUserSaga() {
   const channel = yield call(reduxSagaFirebase.auth.channel);
   while(true) {
     const { error, user } = yield take(channel);
-    if (user) yield put(authSyncUser(user));
+    if (user) {
+      yield put(authSyncUser(user));
+      yield put(firestoreDocumentFilterGetRequest({
+      payload: {},
+      metadata: {
+        branch: [
+          'people'
+        ],
+        delta: 'AuthenticatedProfile',
+        filters: {
+          where: [
+            ['eid', '==', user.uid]
+          ]
+        }
+      }
+    }))
+    }
     else yield put(authSyncUser(null));
   }
 }

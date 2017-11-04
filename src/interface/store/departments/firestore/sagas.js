@@ -45,6 +45,12 @@ import {
 } from './actions'
 
 import {
+  firestoreDocumentFilterGetRequest,
+  firestoreDocumentDeleteRequest,
+  firestoreDocumentFieldsDeleteRequest,
+} from 'store/departments/actions'
+
+import {
   firestoreDocumentGetRequest,
 } from './actions'
 /*---*--- Document Add ---*---*/
@@ -54,6 +60,7 @@ function* documentAdd({payload, metadata}) {
     const documentID = yield call(reduxSagaFirebase.firestore.documentAdd, branch, payload);
     yield put(firestoreDocumentAddSuccess({payload: {documentID}, metadata}))
   } catch(e) {
+    console.log(e)
     yield put(firestoreDocumentAddFailure({payload: e, metadata}))
   }
 }
@@ -125,7 +132,6 @@ function* documentAllGet({payload, metadata}) {
 function* documentFilterGet({payload, metadata}) {
   try {
     const { branch, filters } = metadata
-    console.log(filters)
     const data = yield call(reduxSagaFirebase.firestore.documentFilterGet, branch, filters);
     yield put(firestoreDocumentFilterGetSuccess({payload: data, metadata}))
   } catch(e) {
@@ -173,6 +179,17 @@ function* documentDelete({payload, metadata}) {
     const { branch } = metadata
     const deleteRequest = yield call(reduxSagaFirebase.firestore.documentDelete, branch);
     yield put(firestoreDocumentDeleteSuccess({payload: {...deleteRequest}, metadata}))
+    if(metadata.trigger) {
+      const trigger = {
+        ...metadata,
+        branch: [
+          metadata.collection
+        ],
+        delta: metadata.trigger
+      }
+      console.log(trigger)
+      yield put(firestoreDocumentFilterGetRequest({payload:{}, metadata:trigger}))
+    }
   } catch(e) {
     yield put(firestoreDocumentDeleteFailure({payload: e, metadata}))
   }

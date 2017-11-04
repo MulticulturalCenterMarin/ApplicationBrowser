@@ -13,8 +13,7 @@ import {
 } from 'foundry'
 
 /* --------------------------- Styled Components ---------------------------- */
-
-/* ------------------------- Component Properties --------------------------- */
+import { AuthorizationLogin} from 'containers'
 /* ------------------------------- Component -------------------------------- */
 export default props => (
     <Flex direction={['column', 'row']} align={"stretch"} justify="center"  bg={['blue']} gradient={['blue']} gradientDir='45deg' color={['blueLight']} bs={[0]}  z='20' pos='relative'>
@@ -23,7 +22,7 @@ export default props => (
         <Link to="/"><Heading color={'white'} level={4} margin={'0'} fontSize={[3]} fontWeight={'100'}>Multicultural <Span fontWeight={[500]} >Center of Marin</Span></Heading></Link>
       </Flex>
       
-      <Flex align="center" w={[1, 1, 0.35]} justify="flex-start" display={['none', 'none', 'Flex']} py={[15]} >
+      <Flex align="center" w={[1, 1, 0.35]} display={['none', 'none', 'Flex']} >
         <MenuProjectsPopover/>
         <MenuOrganizationPopover/>
         <MenuResourcePopover/>

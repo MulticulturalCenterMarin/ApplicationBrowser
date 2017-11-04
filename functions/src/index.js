@@ -256,14 +256,51 @@ exports.twilioSyncMessages = functions.https.onRequest((request,response)=> {
 // When a user is created, register them with Stripe
 exports.createStripeCustomer = functions.auth.user().onCreate(event => {
   const data = event.data;
+  const person = {
+    eid: event.data.uid,
+    images: {
+      imageProfile: event.data.photoURL
+    },
+    name: {
+      nameDisplay: event.data.displayName,
+      nameFirst: event.data.displayName,
+    },
+    contact: {
+      contactEmail: event.data.email,
+    },
+    provider: event.data.providerData,
+  }
+
   return stripe.customers.create({
     email: data.email
   }).then(customer => {
     firestore.collection('customers').add({
-        eid: customer.id
+        eid: event.data.uid,
+        stripeId: customer.id
       })
   });
 });
+
+
+
+
+exports.stripeChargeRequest = functions.firestore
+  .document('commerceTokens/{token}')
+  .onCreate(event => {
+    const data = event.data.data();
+
+    stripe.charges.create({
+      amount: 50,
+      currency: "usd",
+      source: data.token.id,
+      description: "Charge for kames"
+    }).then(value=>{
+      console.log(value)
+    }).catch(e=>{
+      console.log(e)
+    })
+});
+
 
 // Add a payment source (card) for a user by writing a stripe payment source token to Realtime database
 exports.addPaymentSource = functions.database.ref('/stripe_customers/{userId}/sources/{pushId}/token').onWrite(event => {

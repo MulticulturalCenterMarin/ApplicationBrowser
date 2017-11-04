@@ -46,6 +46,12 @@ export const AUTH_SYNC_USER = 'AUTH_SYNC_USER'
 /* ---------------------------- Define Actions ------------------------------ */
 
 /*--- Login with OAuth ---*/
+export const authLoginSuccess = ({payload = {}, metadata = {}}) => ({
+  type: AUTH_LOGIN_SUCCESS,
+  payload,
+  metadata
+})
+
 export const authLoginWithAuthorization = ({payload = {}, metadata = {}}) => ({
   type: AUTH_LOGIN_WITH_AUTHORIZATION_REQUEST,
   payload,

@@ -1,9 +1,8 @@
 /* ------------------------- External Dependencies -------------------------- */
+import _ from 'lodash'
 import React from 'react';
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
-import _ from 'lodash'
-import filterKeys from 'filter-keys'
 
 /* ------------------------- Internal Dependencies -------------------------- */
 import { createValidator, required } from 'logic/forms/validation'
